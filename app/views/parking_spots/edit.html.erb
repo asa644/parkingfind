@@ -1,5 +1,5 @@
 <div class="container text-center">
-  <%= form_for(@parking) do |f| %>
+  <%= simple_form_for(@parking_spot) do |f| %>
     <%= f.label :street_address %>
     <%= f.text_field :street_address %>
     <br><br>

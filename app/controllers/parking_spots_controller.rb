@@ -1,4 +1,5 @@
 class ParkingSpotsController < ApplicationController
+  before_action :authenticate_user!
   skip_before_action :authenticate_user!, only: [ :index ]
   before_action :find_user
 
@@ -19,24 +20,24 @@ class ParkingSpotsController < ApplicationController
   def create
     @parking_spot = @user.parking_spots.build(parking_params)
     @parking_spot.save
-    redirect_to user_parking_spot_path(@user, @parking_spot)
+    redirect_to parking_spots_path(@user, @parking_spot)
   end
 
   def edit
-    @parking = current_user.parking_spots.find_by(id: params[:id])
-    redirect_to parking_spots_path unless @parking
+    @parking_spot = current_user.parking_spots.find_by(id: params[:id])
+    redirect_to edit_user_parking_spot unless @parking_spot
   end
 
   def update
-    @parking = ParkingSpot.find(params[:id])
-    @parking.update(parking_params)
+    @parking_spot = ParkingSpot.find(params[:id])
+    @parking_spot.update(parking_params)
     # redirect_to articles_path
   end
 
   def destroy
-    @parking = ParkingSpot.find(params[:id])
-    @parking.destroy
-    # redirect_to articles_path
+    @parking_spot = ParkingSpot.find(params[:id])
+    @parking_spot.destroy
+    redirect_to parking_spots_path
   end
 
   private
