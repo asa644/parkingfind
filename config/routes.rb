@@ -19,6 +19,7 @@ Rails.application.routes.draw do
   end
   get '/profile' => 'users#show', as: :profile
 
+
   devise_for :users, controllers: { omniauth_callbacks: 'users/omniauth_callbacks' }
   root to: 'pages#home'
 
