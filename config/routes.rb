@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
 
   root to: 'pages#home'
+  devise_for :users, controllers: { omniauth_callbacks: 'users/omniauth_callbacks' }
 
   devise_for :users, controllers: { omniauth_callbacks: 'users/omniauth_callbacks' }
 
@@ -10,8 +11,10 @@ Rails.application.routes.draw do
 
   get '/profile' => 'users#show', as: :profile
 
-  resources :users, only: [:show] do
-    resources :parking_spots
+  resource :users, only: [:show] do
+    resources :parking_spots do
+      resources :bookings, only: [:new, :create, :show]
+    end
   end
 
 end
