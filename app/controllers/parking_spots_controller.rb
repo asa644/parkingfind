@@ -1,5 +1,6 @@
 class ParkingSpotsController < ApplicationController
   skip_before_action :authenticate_user!, only: [ :index ]
+
   def index
     @parkings = ParkingSpot.all
   end
