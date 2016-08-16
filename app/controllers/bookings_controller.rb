@@ -10,11 +10,11 @@ class BookingsController < ApplicationController
   # end
 
   def new
-    @booking = booking.new
+    @booking = Booking.new
   end
 
   def create
-    @booking = booking.new(booking_params)
+    @booking = Booking.new(booking_params)
     @booking.save
     # redirect_to articles_path(@booking)
   end
@@ -30,7 +30,7 @@ class BookingsController < ApplicationController
   # end
 
   def destroy
-    @booking = booking.find(params[:id])
+    @booking = Booking.find(params[:id])
     @booking.destroy
     # redirect_to articles_path
   end
