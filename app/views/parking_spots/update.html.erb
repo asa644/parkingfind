@@ -1,10 +1,12 @@
 <div class="container text-center">
   <div class="content">
-    <p>description: <%= @parking.description %></p>
-    <p>city: <%= @parking.city %></p>
-    <p>country: <%= @parking.country %></p>
-    <p>price: <%= @parking.price %></p>
-    <p>number of spots: <%= @parking.number_of_spots %></p>
-    <p>street address: <%= @parking.street_address %></p>
+    <p>description: <%= @parking_spot.description %></p>
+    <p>city: <%= @parking_spot.city %></p>
+    <p>country: <%= @parking_spot.country %></p>
+    <p>price: <%= @parking_spot.price %></p>
+    <p>number of spots: <%= @parking_spot.number_of_spots %></p>
+    <p>street address: <%= @parking_spot.street_address %></p>
+    <h4><%= link_to "Back", user_parking_spots_path(@user) %></h4>
+    <h4><%= link_to "Edit again", edit_user_parking_spot_path(@user) %></h4>
   </div>
 </div>
