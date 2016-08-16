@@ -1,5 +1,7 @@
 class UsersController < ApplicationController
 
+
+
   def show
     #check current user has same id as in route
     if current_user.id != params[:id].to_i
@@ -7,4 +9,6 @@ class UsersController < ApplicationController
       return
     end
   end
+
+
 end
