@@ -1,7 +1,7 @@
 <div class="container text-center">
   <h1><%#= link_to "Create a Parking Spot", new_article_path %></h1>
   <div class="contentt">
-    <% @parkings.each do |parking| %>
+    <% @parking_spots.each do |parking| %>
 
       <hr>
       <h2><%= link_to parking.street_address %></h2>

@@ -11,7 +11,7 @@ Rails.application.routes.draw do
 
   get '/profile' => 'users#show', as: :profile
 
-  resource :users, only: [:show] do
+  resource :users do
     resources :parking_spots do
       resources :bookings, only: [:new, :create, :show]
     end
