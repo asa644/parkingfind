@@ -10,7 +10,7 @@ class ParkingSpotsController < ApplicationController
 
   def show
     @parking_spot = current_user.parking_spots.find_by(id: params[:id])
-    redirect_to users_parking_spots unless @parking_spot
+    redirect_to profile_path unless @parking_spot
   end
 
   def new
@@ -20,7 +20,7 @@ class ParkingSpotsController < ApplicationController
   def create
     @parking_spot = @user.parking_spots.build(parking_params)
     @parking_spot.save
-    redirect_to parking_spots_path(@user, @parking_spot)
+    redirect_to parking_spot_path(@parking_spot)
   end
 
   def edit
@@ -37,7 +37,7 @@ class ParkingSpotsController < ApplicationController
   def destroy
     @parking_spot = ParkingSpot.find(params[:id])
     @parking_spot.destroy
-    redirect_to parking_spots_path
+    redirect_to profile_path
   end
 
   private
