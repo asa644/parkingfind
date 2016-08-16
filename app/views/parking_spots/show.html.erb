@@ -1,17 +1,12 @@
-<!-- <h1>ParkingSpots#show</h1>
-<p>Find me in app/views/parking_spots/show.html.erb</p>
-created by user <%#= @parking.user_id %> -->
-
-
 <div class="container text-center">
   <div class="content">
-    <p>description: <%= @parking.description %></p>
-    <p>city: <%= @parking.city %></p>
-    <p>country: <%= @parking.country %></p>
-    <p>price: <%= @parking.price %></p>
-    <p>number of spots: <%= @parking.number_of_spots %></p>
-    <h4><%= link_to "Back", parking_spots_path %></h4>
-    <h4><%= link_to "Edit", edit_parking_spot_path(@parking) %></h4>
+    <p>description: <%= @parking_spot.description %></p>
+    <p>city: <%= @parking_spot.city %></p>
+    <p>country: <%= @parking_spot.country %></p>
+    <p>price: <%= @parking_spot.price %></p>
+    <p>number of spots: <%= @parking_spot.number_of_spots %></p>
+    <h4><%= link_to "Back", user_parking_spots_path(@user) %></h4>
+    <h4><%= link_to "Edit", edit_user_parking_spot_path(@user, @parking_spot) %></h4>
   </div>
 </div>
 
