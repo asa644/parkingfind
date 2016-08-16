@@ -6,9 +6,9 @@ class BookingsController < ApplicationController
 
 
   def create
-      @booking = current_user.bookings.build(booking_params.merge(parking_spot_id: params[:parking_spot_id]))
-      @booking.save
-      redirect_to root_path
+    @booking = current_user.bookings.build(booking_params.merge(parking_spot_id: params[:parking_spot_id]))
+    @booking.save
+    redirect_to root_path
   end
 
   private
