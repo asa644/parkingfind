@@ -2,6 +2,7 @@
   <!-- Logo -->
   <%= link_to root_path, class: "navbar-wagon-brand" do %>
     <p>Logo</p>
+    <%= link_to 'Sign out', destroy_user_session_path, method: :delete %>
   <% end %>
 
   <!-- Right Navigation -->
@@ -28,12 +29,10 @@
 
       <!-- Profile picture and dropdown -->
       <div class="navbar-wagon-item">
-
-        <%#= link_to 'Sign out', destroy_user_session_path, method: :delete %>
         <div class="dropdown">
          <%= image_tag "http://placehold.it/30x30", class: "avatar dropdown-toggle", id: "navbar-wagon-menu", "data-toggle" => "dropdown" %>
          <% if user_signed_in? && current_user.facebook_picture_url %>
-  <%= image_tag current_user.facebook_picture_url, height: 50, width: 50 %>
+            <%= image_tag current_user.facebook_picture_url, height: 50, width: 50 %>
           <% end %>
           <ul class="dropdown-menu dropdown-menu-right navbar-wagon-dropdown-menu">
             <li>
