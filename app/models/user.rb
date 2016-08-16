@@ -7,6 +7,7 @@ class User < ApplicationRecord
 
   # has_many :bookings
   has_many :parking_spots
+  has_many :bookings
 
   def self.find_for_facebook_oauth(auth)
     user_params = auth.to_h.slice(:provider, :uid)
