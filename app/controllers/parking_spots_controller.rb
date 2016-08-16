@@ -1,35 +1,25 @@
 class ParkingSpotsController < ApplicationController
   skip_before_action :authenticate_user!, only: [ :index ]
+  before_action :find_user
 
   def index
-    @parkings = ParkingSpot.all
+    @parking_spots = ParkingSpot.all
+    redirect_to profile_path
   end
 
   def show
-    # @parking = ParkingSpot.find(params[:id])
-    # if current_user.id != @parking.user_id
-    #   redirect_to parking_spots_path
-    # else
-    #   @parking
-    # end
-    @parking = current_user.parking_spots.find_by(id: params[:id])
-
-    redirect_to parking_spots_path unless @parking
+    @parking_spot = current_user.parking_spots.find_by(id: params[:id])
+    redirect_to parking_spots_path unless @parking_spot
   end
 
-
-
-
   def new
-    # @parking = ParkingSpot.new
-    @parking = current_user.parking_spots.build
+    @parking_spot = ParkingSpot.new
   end
 
   def create
-    @parking = current_user.parking_spots.build(parking_params)
-    # @parking = ParkingSpot.new(parking_params)
-    @parking.save
-    redirect_to parking_spot_path(@parking)
+    @parking_spot = @user.parking_spots.build(parking_params)
+    @parking_spot.save
+    redirect_to user_parking_spot_path(@user, @parking_spot)
   end
 
   def edit
@@ -50,6 +40,10 @@ class ParkingSpotsController < ApplicationController
   end
 
   private
+
+  def find_user
+    @user = current_user
+  end
 
   def parking_params
     params.require(:parking_spot).permit(:street_address, :city, :country, :user_id, :price, :type, :number_of_spots, :description)
