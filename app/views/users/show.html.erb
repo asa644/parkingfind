@@ -3,6 +3,7 @@
   <p>Here is where users may book or offer parking spots!!!</p>
   <!-- list users bookings -->
   <h2>Your bookings</h2>
+
   <% if @user.bookings.empty? %>
     <p>You haven't booked any parking spots</p>
   <% else %>
@@ -10,7 +11,8 @@
 
     <% end %>
   <% end %>
-  <h5><%= link_to "Create a Parking spot", new_parking_spot_path %></h5>
+
+  <h5><%= link_to "Create a Parking spot", new_user_parking_spot_path(@user.id) %></h5>
   <% if @user.parking_spots.empty? %>
     <p>You don't have any parking spots</p>
   <% else %>
