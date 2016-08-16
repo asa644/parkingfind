@@ -1,7 +1,23 @@
 Rails.application.routes.draw do
 
-  resources :parking_spots
-  get '/profile/:id' => 'users#show', as: :profile
+  # get 'booking/index'
+
+  # get 'booking/new'
+
+  # get 'booking/create'
+
+  # get 'booking/show'
+
+  # get 'booking/edit'
+
+  # get 'booking/update'
+
+  # get 'booking/destroy'
+
+  resources :parking_spots do
+    resources :bookings, only: [:new, :create, :destroy]
+  end
+  get '/profile' => 'users#show', as: :profile
 
   devise_for :users, controllers: { omniauth_callbacks: 'users/omniauth_callbacks' }
   root to: 'pages#home'

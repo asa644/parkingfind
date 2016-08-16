@@ -1,2 +1,12 @@
-<h1>Hello <%= current_user.email %>?</h1>
-<p>Here is where users may book or offer parking spots!!!</p>
+<div class='container'>
+  <h1>Hello <%= @user.email %>?</h1>
+  <p>Here is where users may book or offer parking spots!!!</p>
+  <!-- list users bookings -->
+  <h2>Your bookings</h2>
+  <% if @user.bookings.empty? %>
+    <p>You haven't booked any parking spots</p>
+  <% else %>
+    <%= @user.bookings.each do |booking| %>
+
+    <% end %>
+  <% end %>
