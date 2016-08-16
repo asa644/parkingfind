@@ -1,18 +1,6 @@
 Rails.application.routes.draw do
-  get 'parking_spots/index'
 
-  get 'parking_spots/show'
-
-  get 'parking_spots/new'
-
-  get 'parking_spots/create'
-
-  get 'parking_spots/edit'
-
-  get 'parking_spots/update'
-
-  get 'parking_spots/destroy'
-
+  resources :parking_spots
   get '/profile/:id' => 'users#show', as: :profile
 
   devise_for :users, controllers: { omniauth_callbacks: 'users/omniauth_callbacks' }
