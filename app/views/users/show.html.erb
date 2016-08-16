@@ -10,3 +10,11 @@
 
     <% end %>
   <% end %>
+  <h5><%= link_to "Create a Parking spot", new_parking_spot_path %></h5>
+  <% if @user.parking_spots.empty? %>
+    <p>You don't have any parking spots</p>
+  <% else %>
+    <% @user.parking_spots.each do |parking_spot| %>
+      <p><%= parking_spot.street_address %></p>
+    <% end %>
+  <% end %>
