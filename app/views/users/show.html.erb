@@ -12,7 +12,7 @@
     <% end %>
   <% end %>
 
-  <h5><%= link_to "Create a Parking spot", users_path %></h5>
+  <h5><%= link_to "Create a Parking spot", new_users_parking_spot_path %></h5>
   <% if @user.parking_spots.empty? %>
     <p>You don't have any parking spots</p>
   <% else %>

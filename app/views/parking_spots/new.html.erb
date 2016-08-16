@@ -1,6 +1,6 @@
 <div class="container">
   <h1>New Parking Spot</h1>
-  <%= form_for [@user, @parking_spot] do |f| %>
+  <%= form_for @parking_spot do |f| %>
     <%= f.label :description %>
     <%= f.text_field :description %>
 
