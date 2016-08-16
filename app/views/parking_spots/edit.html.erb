@@ -1,2 +1,24 @@
-<h1>ParkingSpots#edit</h1>
-<p>Find me in app/views/parking_spots/edit.html.erb</p>
+<div class="container text-center">
+  <%= form_for(@parking) do |f| %>
+    <%= f.label :street_address %>
+    <%= f.text_field :street_address %>
+    <br><br>
+    <%= f.label :city %>
+    <%= f.text_field :city %>
+    <br><br>
+    <%= f.label :country %>
+    <%= f.text_field :country %>
+    <br><br>
+    <%= f.label :price %>
+    <%= f.text_field :price %>
+    <br><br>
+    <%= f.label :number_of_spots %>
+    <%= f.text_field :number_of_spots %>
+    <br><br>
+    <%= f.label :description %>
+    <%= f.text_field :description %>
+
+    <%= f.submit %>
+  <% end %>
+</div>
+

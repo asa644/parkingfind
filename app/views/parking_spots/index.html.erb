@@ -1,2 +1,20 @@
-<h1>ParkingSpots#index</h1>
-<p>Find me in app/views/parking_spots/index.html.erb</p>
+<div class="container text-center">
+  <h1><%#= link_to "Create a Parking Spot", new_article_path %></h1>
+  <div class="contentt">
+    <h5><%= link_to "Create a Parking spot", new_parking_spot_path %></h5>
+    <% @parkings.each do |parking| %>
+
+      <hr>
+      <h2><%= link_to parking.street_address, parking_spot_path(parking) %></h2>
+      <p><%= parking.description %></p>
+      <p><%= parking.city %></p>
+      <p><%= parking.country %></p>
+      <p><%= parking.price %></p>
+      <p><%= parking.number_of_spots %></p>
+      <hr>
+
+
+    <% end %>
+
+  </div>
+</div>
