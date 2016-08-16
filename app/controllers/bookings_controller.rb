@@ -37,8 +37,8 @@ class BookingsController < ApplicationController
 
   private
 
-  def find_parking_spot
-    @parking_spot = ParkingSpot.find(params[:parking_spot_id])
+  def find_booking
+    @booking = ParkingSpot.find(params[:parking_spot_id])
   end
 
   def booking_params
