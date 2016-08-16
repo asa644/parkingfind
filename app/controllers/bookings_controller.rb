@@ -5,7 +5,6 @@ class BookingsController < ApplicationController
   end
 
 
-
   def create
       @booking = current_user.bookings.build(booking_params.merge(parking_spot_id: params[:parking_spot_id]))
       @booking.save
