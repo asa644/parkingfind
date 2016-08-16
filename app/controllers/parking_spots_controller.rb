@@ -5,12 +5,12 @@ class ParkingSpotsController < ApplicationController
 
   def index
     @parking_spots = ParkingSpot.all
-    redirect_to profile_path
+    # redirect_to profile_path
   end
 
   def show
     @parking_spot = current_user.parking_spots.find_by(id: params[:id])
-    redirect_to parking_spots_path unless @parking_spot
+    redirect_to users_parking_spots unless @parking_spot
   end
 
   def new
@@ -25,7 +25,7 @@ class ParkingSpotsController < ApplicationController
 
   def edit
     @parking_spot = current_user.parking_spots.find_by(id: params[:id])
-    redirect_to edit_user_parking_spot unless @parking_spot
+    redirect_to edit_users_parking_spot_path unless @parking_spot
   end
 
   def update

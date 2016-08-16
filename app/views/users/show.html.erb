@@ -18,7 +18,7 @@
   <% else %>
     <% @user.parking_spots.each do |parking_spot| %>
       <p><%= parking_spot.street_address %></p>
-      <%= link_to "Edit", edit_user_registration_path(@user, parking_spot) %>
+      <%= link_to "Edit", edit_parking_spot_path(parking_spot) %>
 
     <% end %>
   <% end %>
