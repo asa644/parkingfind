@@ -15,6 +15,9 @@ gem 'sass-rails'
 gem 'jquery-rails'
 gem 'uglifier'
 
+#geocoding
+gem "geocoder"
+
 #better design
 gem 'bootstrap-sass'
 gem 'font-awesome-sass'

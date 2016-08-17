@@ -10,6 +10,8 @@ class ParkingSpotsController < ApplicationController
 
   def show
     @parking_spot = current_user.parking_spots.find_by(id: params[:id])
+    @parking_spot_coordinates = { lat: @parking_spot.latitude, lng: @parking_spot.longitude }
+
     redirect_to profile_path unless @parking_spot
   end
 
