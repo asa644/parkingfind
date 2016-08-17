@@ -1,5 +1,8 @@
 class BookingsController < ApplicationController
+  before_action :authenticate_user!
   before_action :find_parking_spot
+
+
   def index
     @bookings =  Booking.all
   end
@@ -10,11 +13,17 @@ class BookingsController < ApplicationController
 
 
   def create
-    @booking = @parking_spot.bookings.build(booking_params)
+    @booking = current_user.bookings.build(booking_params)
+    @booking.parking_spot_id = params[:parking_spot_id]
+    @booking.total_price = total_price
     @booking.save
     flash[:notice] = 'Booking created successfully'
     #redirect to user booking show
     redirect_to parking_spot_bookings_path
+  end
+
+  def total_price
+    total_price = (@booking.end_at - @booking.start_at)/86400 * find_parking_spot.price
   end
 
   private
@@ -24,7 +33,7 @@ class BookingsController < ApplicationController
   end
 
   def booking_params
-    params.require(:booking).permit(:start_at, :end_at, :total_price).merge(user: current_user)
+    params.require(:booking).permit(:start_at, :end_at)
   end
 end
 
