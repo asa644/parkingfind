@@ -12,7 +12,8 @@ class BookingsController < ApplicationController
   def create
     @booking = @parking_spot.bookings.build(booking_params)
     @booking.save
-    flash[:notice] = 'Booking created successfully'
+    flash[:notice] = "Thank you for booking, Your booking time start at #{@booking.start_at} and ends at #{@booking.end_at} Your total price is: #{@booking.total_price}"
+
     #redirect to user booking show
     redirect_to parking_spot_bookings_path
   end

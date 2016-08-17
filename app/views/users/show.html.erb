@@ -7,8 +7,13 @@
   <% if @user.bookings.empty? %>
     <p>You haven't booked any parking spots</p>
   <% else %>
-    <%= @user.bookings.each do |booking| %>
-
+    <% count = 1 %>
+    <% @user.bookings.each do |booking| %>
+     <p> <%= "Your booking number #{count}: "%></p>
+      <p> <%= "Starts on the: #{booking.start_at} "%></p>
+      <p> <%= "Ends on the: #{booking.end_at}"%></p>
+      <p> <%= "Your booking total price is: #{booking.total_price}"%></p>
+      <% count += 1 %>
     <% end %>
   <% end %>
 
