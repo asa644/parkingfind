@@ -17,6 +17,12 @@ gem 'uglifier'
 
 #geocoding
 gem "geocoder"
+gem "coffee-rails"
+gem "gmaps4rails"
+
+source 'https://rails-assets.org' do
+  gem "rails-assets-underscore"
+end
 
 #better design
 gem 'bootstrap-sass'
