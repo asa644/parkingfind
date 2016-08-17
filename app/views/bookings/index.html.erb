@@ -1,9 +1,12 @@
 <div class="container text-center">
-  <%  @bookings.each do |booking| %>
+<% count = 1 %>
+    <% @user.bookings.each do |booking| %>
     <hr>
-      <h4><%= booking.start_at %></h4>
-      <h4><%= booking.end_at %></h4>
-      <h4><%= booking.total_price %></h4>
-    <hr>
-  <% end %>
+      <p> <%= "Your booking number #{count}: "%></p>
+      <p> <%= "Starts on the: #{booking.start_at} "%></p>
+      <p> <%= "Ends on the: #{booking.end_at}"%></p>
+      <p> <%= "Your booking total price is: #{booking.total_price}"%></p>
+     <hr>
+      <% count += 1 %>
+    <% end %>
 </div>

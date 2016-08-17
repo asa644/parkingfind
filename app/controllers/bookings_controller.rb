@@ -1,10 +1,9 @@
 class BookingsController < ApplicationController
   before_action :authenticate_user!
-  before_action :find_parking_spot
-
+  before_action :find_parking_spot , except: [:index]
 
   def index
-    @bookings =  Booking.all
+    @user = current_user
   end
 
   def new
@@ -17,13 +16,14 @@ class BookingsController < ApplicationController
     @booking.parking_spot_id = params[:parking_spot_id]
     @booking.total_price = total_price
     @booking.save
-    flash[:notice] = 'Booking created successfully'
+    flash[:notice] = "Thank you for booking, Your booking time start at #{@booking.start_at} and ends at #{@booking.end_at} Your total price is: #{@booking.total_price}"
+
     #redirect to user booking show
     redirect_to parking_spot_bookings_path
   end
 
   def total_price
-    total_price = (@booking.end_at - @booking.start_at)/86400 * find_parking_spot.price
+    total_price = (@booking.end_at - @booking.start_at) * find_parking_spot.price
   end
 
   private

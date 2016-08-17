@@ -8,7 +8,7 @@ Rails.application.routes.draw do
   resources :parking_spots do
     resources :bookings
   end
-
+  resources :bookings, only: [:index]
   get '/profile' => 'users#show', as: :profile
 
   # resource :users do
