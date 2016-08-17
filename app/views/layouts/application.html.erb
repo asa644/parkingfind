@@ -57,7 +57,9 @@ a:hover{
     <div class='contai' style="height: 600px;" id="back">
       <%= yield %>
     </div>
-
+    <%= javascript_include_tag "https://maps.google.com/maps/api/js?v=3.23&key= AIzaSyBAMwsn5jRBMhsLON-kHNzEkOzx_8Y3kcY" %>
+    <%= javascript_include_tag "https://cdn.rawgit.com/printercu/google-maps-utility-library-v3-read-only/master/markerclusterer/src/markerclusterer_compiled.js" %>
+    <%= javascript_include_tag "https://cdn.rawgit.com/printercu/google-maps-utility-library-v3-read-only/master/infobox/src/infobox_packed.js" %>
     <%= javascript_include_tag 'application' %>
     <script src="https://code.jquery.com/ui/1.12.0/jquery-ui.js"></script>
    <%= yield(:after_js) %>
