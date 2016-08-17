@@ -10,6 +10,7 @@
       <p><%= parking.country %></p>
       <p><%= parking.price %></p>
       <p><%= parking.number_of_spots %></p>
+      <%= link_to 'Book now!',  new_parking_spot_booking_path(parking) %>
       <hr>
 
 
