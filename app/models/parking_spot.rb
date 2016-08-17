@@ -1,5 +1,5 @@
 class ParkingSpot < ApplicationRecord
-  # mount_uploader :photo, PhotoUploader
+  mount_uploader :photo, PhotoUploader
   belongs_to :user
   has_many :bookings
 end
