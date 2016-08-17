@@ -46,7 +46,7 @@
           } );
 
           $(document).ready(function(){
-            var base_price = 20;
+            var base_price = <%= @parking_spot.price %>;
             var parking_spot_price = <%= @parking_spot.price %>
             $('.datepicker').on('change', function(){
               var start_at = Date.parse( $('#dp_start_at').val() )
