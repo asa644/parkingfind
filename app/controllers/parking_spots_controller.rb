@@ -6,11 +6,11 @@ class ParkingSpotsController < ApplicationController
   def index
     @parking_spots = ParkingSpot.all
 
-    @parking_spots = ParkingSpot.where.not(latitude: nil, longitude: nil)
   end
 
   def show
     @parking_spot = current_user.parking_spots.find_by(id: params[:id])
+    @parking_spots = ParkingSpot.where.not(latitude: nil, longitude: nil)
     @parking_spot_coordinates = { lat: @parking_spot.latitude, lng: @parking_spot.longitude }
     @hash = Gmaps4rails.build_markers(@parking_spots) do |parking, marker|
       marker.lat parking.latitude
