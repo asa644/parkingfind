@@ -17,6 +17,10 @@
     <br><br>
     <%= f.label :description %>
     <%= f.text_field :description %>
+    <br><br>
+    <%= f.input :photo %>
+    <%= f.input :photo_cache, as: :hidden %>
+    <br><br>
 
     <%= f.submit %>
   <% end %>

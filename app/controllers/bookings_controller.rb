@@ -1,10 +1,9 @@
 class BookingsController < ApplicationController
   before_action :authenticate_user!
-  before_action :find_parking_spot
-
+  before_action :find_parking_spot , except: [:index]
 
   def index
-    @bookings =  Booking.all
+    @user = current_user
   end
 
   def new
@@ -24,7 +23,7 @@ class BookingsController < ApplicationController
   end
 
   def total_price
-    total_price = (@booking.end_at - @booking.start_at)/86400 * find_parking_spot.price
+    total_price = (@booking.end_at - @booking.start_at) * find_parking_spot.price
   end
 
   private

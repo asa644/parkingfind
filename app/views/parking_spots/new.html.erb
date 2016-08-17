@@ -1,6 +1,6 @@
 <div class="container">
   <h1>New Parking Spot</h1>
-  <%= form_for @parking_spot do |f| %>
+  <%= simple_form_for(@parking_spot) do |f| %>
     <%= f.label :description %>
     <%= f.text_field :description %>
 
@@ -23,6 +23,10 @@
 
     <%= f.label :street_address %>
     <%= f.text_field :street_address %>
+    <br><br>
+
+    <%= f.input :photo %>
+    <%= f.input :photo_cache, as: :hidden %>
     <br><br>
 
     <%= f.submit %>
