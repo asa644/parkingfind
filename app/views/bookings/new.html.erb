@@ -1,5 +1,6 @@
 <h1>Book Now</h1>
 <h2><%= @parking_spot.street_address %></h2>
+<h2> The price per day is: <%= @parking_spot.price %></h2>
 
 <%= simple_form_for [@parking_spot, @booking] do |f| %>
     <%= f.input :start_at %>
