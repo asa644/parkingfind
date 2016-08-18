@@ -8,10 +8,13 @@
   <% if @user.bookings.empty? %>
     <p>You haven't booked any parking spots</p>
   <% else %>
-    <%= link_to 'View my bookings', bookings_path%>
+    <button>
+      <%= link_to 'View my bookings', bookings_path %>
+    </button>
   <% end %>
 
-  <h5><%= link_to "Create a Parking spot", new_parking_spot_path %></h5>
+  <button><%= link_to "Create a Parking spot", new_parking_spot_path %></button>
+
   <% if @user.parking_spots.empty? %>
     <p>You don't have any parking spots</p>
   <% else %>
@@ -44,3 +47,4 @@
 <button><%= link_to "Check all our parking spots !", parking_spots_path %></button>
 <br><br>
 <br>
+
