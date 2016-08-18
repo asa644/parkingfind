@@ -35,6 +35,7 @@ gem 'omniauth-facebook'
 #picture management system
 gem 'cloudinary', '1.1.0'
 gem 'carrierwave'
+gem 'searchkick'
 
 group :development, :test do
   gem 'binding_of_caller'

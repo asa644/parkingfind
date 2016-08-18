@@ -5,7 +5,6 @@ class ParkingSpotsController < ApplicationController
 
   def index
     @parking_spots = ParkingSpot.all
-
   end
 
   def show
@@ -45,6 +44,15 @@ class ParkingSpotsController < ApplicationController
     @parking_spot = ParkingSpot.find(params[:id])
     @parking_spot.destroy
     redirect_to profile_path
+  end
+
+  def search
+    #perform your search
+    @parking_spots = ParkingSpot.search(params[:search])
+    # @parking_spots = ParkingSpot.all.where("country ILIKE ?", "%#{params[:search]}%")
+    # @parking_spots = ParkingSpot.all.where("street_address ILIKE ?", "%#{params[:search]}%")
+    # @parking_spots = ParkingSpot.all.where("price ILIKE ?", "%#{params[:search]}%")
+    # @parking_spots = ParkingSpot.all.where("description ILIKE ?", "%#{params[:search]}%")
   end
 
   private

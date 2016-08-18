@@ -1,0 +1,24 @@
+<div class="container text-center" style="height: 600px">
+  <h3>Search results for <%= params[:search].capitalize %>: </h3>
+  <div class="text-left">
+    <% @parking_spots.each do |parking_spot| %>
+      <h3>Address: <%= parking_spot.street_address %></h3>
+      <h4>City: <%= parking_spot.city %></h4>
+      <h4>Country: <%= parking_spot.country %></h4>
+   <% end %>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
