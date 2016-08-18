@@ -5,7 +5,7 @@
     <p>country: <%= @parking_spot.country %></p>
     <p>price: <%= @parking_spot.price %></p>
     <p>number of spots: <%= @parking_spot.number_of_spots %></p>
-    <p><%= cl_image_tag @parking_spot.photo, height: 300, width: 400, crop: :fill %>
+    <%= cl_image_tag @parking_spot.photo, height: 300, width: 400, crop: :fill %>
     <h4><%= link_to "Back", profile_path %></h4>
     <h4><%= link_to "Edit", edit_parking_spot_path(@parking_spot) %></h4>
     <h4><%= link_to "Delete", parking_spot_path(@parking_spot), method: :delete %></h4>

@@ -129,3 +129,52 @@
   border-left: 1px solid #E6E6E6;
   border-top: 1px solid #E6E6E6;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+    a {
+      text-decoration: none !important;
+    }
+
+
+    body{
+      height: 65px;
+      }
+
+    p.text-center {
+        padding-top: 18px;
+    }
+
+    .avatar {
+
+        width: 50px !important;
+        height: 50px !important;
+    }
+
+    #back{
+          background-image: url("http://www.tessituraguenzani.com/images/architecture-of-a-house-parking-garage-interior-design.jpg ");
+          background-size: cover;
+          background-repeat: no-repeat;
+    }
+
+
+    #hey{
+
+        transition: all 1s ease;
+        padding-left: 0px;
+    }
+
+    #hey:hover{
+      padding-left: 20px;
+      text-decoration: none !important;
+      transition: all 0.3s ease;
+    }
