@@ -13,6 +13,14 @@ class User < ApplicationRecord
   has_many :bookings
   has_many :parking_spots
 
+  has_many :chat_rooms, dependent: :destroy
+  has_many :messages, dependent: :destroy
+
+  def name
+    email.split('@')[0]
+  end
+
+
   def self.find_for_facebook_oauth(auth)
     user_params = auth.to_h.slice(:provider, :uid)
     user_params.merge! auth.info.slice(:email, :first_name, :last_name)

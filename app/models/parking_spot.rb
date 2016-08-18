@@ -6,5 +6,5 @@ class ParkingSpot < ApplicationRecord
   geocoded_by :street_address
   after_validation :geocode, if: :street_address_changed?
 
-   searchkick
+   # searchkick
 end
