@@ -1,11 +1,52 @@
-<div class="container text-center" style="height: 600px">
+<div class="container text-center">
   <h3>Search results for <%= params[:search].capitalize %>: </h3>
-  <div class="text-left">
+  <div class="text-center">
     <% @parking_spots.each do |parking_spot| %>
-      <h3>Address: <%= parking_spot.street_address %></h3>
-      <h4>City: <%= parking_spot.city %></h4>
-      <h4>Country: <%= parking_spot.country %></h4>
-   <% end %>
+    <hr>
+    <div class="line">
+
+      <div class="col-md-4">
+        <% bab = parking_spot.user_id %>
+        <% if User.find(bab).facebook_picture_url == nil %>
+          <%= cl_image_tag User.find(bab).avatar, height: 80, width: 80, crop: :fill, style: "border-radius: 50%" %>
+        <% else %>
+          <%= cl_image_tag User.find(bab).facebook_picture_url, height: 80, width: 80, crop: :fill, style: "border-radius: 50%" %>
+        <% end %>
+      </div>
+
+      <div class="col-md-4">
+        <h6>Address: <%= parking_spot.street_address %></h6>
+        <h6>City: <%= parking_spot.city %></h6>
+        <h6>Country: <%= parking_spot.country %></h6>
+      </div>
+
+
+      <div class="col-md-4">
+        <div id="map" class="map_structure" style="width: 100%; height: 300px;"></div>
+            <% content_for(:after_js) do %>
+              <%= javascript_tag do %>
+                $(document).on('ready', function() {
+                  var handler = Gmaps.build('Google');
+                  handler.buildMap({ internal: { id: 'map' } }, function() {
+                    markers = handler.addMarkers(<%= raw @hash.to_json %>);
+                    handler.bounds.extendWith(markers);
+                    handler.fitMapToBounds();
+                    if (markers.length == 0) {
+                      handler.getMap().setZoom(2);
+                    } else if (markers.length == 1) {
+                      handler.getMap().setZoom(14);
+                    }
+                  });
+                });
+          <% end %>
+        <% end %>
+
+        </div>
+      </div>
+      <hr>
+      <br><br>
+      <% end %>
+    </div>
   </div>
 </div>
 
