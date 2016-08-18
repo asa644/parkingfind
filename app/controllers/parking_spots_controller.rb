@@ -57,7 +57,7 @@ class ParkingSpotsController < ApplicationController
 
   def search
     #perform your search
-    @parking_spots = ParkingSpot.search(params[:search])
+    @parking_spots = ParkingSpot.all.where("city ILIKE ? OR country ILIKE ?", "%#{params[:search]}%", "%#{params[:search]}%")
     # @parking_spots = ParkingSpot.all.where("country ILIKE ?", "%#{params[:search]}%")
     # @parking_spots = ParkingSpot.all.where("street_address ILIKE ?", "%#{params[:search]}%")
     # @parking_spots = ParkingSpot.all.where("price ILIKE ?", "%#{params[:search]}%")
