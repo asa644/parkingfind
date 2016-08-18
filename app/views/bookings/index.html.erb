@@ -1,12 +1,31 @@
-<div class="container text-center">
-<% count = 1 %>
-    <% @user.bookings.each do |booking| %>
-    <hr>
-      <p> <%= "Your booking number #{count}: "%></p>
-      <p> <%= "Starts on the: #{booking.start_at} "%></p>
-      <p> <%= "Ends on the: #{booking.end_at}"%></p>
-      <p> <%= "Your booking total price is: #{booking.total_price}"%></p>
-     <hr>
-      <% count += 1 %>
+<div class="text-center">
+  <h3>My Bookings</h3>
+  <br>
+  <% count = 1 %>
+  <% @user.bookings.each do |booking| %>
+      <div class="container">
+        <div class="col-md-4">
+          <h4><%= "Your booking number #{count}: "%></h4>
+          <p><%= "Starts on the: #{booking.start_at} "%></p>
+          <p><%= "Ends on the: #{booking.end_at}"%></p>
+          <p><%= "Your booking total price is: #{booking.total_price}"%></p>
+        </div>
+        <% count += 1 %>
     <% end %>
+
+    <% @user.bookings.each do |booking| %>
+      <div class="col-md-4">
+        <p>Parking: <%= a = booking.parking_spot_id %></p>
+        <%= link_to parking_spot_path(ParkingSpot.find(a).id) do %>
+        <%= cl_image_tag ParkingSpot.find(a).photo, height: 130, width: 300, crop: :fill %>
+      </div>
+    <% end %>
+  <% end %>
+  </div>
 </div>
+</div>
+</div>
+<br><br>
+
+
+
