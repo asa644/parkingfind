@@ -1,3 +1,16 @@
+
+<div class="container text-center">
+
+    <% @user.bookings.each do |booking| %>
+    <hr>
+
+      <p> <%= "Starts on the: #{booking.start_at} "%></p>
+      <p> <%= "Ends on the: #{booking.end_at}"%></p>
+      <p> <%= "Your booking total price is: #{booking.total_price}"%></p>
+      <p> <%= link_to "Chat", booking_chat_rooms_path(booking)%></p>
+     <hr>
+
+
 <div class="text-center">
   <h3>My Bookings</h3>
   <br>
@@ -19,6 +32,7 @@
         <%= link_to parking_spot_path(ParkingSpot.find(a).id) do %>
         <%= cl_image_tag ParkingSpot.find(a).photo, height: 130, width: 300, crop: :fill %>
       </div>
+
     <% end %>
   <% end %>
   </div>
