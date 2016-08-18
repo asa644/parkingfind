@@ -23,3 +23,16 @@
 .bg-dark-blue {
   background: #3b5998;
 }
+form#edit_parking_spot_1 {
+    text-align: left;
+    position: relative;
+    left: 400px !important;
+}
+
+@media screen and (max-width: 480px) {
+    form#edit_parking_spot_1 {
+    position: relative;
+    left: 50px !important;
+    }
+}
+

@@ -1,19 +1,35 @@
 <div class="container text-center">
-  <div class="content">
-    <p>description: <%= @parking_spot.description %></p>
-    <p>city: <%= @parking_spot.city %></p>
-    <p>country: <%= @parking_spot.country %></p>
-    <p>price: <%= @parking_spot.price %></p>
-    <p>number of spots: <%= @parking_spot.number_of_spots %></p>
+  <h3>Parking Spot in <%= @parking_spot.city %></h3>
+  <% ba = @parking_spot.user_id %>
+  <% if User.find(ba).facebook_picture_url == nil %>
+    <%= cl_image_tag User.find(ba).avatar, height: 80, width: 80, crop: :fill, style: "border-radius: 50%" %>
+  <% else %>
+    <%= cl_image_tag User.find(ba).facebook_picture_url, height: 80, width: 80, crop: :fill, style: "border-radius: 50%" %>
+  <% end %>
+  <br><br>
+  <div class="content col-md-6" style="padding-left: 150px">
+    <p style="text-align: left"><strong>Description:</strong> <%= @parking_spot.description %></p>
+    <p style="text-align: left"><strong>City:</strong> <%= @parking_spot.city %></p>
+    <p style="text-align: left"><strong>Country:</strong> <%= @parking_spot.country %></p>
+    <p style="text-align: left"><strong>Price:</strong> <%= @parking_spot.price %></p>
+    <p style="text-align: left"><strong>Number of spots:</strong> <%= @parking_spot.number_of_spots %></p>
+    <button><%= link_to "Back", profile_path %></button>
+    <button><%= link_to "Edit", edit_parking_spot_path(@parking_spot) %></button>
+    <button><%= link_to "Delete", parking_spot_path(@parking_spot), method: :delete %></button>
+    <br><br>
     <%= cl_image_tag @parking_spot.photo, height: 300, width: 400, crop: :fill %>
-    <h4><%= link_to "Back", profile_path %></h4>
-    <h4><%= link_to "Edit", edit_parking_spot_path(@parking_spot) %></h4>
-    <h4><%= link_to "Delete", parking_spot_path(@parking_spot), method: :delete %></h4>
+
+    <br><br>
+  </div>
+  <div class="col-md-6">
+    <div id="map" style="width: 100%; height: 600px;"></div>
   </div>
 </div>
 
-<div class="container">
-<div id="map" style="width: 100%; height: 600px;"></div>
+
+
+
+
 
 <% content_for(:after_js) do %>
   <%= javascript_tag do %>
@@ -37,5 +53,7 @@
     });
   <% end %>
 <% end %>
-</div>
+
+<br><br>
+
 
