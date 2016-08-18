@@ -6,19 +6,17 @@ Rails.application.routes.draw do
   resources :parking_spots do
     resources :bookings
   end
-  resources :bookings, only: [:index]
+
+  resources :bookings, only: [:index] do
+      resource :chat_rooms, only: [:show]
+  end
+
   get '/profile' => 'users#show', as: :profile
 
   get '/search' => 'parking_spots#search'
 
-  resources :chat_rooms, only: [:new, :create, :show, :index]
 
   mount ActionCable.server => '/cable'
 
-  # resource :users do
-  #   resources :parking_spots do
-  #     resources :bookings, only: [:new, :create, :show]
-  #   end
-  # end
 
 end

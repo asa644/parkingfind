@@ -1,12 +1,13 @@
 <div class="container text-center">
-<% count = 1 %>
+
     <% @user.bookings.each do |booking| %>
     <hr>
-      <p> <%= "Your booking number #{count}: "%></p>
+
       <p> <%= "Starts on the: #{booking.start_at} "%></p>
       <p> <%= "Ends on the: #{booking.end_at}"%></p>
       <p> <%= "Your booking total price is: #{booking.total_price}"%></p>
+      <p> <%= link_to "Chat", booking_chat_rooms_path(booking)%></p>
      <hr>
-      <% count += 1 %>
+
     <% end %>
 </div>
