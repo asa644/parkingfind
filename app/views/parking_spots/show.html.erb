@@ -1,7 +1,11 @@
 <div class="container text-center">
   <h3>Parking Spot in <%= @parking_spot.city %></h3>
-    <% ba = @parking_spot.user_id %>
-   <%= cl_image_tag User.find(ba).facebook_picture_url, height: 80, width: 80, crop: :fill, style: "border-radius: 50%" %>
+  <% ba = @parking_spot.user_id %>
+  <% if User.find(ba).facebook_picture_url.empty? %>
+    <%= cl_image_tag User.find(ba).avatar, height: 80, width: 80, crop: :fill, style: "border-radius: 50%" %>
+  <% else %>
+    <%= cl_image_tag User.find(ba).facebook_picture_url, height: 80, width: 80, crop: :fill, style: "border-radius: 50%" %>
+  <% end %>
   <br><br>
   <div class="content col-md-6" style="padding-left: 150px">
     <p style="text-align: left"><strong>Description:</strong> <%= @parking_spot.description %></p>
