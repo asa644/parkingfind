@@ -10,7 +10,6 @@ class BookingsController < ApplicationController
     @booking = Booking.new
   end
 
-
   def create
     @booking = current_user.bookings.build(booking_params)
     @booking.parking_spot_id = params[:parking_spot_id]

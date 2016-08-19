@@ -1,5 +1,19 @@
 Rails.application.routes.draw do
 
+  get 'reviews/index'
+
+  get 'reviews/show'
+
+  get 'reviews/new'
+
+  get 'reviews/create'
+
+  get 'reviews/edit'
+
+  get 'reviews/update'
+
+  get 'reviews/destroy'
+
   root to: 'pages#home'
   devise_for :users, controllers: { omniauth_callbacks: 'users/omniauth_callbacks' }
 
