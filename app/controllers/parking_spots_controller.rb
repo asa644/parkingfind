@@ -12,8 +12,6 @@ class ParkingSpotsController < ApplicationController
       marker.lat flat.latitude
       marker.lng flat.longitude
     end
-
-
   end
 
   def show
