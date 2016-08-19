@@ -1,25 +1,23 @@
 <br>
 <div class='text-center' style="background:white;">
   <h1>Hello <%= @user.email %>?</h1>
-  <p>Here is where users may book or offer parking spots!!!</p>
+  <h2>Welcome to your Dashboard</H2>
 
   <% if @user.bookings.empty? %>
-    <p>You haven't booked any parking spots</p>
-    <button><%= link_to "Check all our parking spots !", parking_spots_path %></button>
+      <p>You haven't booked any parking spots</p>
+      <%= link_to "Check all our parking spots !", parking_spots_path, :class => "btn btn-info"  %>
   <% else %>
-    <button>
-      <%= link_to 'View my bookings', bookings_path %>
-    </button>
-    <button><%= link_to "Check all our parking spots !", parking_spots_path %></button>
 
+      <%= link_to 'View my bookings', bookings_path, :class => "btn btn-info" %>
+
+    <%= link_to "Check all our parking spots !", parking_spots_path, :class => "btn btn-info" %>
   <% end %>
 
 
   <h2>Your parking slots</h2>
 
 
-
-  <button><%= link_to "Create a Parking spot", new_parking_spot_path %></button>
+  <%= link_to "Create a Parking spot", new_parking_spot_path, :class => "btn btn-info" %>
 
   <% if @user.parking_spots.empty? %>
     <p>You don't have any parking spots</p>
@@ -28,10 +26,11 @@
     <hr>
       <div class="row">
         <div class="col-md-4">
+
           <h5 style="text-align: left;padding-left: 150px;"><strong>Price:</strong> <%= parking_spot.price %></h5>
           <h5 style="text-align: left;padding-left: 150px;"><strong>City:</strong> <%= parking_spot.city %></h5>
           <h5 style="text-align: left;padding-left: 150px;"><strong>Country:</strong> <%= parking_spot.country %></h5>
-          <p><%= link_to "Edit", edit_parking_spot_path(parking_spot) %></p>
+          <p><%= link_to "Edit", edit_parking_spot_path(parking_spot), :class =>"btn btn-danger"  %></p>
           <p><%= link_to "Show", parking_spot_path(parking_spot) %></p>
         </div>
 
@@ -39,7 +38,8 @@
           <h5 style="text-align: left;padding-left: 100px;"><strong>Address:</strong> <%= parking_spot.street_address %></h5>
           <h5 style="text-align: left;padding-left: 100px;"><strong>Number of spots:</strong> <%= parking_spot.number_of_spots %></h5>
           <h5 style="text-align: left;padding-left: 100px;"><strong>Description:</strong> <%= parking_spot.description %></h5>
-          <%= link_to "Delete", parking_spot_path(parking_spot), method: :delete %>
+          <%= link_to "Delete", parking_spot_path(parking_spot), method: :delete, {class: "btn btn-danger", method: :delete }  %>
+
         </div>
 
         <div class="col-md-4">
