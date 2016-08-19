@@ -1,6 +1,7 @@
 class Booking < ApplicationRecord
   belongs_to :parking_spot
   belongs_to :user
+  has_one :review
   has_one :chat_room
 
   validates :start_at, presence: :true

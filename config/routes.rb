@@ -9,14 +9,11 @@ Rails.application.routes.draw do
 
   resources :bookings, only: [:index] do
       resource :chat_rooms, only: [:show]
+      resources :reviews, only: [:new, :create]
   end
 
   get '/profile' => 'users#show', as: :profile
-
   get '/search' => 'parking_spots#search'
-
-
   mount ActionCable.server => '/cable'
-
 
 end

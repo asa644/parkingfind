@@ -10,7 +10,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+<<<<<<< HEAD
+ActiveRecord::Schema.define(version: 20160819111845) do
+=======
 ActiveRecord::Schema.define(version: 20160818151304) do
+>>>>>>> b3da946387b3ab71d70ba7c1d25b66d3783fde0a
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -60,6 +64,14 @@ ActiveRecord::Schema.define(version: 20160818151304) do
     t.index ["user_id"], name: "index_parking_spots_on_user_id", using: :btree
   end
 
+  create_table "reviews", force: :cascade do |t|
+    t.string   "description"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.integer  "booking_id"
+    t.index ["booking_id"], name: "index_reviews_on_booking_id", using: :btree
+  end
+
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
     t.string   "encrypted_password",     default: "", null: false
@@ -91,4 +103,5 @@ ActiveRecord::Schema.define(version: 20160818151304) do
   add_foreign_key "messages", "chat_rooms"
   add_foreign_key "messages", "users"
   add_foreign_key "parking_spots", "users"
+  add_foreign_key "reviews", "bookings"
 end
