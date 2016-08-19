@@ -5,6 +5,11 @@
 <div class="container" style="padding-top:30px">
     <div class="col-md-6" style="height: 100%;overflow: hidden;overflow-y: scroll;">
     <div class="scroll">
+     <% if @parking_spots.blank? %>
+      <h3>Nous avons pas de parking</h3>
+      <h4>A cette endroit</h4>
+     <% else %>
+
       <% @parking_spots.each do |parking_spot| %>
         <% bab = parking_spot.user_id %>
           <div class="row">
@@ -30,6 +35,7 @@
 
           <br>
 
+      <% end %>
       <% end %>
       </div>
     </div>

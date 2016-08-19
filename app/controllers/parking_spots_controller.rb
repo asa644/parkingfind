@@ -1,6 +1,6 @@
 class ParkingSpotsController < ApplicationController
   before_action :authenticate_user!
-  skip_before_action :authenticate_user!, only: [ :index ]
+  skip_before_action :authenticate_user!, only: [ :index, :search ]
   before_action :find_user
 
   def index
