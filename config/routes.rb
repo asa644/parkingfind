@@ -4,13 +4,12 @@ Rails.application.routes.draw do
   devise_for :users, controllers: { omniauth_callbacks: 'users/omniauth_callbacks' }
 
   resources :parking_spots do
-    resources :bookings do
-      resources :reviews, only: :create
-    end
+    resources :bookings
   end
 
   resources :bookings, only: [:index] do
       resource :chat_rooms, only: [:show]
+      resources :reviews, only: [:new, :create]
   end
 
   get '/profile' => 'users#show', as: :profile

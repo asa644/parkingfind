@@ -7,13 +7,12 @@
       <hr>
 
       <div class="important_info">
-         <p class="index_parking_adress"><%= parking.street_address %></p>
+         <p class="index_parking_adress"><%= link_to parking.street_address, parking_spot_path(parking) %></p>
          <p class="index_parking_price"><%= parking.price %></p>
         <p class="index_parking"><%= parking.description %></p>
         <p class="index_parking"><%= parking.city %></p>
         <p class="index_parking"><%= parking.country %></p>
         <p class="index_parking"><%= parking.number_of_spots %></p>
-        <p class="index_parking"><%= link_to parking.street_address %></p>
 
 
         <%= link_to 'Book now!',  new_parking_spot_booking_path(parking) %>
