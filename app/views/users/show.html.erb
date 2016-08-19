@@ -26,17 +26,20 @@
     <hr>
       <div class="row">
         <div class="col-md-4">
-          <h5 style="text-align: left;padding-left: 150px;">Price: <%= parking_spot.price %></h5>
-          <h5 style="text-align: left;padding-left: 150px;">City: <%= parking_spot.city %></h5>
-          <h5 style="text-align: left;padding-left: 150px;">Country: <%= parking_spot.country %></h5>
-          <%= link_to "Edit", edit_parking_spot_path(parking_spot), :class =>"btn btn-danger" %>
+
+          <h5 style="text-align: left;padding-left: 150px;"><strong>Price:</strong> <%= parking_spot.price %></h5>
+          <h5 style="text-align: left;padding-left: 150px;"><strong>City:</strong> <%= parking_spot.city %></h5>
+          <h5 style="text-align: left;padding-left: 150px;"><strong>Country:</strong> <%= parking_spot.country %></h5>
+          <p><%= link_to "Edit", edit_parking_spot_path(parking_spot), :class =>"btn btn-danger"  %></p>
+          <p><%= link_to "Show", parking_spot_path(parking_spot), :class =>"btn btn-success" %></p>
         </div>
 
         <div class="col-md-4">
-          <h5 style="text-align: left;padding-left: 100px;">Address: <%= parking_spot.street_address %></h5>
-          <h5 style="text-align: left;padding-left: 100px;">Number of spots: <%= parking_spot.number_of_spots %></h5>
-          <h5 style="text-align: left;padding-left: 100px;">Description: <%= parking_spot.description %></h5>
-          <%= link_to "Delete", parking_spot_path(parking_spot), {class: "btn btn-danger", method: :delete } %>
+          <h5 style="text-align: left;padding-left: 100px;"><strong>Address:</strong> <%= parking_spot.street_address %></h5>
+          <h5 style="text-align: left;padding-left: 100px;"><strong>Number of spots:</strong> <%= parking_spot.number_of_spots %></h5>
+          <h5 style="text-align: left;padding-left: 100px;"><strong>Description:</strong> <%= parking_spot.description %></h5>
+          <%= link_to "Delete", parking_spot_path(parking_spot), {class: "btn btn-danger", method: :delete }  %>
+
         </div>
 
         <div class="col-md-4">
