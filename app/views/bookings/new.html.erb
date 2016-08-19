@@ -1,62 +1,67 @@
-<h1>Book Now</h1>
-<h2><%= @parking_spot.street_address %></h2>
-
-<%= simple_form_for [@parking_spot, @booking] do |f| %>
-    <%= f.input :start_at, as: :string, input_html: { class: 'datepicker', id: "dp_start_at" } %>
-    <%= f.input :end_at, as: :string, input_html: { class: 'datepicker', id: "dp_end_at" } %>
+<div class="container text-center">
+  <h1>Book Now</h1>
+  <h2><%= @parking_spot.street_address %></h2>
+  <p><strong>Price: </strong><%= @parking_spot.price %> /day</p>
+  <p><strong>Total Price: </strong>$<span id='total-price'><%= @parking_spot.price %></span></p>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-4 col-lg-4 top_form col-lg-offset-4">
+        <%= simple_form_for [@parking_spot, @booking] do |f| %>
+            <%= f.input :start_at, as: :string, input_html: { class: 'datepicker', id: "dp_start_at" } %>
+            <%= f.input :end_at, as: :string, input_html: { class: 'datepicker', id: "dp_end_at" } %>
+            <br>
+            <br><br>
+            <%= f.submit %>
+        <% end %>
+      </div>
+    </div>
     <br>
-    <p><strong>Price: </strong><%= @parking_spot.price %> /day</p>
-    <p><strong>Total Price: </strong>$<span id='total-price'><%= @parking_spot.price %></span></p>
-
-    <br><br>
-    <%= f.submit %>
-<% end %>
-<% content_for(:after_js) do %>
-  <%= javascript_tag do %>
-   jQuery(function($){
-            $.datepicker.regional['fr'] = {
-            closeText: 'Fermer',
-            prevText: '&#x3c;Préc',
-            nextText: 'Suiv&#x3e;',
-            currentText: 'Aujourd\'hui',
-            monthNames: ['Janvier','Fevrier','Mars','Avril','Mai','Juin',
-            'Juillet','Aout','Septembre','Octobre','Novembre','Decembre'],
-            monthNamesShort: ['Jan','Fev','Mar','Avr','Mai','Jun',
-            'Jul','Aou','Sep','Oct','Nov','Dec'],
-            dayNames: ['Dimanche','Lundi','Mardi','Mercredi','Jeudi','Vendredi','Samedi'],
-            dayNamesShort: ['Dim','Lun','Mar','Mer','Jeu','Ven','Sam'],
-            dayNamesMin: ['Di','Lu','Ma','Me','Je','Ve','Sa'],
-            weekHeader: 'Sm',
-            dateFormat: 'yy-mm-dd',
-            firstDay: 1,
-            isRTL: false,
-            showMonthAfterYear: false,
-            yearSuffix: '',
-            minDate: 0,
-            maxDate: '+12M +0D',
-            numberOfMonths: 2,
-            showButtonPanel: true
-            };
-            $.datepicker.setDefaults($.datepicker.regional['fr']);
-          });
+        <% content_for(:after_js) do %>
+          <%= javascript_tag do %>
+           jQuery(function($){
+                    $.datepicker.regional['fr'] = {
+                    closeText: 'Fermer',
+                    prevText: '&#x3c;Préc',
+                    nextText: 'Suiv&#x3e;',
+                    currentText: 'Aujourd\'hui',
+                    monthNames: ['Janvier','Fevrier','Mars','Avril','Mai','Juin',
+                    'Juillet','Aout','Septembre','Octobre','Novembre','Decembre'],
+                    monthNamesShort: ['Jan','Fev','Mar','Avr','Mai','Jun',
+                    'Jul','Aou','Sep','Oct','Nov','Dec'],
+                    dayNames: ['Dimanche','Lundi','Mardi','Mercredi','Jeudi','Vendredi','Samedi'],
+                    dayNamesShort: ['Dim','Lun','Mar','Mer','Jeu','Ven','Sam'],
+                    dayNamesMin: ['Di','Lu','Ma','Me','Je','Ve','Sa'],
+                    weekHeader: 'Sm',
+                    dateFormat: 'yy-mm-dd',
+                    firstDay: 1,
+                    isRTL: false,
+                    showMonthAfterYear: false,
+                    yearSuffix: '',
+                    minDate: 0,
+                    maxDate: '+12M +0D',
+                    numberOfMonths: 2,
+                    showButtonPanel: true
+                    };
+                    $.datepicker.setDefaults($.datepicker.regional['fr']);
+                  });
 
 
-          $( function() {
-            $( ".datepicker" ).datepicker();
-          } );
+                  $( function() {
+                    $( ".datepicker" ).datepicker();
+                  } );
 
-          $(document).ready(function(){
-            var base_price = <%= @parking_spot.price %>;
-            var parking_spot_price = <%= @parking_spot.price %>
-            $('.datepicker').on('change', function(){
-              var start_at = Date.parse( $('#dp_start_at').val() )
-              var end_at = Date.parse( $('#dp_end_at').val() )
-              var elapsed_time_days = (end_at - start_at) / 86400000;
-              var total_price = base_price + (elapsed_time_days * parking_spot_price)
-              $('#total-price').html(total_price);
-            });
-          });
+                  $(document).ready(function(){
+                    var base_price = <%= @parking_spot.price %>;
+                    var parking_spot_price = <%= @parking_spot.price %>
+                    $('.datepicker').on('change', function(){
+                      var start_at = Date.parse( $('#dp_start_at').val() )
+                      var end_at = Date.parse( $('#dp_end_at').val() )
+                      var elapsed_time_days = (end_at - start_at) / 86400000;
+                      var total_price = base_price + (elapsed_time_days * parking_spot_price)
+                      $('#total-price').html(total_price);
+                    });
+                  });
+      <% end %>
   <% end %>
-<% end %>
-
+</div>
 
