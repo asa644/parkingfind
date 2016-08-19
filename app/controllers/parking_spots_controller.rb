@@ -12,8 +12,6 @@ class ParkingSpotsController < ApplicationController
       marker.lat flat.latitude
       marker.lng flat.longitude
     end
-
-
   end
 
   def show
@@ -58,11 +56,11 @@ class ParkingSpotsController < ApplicationController
   def search
     #perform your search
     @parking_spots = ParkingSpot.all.where("city ILIKE ? OR country ILIKE ?", "%#{params[:search]}%", "%#{params[:search]}%")
-    # @parking_spots = ParkingSpot.all.where("country ILIKE ?", "%#{params[:search]}%")
-    # @parking_spots = ParkingSpot.all.where("street_address ILIKE ?", "%#{params[:search]}%")
-    # @parking_spots = ParkingSpot.all.where("price ILIKE ?", "%#{params[:search]}%")
-    # @parking_spots = ParkingSpot.all.where("description ILIKE ?", "%#{params[:search]}%")
+    @hash = Gmaps4rails.build_markers(@parking_spots) do |parking, marker|
+      marker.lat parking.latitude
+      marker.lng parking.longitude
   end
+end
 
   private
 

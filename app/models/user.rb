@@ -1,6 +1,6 @@
 class User < ApplicationRecord
   mount_uploader :avatar, PhotoUploader
-
+  after_create :send_welcome_email
 
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
@@ -13,6 +13,14 @@ class User < ApplicationRecord
   has_many :bookings
   has_many :parking_spots
   has_many :reviews
+
+  has_many :chat_rooms, dependent: :destroy
+  has_many :messages, dependent: :destroy
+
+  def name
+    email.split('@')[0]
+  end
+
 
   def self.find_for_facebook_oauth(auth)
     user_params = auth.to_h.slice(:provider, :uid)
@@ -32,5 +40,11 @@ class User < ApplicationRecord
     end
 
     return user
+  end
+
+  private
+
+  def send_welcome_email
+    UserMailer.welcome(self).deliver_now
   end
 end

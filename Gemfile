@@ -20,6 +20,9 @@ gem "geocoder"
 gem "coffee-rails"
 gem "gmaps4rails"
 
+gem "letter_opener", group: :development
+
+
 source 'https://rails-assets.org' do
   gem "rails-assets-underscore"
 end
@@ -36,6 +39,8 @@ gem 'omniauth-facebook'
 gem 'cloudinary', '1.1.0'
 gem 'carrierwave'
 gem 'searchkick'
+
+gem 'turbolinks', '>= 5.0.0.beta2'
 
 group :development, :test do
   gem 'binding_of_caller'
