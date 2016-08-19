@@ -3,15 +3,21 @@
   <h1>Hello <%= @user.email %>?</h1>
   <p>Here is where users may book or offer parking spots!!!</p>
 
-  <h2>Your bookings</h2>
-
   <% if @user.bookings.empty? %>
     <p>You haven't booked any parking spots</p>
+    <button><%= link_to "Check all our parking spots !", parking_spots_path %></button>
   <% else %>
     <button>
       <%= link_to 'View my bookings', bookings_path %>
     </button>
+    <button><%= link_to "Check all our parking spots !", parking_spots_path %></button>
+
   <% end %>
+
+
+  <h2>Your parking slots</h2>
+
+
 
   <button><%= link_to "Create a Parking spot", new_parking_spot_path %></button>
 
@@ -44,7 +50,6 @@
     <% end %>
   <% end %>
 
-<button><%= link_to "Check all our parking spots !", parking_spots_path %></button>
 <br><br>
 <br>
 
