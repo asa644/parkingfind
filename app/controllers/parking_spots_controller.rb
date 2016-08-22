@@ -60,8 +60,11 @@ class ParkingSpotsController < ApplicationController
     @hash = Gmaps4rails.build_markers(@parking_spots) do |parking, marker|
       marker.lat parking.latitude
       marker.lng parking.longitude
+    end
   end
-end
+
+
+
 
   private
 
