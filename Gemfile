@@ -15,6 +15,8 @@ gem 'sass-rails'
 gem 'jquery-rails'
 gem 'uglifier'
 
+
+
 #geocoding
 gem "geocoder"
 gem "coffee-rails"
@@ -34,6 +36,10 @@ gem 'simple_form'
 gem 'autoprefixer-rails'
 gem 'devise'
 gem 'omniauth-facebook'
+
+source "https://rails-assets.org" do
+  gem 'rails-assets-bootstrap-datepicker'
+end
 
 #picture management system
 gem 'cloudinary', '1.1.0'
