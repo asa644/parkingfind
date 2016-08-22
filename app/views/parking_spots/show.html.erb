@@ -1,12 +1,6 @@
 <div class="container text-center">
-  <h3>Parking Spot in <%= @parking_spot.city %></h3>
+  <h3><%= @parking_spot.street_address %></h3>
   <% ba = @parking_spot.user_id %>
-  <% if User.find(ba).facebook_picture_url == nil %>
-    <%= cl_image_tag User.find(ba).avatar, height: 80, width: 80, crop: :fill, style: "border-radius: 50%" %>
-  <% else %>
-    <%= cl_image_tag User.find(ba).facebook_picture_url, height: 80, width: 80, crop: :fill, style: "border-radius: 50%" %>
-  <% end %>
-  <br><br>
   <div class="content col-md-6" style="padding-left: 150px">
     <p style="text-align: left"><strong>Address:</strong> <%= @parking_spot.street_address %></p>
     <p style="text-align: left"><strong>Description:</strong> <%= @parking_spot.description %></p>
@@ -17,11 +11,23 @@
     <button><%= link_to "Back", profile_path %></button>
     <button><%= link_to "Edit", edit_parking_spot_path(@parking_spot) %></button>
     <button><%= link_to "Delete", parking_spot_path(@parking_spot), method: :delete %></button>
-    <br><br>
+    <h2>Bookings</h2>
+    <h3>Pending</h3>
+    <% pending =  @parking_spot.bookings.map {|b| b.status == 'pending'} %>
+    <% pending.each do | p| %>
+      Test <!-- add buttons/links to confirm or cancel a booking extra credit use ajax -->
+    <% end %>
+    <h3>Confirmed</h3>
+    <h3>Cancelled</h3>
     <h2>Reviews</h2>
     <hr>
     <% @parking_spot.reviews.each do |review| %>
       <p><%= review.description %></p>
+      <p>
+      <% review.rating.times do %>
+        <i class="fa fa-star" aria-hidden="true"></i>
+      <% end %>
+      </p>
 
     <% end %>
     <%= cl_image_tag @parking_spot.photo, height: 300, width: 400, crop: :fill %>
