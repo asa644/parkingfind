@@ -87,6 +87,12 @@ Rails.application.configure do
     config.logger = ActiveSupport::TaggedLogging.new(logger)
   end
 
+  # implementing Chat
+  config.action_cable.allowed_request_origins = ['https://parkingfind.herokuapp.com',
+                                               'http://parkingfind.herokuapp.com']
+
+  config.action_cable.url = "wss://parkingfind.herokuapp.com/cable"
+
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
 end

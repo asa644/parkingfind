@@ -9,6 +9,8 @@ gem 'pg'
 gem 'figaro'
 
 gem 'jbuilder', '~> 2.0'
+
+#chat
 gem 'redis'
 
 gem 'sass-rails'
