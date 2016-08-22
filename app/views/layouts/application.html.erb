@@ -7,30 +7,22 @@
     <title>Parking Find</title>
     <%= csrf_meta_tags %>
     <%= action_cable_meta_tag %>
-    <%= stylesheet_link_tag    'application', media: 'all' %>
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.0/themes/base/jquery-ui.css">
+    <%= stylesheet_link_tag    'application', media: 'all' %>
   </head>
   <body>
     <%= render 'shared/navbar' %>
     <%= render 'shared/flashes' %>
-      <%= yield %>
+    <%= yield %>
+    <div class="footer" style="background-color: grey;padding:15px;bottom: 0px;width:100%">
+      <p class="text-center" style="color: white;margin: 0!important;">© 2016 Parkings Find</p>
+    </div>
+
     <%= javascript_include_tag "https://maps.google.com/maps/api/js?v=3.23&key= AIzaSyBAMwsn5jRBMhsLON-kHNzEkOzx_8Y3kcY" %>
     <%= javascript_include_tag "https://cdn.rawgit.com/printercu/google-maps-utility-library-v3-read-only/master/markerclusterer/src/markerclusterer_compiled.js" %>
     <%= javascript_include_tag "https://cdn.rawgit.com/printercu/google-maps-utility-library-v3-read-only/master/infobox/src/infobox_packed.js" %>
+    <%= javascript_include_tag 'https://code.jquery.com/ui/1.12.0/jquery-ui.js' %>
     <%= javascript_include_tag 'application' %>
-    <script src="https://code.jquery.com/ui/1.12.0/jquery-ui.js"></script>
-<<<<<<< HEAD
-   <%= yield(:after_js) %>
-
-   </div>
-   <div class="footer" style="background-color: grey;padding:10px;bottom: 0px;width:100%">
-=======
     <%= yield(:after_js) %>
-   <div class="footer" style="background-color: grey;padding:15px;bottom: 0px;width:100%">
->>>>>>> add_review
-    <p class="text-center" style="color: white;margin: 0!important;">© 2016 Parkings Find</p>
-  </div>
-
-   </div>
   </body>
 </html>
