@@ -7,14 +7,17 @@
       <h4>A cette endroit</h4>
      <% else %>
 
+
+
+
       <% @parking_spots.each do |parking_spot| %>
-        <% bab = parking_spot.user_id %>
           <div class="row">
             <div class="col-md-4">
-              <% if User.find(bab).facebook_picture_url == nil %>
-                <%= cl_image_tag User.find(bab).avatar, height: 80, width: 80, crop: :fill, style: "border-radius: 50%;position:relative;left:33px;top: 12px;" %>
+
+              <% if parking_spot.user.facebook_picture_url == nil %>
+                <%= cl_image_tag parking_spot.user.avatar, height: 80, width: 80, crop: :fill, style: "border-radius: 50%;position:relative;left:33px;top: 12px;" %>
               <% else %>
-                <%= cl_image_tag User.find(bab).facebook_picture_url, height: 80, width: 80, crop: :fill, style: "border-radius: 50%" %>
+                <%= cl_image_tag parking_spot.user.facebook_picture_url, height: 80, width: 80, crop: :fill, style: "border-radius: 50%" %>
               <% end %>
             </div>
 

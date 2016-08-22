@@ -8,6 +8,10 @@ Rails.application.routes.draw do
   end
 
   resources :bookings, only: [:index] do
+    member do
+      get "rejected"
+      get "accepted"
+    end
       resource :chat_rooms, only: [:show]
       resources :reviews, only: [:new, :create]
   end
