@@ -11,14 +11,6 @@
     <button><%= link_to "Back", profile_path %></button>
     <button><%= link_to "Edit", edit_parking_spot_path(@parking_spot) %></button>
     <button><%= link_to "Delete", parking_spot_path(@parking_spot), method: :delete %></button>
-    <h2>Bookings</h2>
-    <h3>Pending</h3>
-    <% pending =  @parking_spot.bookings.map {|b| b.status == 'pending'} %>
-    <% pending.each do | p| %>
-      Test <!-- add buttons/links to confirm or cancel a booking extra credit use ajax -->
-    <% end %>
-    <h3>Confirmed</h3>
-    <h3>Cancelled</h3>
     <h2>Reviews</h2>
     <hr>
     <% @parking_spot.reviews.each do |review| %>
