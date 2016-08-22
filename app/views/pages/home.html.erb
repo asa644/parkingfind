@@ -1,11 +1,17 @@
-<div class='contai' style="height: 600px;" id="back">
-  <div class="container text-center" style="background: white;position: relative;top: 100px;">
-    <h1 >Parking Management Utility Thing</h1>
-    <form action='/search'>
-      <label for='search'>Where do you need to park?</label>
-      <input type='text' name='search'>
-      <input type='submit' value='search'>
-    </form>
-    <h3> <%= link_to "Check our parking slots", parking_spots_path %> </h3>
+<div id="landing">
+  <div id='landing-content' class="container text-center">
+    <h1 class='lato'>Parking Management Utility Thing</h1>
+    <div class='row'>
+      <div class='col-xs-12 col-md-6 col-md-offset-3'>
+        <form action='/search' id='search-form' class='form-inline'>
+          <div class='form-group'>
+            <label for='search'><strong>Where do you need to park?&nbsp;</strong></label>
+            <input type='text' name='search' class='form-control'>
+          </div>
+          <input class="btn btn-success" type='submit' value='Search'>
+        </form>
+      </div>
+    </div>
+    <a class="btn btn-primary" href="parking_spots" role="button" style="margin-top: 25px;">Check our parking slots</a>
   </div>
 </div>

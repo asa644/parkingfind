@@ -1,14 +1,18 @@
 /* Main class */
 .navbar-wagon {
-  box-shadow: 0 1px 5px 0 rgba(0,0,0,0.07),0 1px 0 0 rgba(0,0,0,0.03);
-  background: white;
+
   transition: all 0.3s ease;
   display: flex;
   height: 70px;
   padding: 0px 30px;
   align-items: center;
   justify-content: space-between;
+   background-color: transparent;
+   background: transparent;
+   border-color: transparent;
 }
+
+.navbar-wagon li { color: #000 }
 
 /* Optional class to fix the navbar on top */
 .navbar-wagon-fixed {
@@ -130,49 +134,32 @@
   border-top: 1px solid #E6E6E6;
 }
 
+a {
+  text-decoration: none !important;
+}
 
 
+body{
+  height: 65px;
+}
+
+.avatar {
+  width: 50px !important;
+  height: 50px !important;
+}
 
 
+#hey{
+  transition: all 0.5s ease;
+  padding-left: 0px;
+  color: white;
+  font-size: 30px;
+  text-decoration: none!important;
+}
 
-
-
-
-
-
-
-    a {
-      text-decoration: none !important;
-    }
-
-
-    body{
-      height: 65px;
-      }
-
-
-    .avatar {
-
-        width: 50px !important;
-        height: 50px !important;
-    }
-
-    #back{
-          background-image: url("home.jpg");
-          background-size: cover;
-          height: 100vh;
-          background-repeat: no-repeat;
-    }
-
-
-    #hey{
-
-        transition: all 1s ease;
-        padding-left: 0px;
-    }
-
-    #hey:hover{
-      padding-left: 20px;
-      text-decoration: none !important;
-      transition: all 0.3s ease;
-    }
+#hey:hover{
+  padding-left: 10px;
+  color: #ff8566!important;
+  text-decoration: underline!important;
+  transition: all 0.3s ease;
+}
