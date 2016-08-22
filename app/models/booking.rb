@@ -7,6 +7,8 @@ class Booking < ApplicationRecord
   validates :start_at, presence: :true
   validates :end_at, presence: :true
 
+  enum status: [:pending, :rejected, :accepted]
+
 
   has_one :owner, through: :parking_spot, source: :user
 
