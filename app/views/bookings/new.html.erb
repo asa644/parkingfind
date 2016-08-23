@@ -24,7 +24,7 @@
               todayHighlight: true,
               datesDisabled: <%= raw @parking_spot.unavailable_dates %>,
               startDate: 'today',
-
+              format: "dd/mm/yyyy"
               });
                 var base_price = <%= @parking_spot.price %>;
                 var parking_spot_price = <%= @parking_spot.price %>
