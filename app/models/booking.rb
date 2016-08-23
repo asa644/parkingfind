@@ -15,8 +15,11 @@ class Booking < ApplicationRecord
 #chat room creation
   after_create :create_associated_chatroom
 
+# :unavailable_dates
+
   private
 
+# Creates chatroom for each booking
   def create_associated_chatroom
     ChatRoom.create(booking_id: self.id)
   end
@@ -24,7 +27,9 @@ class Booking < ApplicationRecord
 
 # check that it's not overlapping with another booking.
   def booking_period_not_overlapped
-    unless Booking.where(
+
+    parking_spot = self.parking_spot
+    unless parking_spot.bookings.where(
       '(start_at <= ? AND end_at >= ?) OR (start_at >= ? AND start_at <= ?)',
       start_at, start_at,
       start_at, end_at
@@ -34,7 +39,6 @@ class Booking < ApplicationRecord
   end
 
 end
-
 
 
 

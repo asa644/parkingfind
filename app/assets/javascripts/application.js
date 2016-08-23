@@ -5,7 +5,7 @@
 //= require gmaps/google
 //= require cable
 //= require turbolinks
-//= require_tree .
 //= require bootstrap-datepicker
+//= require_tree .
 
 

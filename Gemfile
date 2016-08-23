@@ -5,17 +5,19 @@ gem 'rails', '5.0.0.1'
 gem 'puma'
 gem 'pg'
 
+
+
 #security
 gem 'figaro'
 
 gem 'jbuilder', '~> 2.0'
+
+#chat
 gem 'redis'
 
 gem 'sass-rails'
 gem 'jquery-rails'
 gem 'uglifier'
-
-
 
 #geocoding
 gem "geocoder"
@@ -24,9 +26,9 @@ gem "gmaps4rails"
 
 gem "letter_opener", group: :development
 
-
 source 'https://rails-assets.org' do
   gem "rails-assets-underscore"
+  gem 'rails-assets-bootstrap-datepicker'
 end
 
 #better design
@@ -36,10 +38,6 @@ gem 'simple_form'
 gem 'autoprefixer-rails'
 gem 'devise'
 gem 'omniauth-facebook'
-
-source "https://rails-assets.org" do
-  gem 'rails-assets-bootstrap-datepicker'
-end
 
 #picture management system
 gem 'cloudinary', '1.1.0'

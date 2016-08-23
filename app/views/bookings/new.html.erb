@@ -18,13 +18,14 @@
     <br>
         <% content_for(:after_js) do %>
           <%= javascript_tag do %>
-
-            $('.datepicker').datepicker({
-               todayHighlight: false,
-               startDate: '-3d'
-            });
-
             $(document).ready(function(){
+              $('.datepicker').datepicker({
+              todayHighlight: true,
+              datesDisabled: @parking_spot.unavailable_dates,
+              startDate: 'today',
+
+
+              });
                 var base_price = <%= @parking_spot.price %>;
                 var parking_spot_price = <%= @parking_spot.price %>
                 $('.datepicker').on('change', function(){
