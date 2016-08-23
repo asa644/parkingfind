@@ -2,3 +2,35 @@
  * CSS code specific to home page
  * (margin/padding adjustments)
  * ------------------------------------- */
+
+#search-form {
+  background-color: rgba(0, 0, 0, 0.5);
+  padding: 1rem 0.5rem;
+  border-radius: 8px;
+}
+
+
+#landing {
+      display: flex;
+      align-items: center;
+      background-image: url("home.jpg");
+      background-size: cover;
+      height: 100vh;
+      background-repeat: no-repeat;
+      &:before {
+        content: '';
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        background-image: linear-gradient(to bottom right,#002f4b,#dc4225);
+        opacity: .6;
+      }
+}
+
+#landing-content {
+  color: white;
+  position: relative;
+  bottom: 50px;
+}

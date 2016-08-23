@@ -38,9 +38,12 @@ class BookingsController < ApplicationController
   def rejected
      # security
     if current_user.id == @booking.parking_spot.user.id && @booking.rejected!
+<<<<<<< HEAD
 
       book = @booking.user
       bookk = book.notifications.create(content: "You have a new booking #{@booking.id}, for #{@booking.parking_spot.city}")
+=======
+>>>>>>> master
 
       respond_to do |format|
         format.html { redirect_to parking_spot_path(@booking.parking_spot), flash[:notice] = "Booking Rejected" }

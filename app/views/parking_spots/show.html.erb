@@ -19,6 +19,7 @@
     <% end %>
 
     <% if current_user.id == @parking_spot.user_id %>
+
       <div id="pending">
         <h3>Pending</h3>
         <% @parking_spot.bookings.pending.each do |booking| %>
