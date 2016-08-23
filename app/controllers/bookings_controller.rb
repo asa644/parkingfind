@@ -17,6 +17,7 @@ class BookingsController < ApplicationController
   def create
     @booking = current_user.bookings.build(booking_params)
     @booking.parking_spot_id = params[:parking_spot_id]
+    @booking.total_price = total_price
 
     if @booking.save
       redirect_to parking_spot_bookings_path
@@ -24,6 +25,10 @@ class BookingsController < ApplicationController
     else
       render :new
     end
+  end
+
+  def total_price
+    t_price = (@booking.end_at - @booking.start_at) * find_parking_spot.price
   end
 
   def rejected
@@ -37,8 +42,6 @@ class BookingsController < ApplicationController
     end
   end
 
-
-
   def accepted
     # security
     if current_user.id == @booking.parking_spot.user.id && @booking.accepted!
@@ -51,12 +54,6 @@ class BookingsController < ApplicationController
     #@booking.accepted!
     #redirect_to parking_spot_path(@booking.parking_spot)
     #flash[:notice] = "Booking Accepted"
-  end
-
-
-  def total_price
-    @booking.total_price = total_price
-    total_price = (@booking.end_at - @booking.start_at) * find_parking_spot.price
   end
 
   private
