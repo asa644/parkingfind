@@ -19,20 +19,24 @@
         <% content_for(:after_js) do %>
           <%= javascript_tag do %>
 
-                  $(document).ready(function(){
-                  $('.datepicker').datepicker({
-                  datesDisabled: ['08/06/2016', '08/21/2016']
-                  });
-                    var base_price = <%= @parking_spot.price %>;
-                    var parking_spot_price = <%= @parking_spot.price %>
-                    $('.datepicker').on('change', function(){
-                      var start_at = Date.parse( $('#dp_start_at').val() )
-                      var end_at = Date.parse( $('#dp_end_at').val() )
-                      var elapsed_time_days = (end_at - start_at) / 86400000;
-                      var total_price = base_price + (elapsed_time_days * parking_spot_price)
-                      $('#total-price').html(total_price);
-                    });
-                  });
+            $(document).ready(function(){
+              $('.datepicker').datepicker({
+              todayHighlight: true,
+              datesDisabled: <%= raw @parking_spot.unavailable_dates %>,
+              startDate: 'today',
+
+              });
+                var base_price = <%= @parking_spot.price %>;
+                var parking_spot_price = <%= @parking_spot.price %>
+                $('.datepicker').on('change', function(){
+                  var start_at = Date.parse( $('#dp_start_at').val() )
+                  var end_at = Date.parse( $('#dp_end_at').val() )
+                  var elapsed_time_days = (end_at - start_at) / 86400000;
+                  var total_price = base_price + (elapsed_time_days * parking_spot_price)
+                  $('#total-price').html(total_price);
+                });
+            });
+
       <% end %>
   <% end %>
 </div>
