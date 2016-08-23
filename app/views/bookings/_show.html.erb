@@ -1,0 +1,5 @@
+<p>
+  <%= link_to rejected_booking_path(@booking), remote: true, class: "booking-cancel-#{@booking.id}" do %>
+    Cancelled
+  <% end %>
+<p>

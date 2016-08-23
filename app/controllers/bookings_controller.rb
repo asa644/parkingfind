@@ -27,15 +27,30 @@ class BookingsController < ApplicationController
   end
 
   def rejected
-    @booking.rejected!
-    redirect_to parking_spot_path(@booking.parking_spot)
-    flash[:notice] = "Booking Rejected"
+     # security
+    if current_user == @booking.parking_spot.user.id && @booking.rejected!
+
+      respond_to do |format|
+        format.html { redirect_to parking_spot_path(@booking.parking_spot), flash[:notice] = "Booking Rejected" }
+        format.js  # <-- will render `app/views/bookings/rejected.js.erb`
+      end
+    end
   end
 
+
+
   def accepted
-    @booking.accepted!
-    redirect_to parking_spot_path(@booking.parking_spot)
-    flash[:notice] = "Booking Accepted"
+    # security
+    if current_user == @booking.parking_spot.user.id && @booking.accepted!
+
+      respond_to do |format|
+        format.html { redirect_to parking_spot_path(@booking.parking_spot), flash[:notice] = "Booking Accepted" }
+        format.js  # <-- will render `app/views/bookings/accepted.js.erb`
+      end
+    end
+    #@booking.accepted!
+    #redirect_to parking_spot_path(@booking.parking_spot)
+    #flash[:notice] = "Booking Accepted"
   end
 
 

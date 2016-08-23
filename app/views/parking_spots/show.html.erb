@@ -18,46 +18,50 @@
       <p>Booking at: <%= booking.id %></p>
     <% end %>
 
-    <h3>Pending</h3>
-    <% @parking_spot.bookings.pending.each do |booking| %>
-      <p>Booking at: <%= booking.id %></p>
-
-      <%= link_to(accepted_booking_path(booking)) do %>
-        <button style="font-size:14px">Confirmed</button>
-      <% end %>
-
-      <%= link_to(rejected_booking_path(booking)) do %>
-        <button style="font-size:14px">Cancelled</button>
-      <% end %>
-
+    <% if current_user == @parking_spot.user_id %>
+      <div id="pending">
+        <h3>Pending</h3>
+        <% @parking_spot.bookings.pending.each do |booking| %>
+          <p>
+            <%= link_to accepted_booking_path(booking), remote: true, class: "booking-confirm-#{booking.id}" do %>
+              Confirmed
+            <% end %>
+          </p>
+          <p>
+            <%= link_to rejected_booking_path(booking), remote: true, class: "booking-cancel-#{booking.id}" do %>
+              Cancelled
+            <% end %>
+          <p>
+        <% end %>
+      </div>
+      <div class="confirm">
+        <h3>Booking Comfirm</h3>
+          <% @parking_spot.bookings.accepted.each do |booking| %>
+            <p>
+              <%= link_to rejected_booking_path(booking), remote: true, class: "booking-cancel-#{booking.id}" do %>
+                Cancelled
+              <% end %>
+            <p>
+          <% end %>
+      </div>
+      <div class="cancel">
+        <h3>Booking Cancel</h3>
+        <% @parking_spot.bookings.rejected.each do |booking| %>
+          <p>
+            <%= link_to accepted_booking_path(booking), remote: true, class: "booking-confirm-#{booking.id}" do %>
+              Confirmed
+            <% end %>
+          <p>
+        <% end %>
+      </div>
     <% end %>
 
-    <h3>Booking Confirm</h3>
-    <% @parking_spot.bookings.accepted.each do |booking| %>
-      <p>Booking at: <%= booking.id %></p>
 
-      <%= link_to(rejected_booking_path(booking)) do %>
-        <button style="font-size:14px">Cancelled</button>
-      <% end %>
 
-    <% end %>
 
-    <h3>Booking Cancel</h3>
-    <% @parking_spot.bookings.rejected.each do |booking| %>
-      <p>Booking at: <%= booking.id %></p>
-
-      <%= link_to(accepted_booking_path(booking)) do %>
-        <button style="font-size:14px">Confirmed</button>
-      <% end %>
-
-      <%= link_to(rejected_booking_path(booking)) do %>
-        <button style="font-size:14px">Cancelled</button>
-      <% end %>
-    <% end %>
 
 
     <h2>Reviews</h2>
-    <hr>
     <% @parking_spot.reviews.each do |review| %>
       <p><%= review.description %></p>
       <p>
@@ -67,7 +71,6 @@
       </p>
     <% end %>
     <%= cl_image_tag @parking_spot.photo, height: 300, width: 400, crop: :fill %>
-    <br><br>
   </div>
 
   <div class="col-md-6">

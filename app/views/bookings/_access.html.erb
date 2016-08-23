@@ -1,0 +1,5 @@
+<p>
+  <%= link_to accepted_booking_path(@booking), remote: true, class: "booking-confirm-#{@booking.id}" do %>
+    Confirmed
+  <% end %>
+<p>
