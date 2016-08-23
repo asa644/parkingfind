@@ -23,6 +23,7 @@
       <div id="pending">
         <h3>Pending</h3>
         <% @parking_spot.bookings.pending.each do |booking| %>
+        <div class="booking-<%= booking.id %>">
           <p>
             <%= link_to accepted_booking_path(booking), remote: true, class: "booking-confirm-#{booking.id}" do %>
               Confirmed
@@ -33,6 +34,7 @@
               Cancelled
             <% end %>
           <p>
+        </div>
         <% end %>
       </div>
       <div class="confirm">

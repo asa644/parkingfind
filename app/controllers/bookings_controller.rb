@@ -19,8 +19,17 @@ class BookingsController < ApplicationController
     @booking.parking_spot_id = params[:parking_spot_id]
 
     if @booking.save
-      redirect_to parking_spot_bookings_path
+      owner = @booking.parking_spot.user
+      ownerr = owner.notifications.build(content: "You have a new booking #{@booking.id}, for #{@booking.parking_spot.city}")
+      if ownerr.save
+        respond_to do |format|
+        flash[:notice] = "Notifications"
+        format.html
+        format.js
+      end
+    end
       flash[:notice] = "Thank you for booking, Your booking time start at #{@booking.start_at} and ends at #{@booking.end_at} Your total price is: #{@booking.total_price}"
+      redirect_to parking_spot_bookings_path
     else
       render :new
     end
@@ -29,6 +38,12 @@ class BookingsController < ApplicationController
   def rejected
      # security
     if current_user.id == @booking.parking_spot.user.id && @booking.rejected!
+<<<<<<< HEAD
+
+      book = @booking.user
+      bookk = book.notifications.create(content: "You have a new booking #{@booking.id}, for #{@booking.parking_spot.city}")
+=======
+>>>>>>> master
 
       respond_to do |format|
         format.html { redirect_to parking_spot_path(@booking.parking_spot), flash[:notice] = "Booking Rejected" }
