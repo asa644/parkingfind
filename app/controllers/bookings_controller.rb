@@ -26,7 +26,7 @@ class BookingsController < ApplicationController
 
   def total_price
     @booking.total_price = total_price
-    total_price = (@booking.end_at - @booking.start_at) * find_parking_spot.price
+    t_price = (@booking.end_at - @booking.start_at) * find_parking_spot.price
   end
 
   private
