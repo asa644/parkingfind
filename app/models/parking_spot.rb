@@ -12,7 +12,7 @@ class ParkingSpot < ApplicationRecord
     date_ranges = self.bookings.map { |x| (x.start_at..x.end_at)}
     date_ranges.each do |range|
       range.map do |date|
-        impossible_dates << date.strftime("%m/%d/%Y")
+        impossible_dates << date.strftime("%d/%m/%Y")
       end
     end
     impossible_dates

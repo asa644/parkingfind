@@ -1,15 +1,16 @@
 <div class="container text-center">
-<% @user.bookings.each do |booking| %>
-<hr>
-<%= link_to 'Show', parking_spot_booking_path(booking.parking_spot_id, booking.id)  %>
-<p>Address: <%= booking.parking_spot.street_address %></p>
-<p><%= "Starts on the: #{booking.start_at} "%></p>
-<p><%= "Ends on the: #{booking.end_at}"%></p>
-<p><%= "Your booking total price is: #{booking.total_price}"%></p>
-<p><%= link_to "Chat", booking_chat_rooms_path(booking)%></p>
-<%= link_to 'Leave a review', new_booking_review_path(booking)  %>
 
-<hr>
-<% end %>
+<% @user.bookings.each do |booking| %>
+  <hr>
+  <%= link_to 'Show', parking_spot_booking_path(booking.parking_spot_id, booking.id)  %>
+  <p>Address: <%= booking.parking_spot.street_address %></p>
+  <p><%= "Starts on the: #{booking.start_at} "%></p>
+  <p><%= "Ends on the: #{booking.end_at}"%></p>
+  <p><%= "Your booking total price is: #{booking.total_price}"%></p>
+  <p><%= link_to "Chat", booking_chat_rooms_path(booking)%></p>
+  <%= link_to 'Leave a review', new_booking_review_path(booking)  %>
+  <% end %>
+  <hr>
+
 </div>
 
