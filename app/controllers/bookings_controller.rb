@@ -27,6 +27,9 @@ class BookingsController < ApplicationController
     end
   end
 
+  def total_price
+    t_price = (@booking.end_at - @booking.start_at) * find_parking_spot.price
+  end
 
   def rejected
      # security
@@ -38,8 +41,6 @@ class BookingsController < ApplicationController
       end
     end
   end
-
-
 
   def accepted
     # security
@@ -54,11 +55,6 @@ class BookingsController < ApplicationController
     #redirect_to parking_spot_path(@booking.parking_spot)
     #flash[:notice] = "Booking Accepted"
   end
-
-  def total_price
-    t_price = (@booking.end_at - @booking.start_at) * find_parking_spot.price
-  end
-
 
   private
 

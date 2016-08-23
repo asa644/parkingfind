@@ -7,17 +7,15 @@ class Booking < ApplicationRecord
   has_one :chat_room
   has_one :owner, through: :parking_spot, source: :user
 
-  enum status: [:pending, :rejected, :accepted]
-
-
 #validations
   validates :start_at, presence: :true
   validates :end_at, presence: :true
-  validate :booking_period_not_overlapped
+  validate :booking_period_not_overlapped, on: :create
 
 #chat room creation
   after_create :create_associated_chatroom
 
+enum status: [:pending, :rejected, :accepted]
 
   private
 
