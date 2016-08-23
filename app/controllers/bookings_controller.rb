@@ -27,6 +27,7 @@ class BookingsController < ApplicationController
   end
 
   def rejected
+     # security
     if current_user == @booking.parking_spot.user.id && @booking.rejected!
 
       respond_to do |format|
@@ -39,6 +40,7 @@ class BookingsController < ApplicationController
 
 
   def accepted
+    # security
     if current_user == @booking.parking_spot.user.id && @booking.accepted!
 
       respond_to do |format|
