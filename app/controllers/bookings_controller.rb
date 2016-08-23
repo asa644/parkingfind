@@ -28,7 +28,7 @@ class BookingsController < ApplicationController
 
   def rejected
      # security
-    if current_user == @booking.parking_spot.user.id && @booking.rejected!
+    if current_user.id == @booking.parking_spot.user.id && @booking.rejected!
 
       respond_to do |format|
         format.html { redirect_to parking_spot_path(@booking.parking_spot), flash[:notice] = "Booking Rejected" }
@@ -41,7 +41,7 @@ class BookingsController < ApplicationController
 
   def accepted
     # security
-    if current_user == @booking.parking_spot.user.id && @booking.accepted!
+    if current_user.id == @booking.parking_spot.user.id && @booking.accepted!
 
       respond_to do |format|
         format.html { redirect_to parking_spot_path(@booking.parking_spot), flash[:notice] = "Booking Accepted" }
