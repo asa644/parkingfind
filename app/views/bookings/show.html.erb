@@ -1,8 +1,9 @@
+<div class="container text-center" style="padding-top:100px;padding-bottom:100px">
+  <p><strong>Id: </strong><%= @booking.id %></p>
+  <p><strong>Starts on the: </strong><%= @booking.start_at %></p>
+  <p><strong>Ends on the: </strong><%= @booking.end_at %></p>
+  <p><strong>Your booking total price is: </strong><%#= @booking.total_price %></p>
+  <p><strong>Status: </strong><%= @booking.status %></p>
+</div>
 
-    <% @user.bookings.each do |booking| %>
-      <p> <%= "Your booking number #{count}: "%></p>
-      <p> <%= "Starts on the: #{booking.start_at} "%></p>
-      <p> <%= "Ends on the: #{booking.end_at}"%></p>
-      <p> <%= "Your booking total price is: #{booking.total_price}"%></p>
 
-    <% end %>

@@ -1,0 +1,6 @@
+
+$('.booking-confirm-<%= @booking.id %>').hide();
+
+var new_confirm = $("<%= j render 'bookings/show', booking: @booking %>")
+$('.confirm').append(new_confirm);
+

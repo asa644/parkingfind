@@ -1,6 +1,7 @@
 class BookingsController < ApplicationController
   before_action :authenticate_user!
-  before_action :find_parking_spot , except: [:index]
+  before_action :find_parking_spot , except: [:index, :show, :rejected, :accepted]
+  before_action :find_booking , only: [:rejected, :accepted, :show]
 
   def index
     @user = current_user
@@ -10,6 +11,8 @@ class BookingsController < ApplicationController
     @booking = Booking.new
   end
 
+  def show
+  end
 
   def create
     @booking = current_user.bookings.build(booking_params)
@@ -21,6 +24,33 @@ class BookingsController < ApplicationController
     else
       render :new
     end
+  end
+
+  def rejected
+     # security
+    if current_user == @booking.parking_spot.user.id && @booking.rejected!
+
+      respond_to do |format|
+        format.html { redirect_to parking_spot_path(@booking.parking_spot), flash[:notice] = "Booking Rejected" }
+        format.js  # <-- will render `app/views/bookings/rejected.js.erb`
+      end
+    end
+  end
+
+
+
+  def accepted
+    # security
+    if current_user == @booking.parking_spot.user.id && @booking.accepted!
+
+      respond_to do |format|
+        format.html { redirect_to parking_spot_path(@booking.parking_spot), flash[:notice] = "Booking Accepted" }
+        format.js  # <-- will render `app/views/bookings/accepted.js.erb`
+      end
+    end
+    #@booking.accepted!
+    #redirect_to parking_spot_path(@booking.parking_spot)
+    #flash[:notice] = "Booking Accepted"
   end
 
 
@@ -37,6 +67,10 @@ class BookingsController < ApplicationController
 
   def booking_params
     params.require(:booking).permit(:start_at, :end_at)
+  end
+
+  def find_booking
+    @booking = Booking.find(params[:id])
   end
 end
 

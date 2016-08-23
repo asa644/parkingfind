@@ -1,6 +1,6 @@
 class ParkingSpotsController < ApplicationController
   before_action :authenticate_user!
-  skip_before_action :authenticate_user!, only: [ :index ]
+  skip_before_action :authenticate_user!, only: [ :index, :search ]
   before_action :find_user
 
   def index
@@ -15,15 +15,16 @@ class ParkingSpotsController < ApplicationController
   end
 
   def show
-    @parking_spot = current_user.parking_spots.find_by(id: params[:id])
-    @parking_spots = ParkingSpot.where.not(latitude: nil, longitude: nil)
+    @parking_spot = ParkingSpot.find(params[:id])
+    # @parking_spot = current_user.parking_spots.find_by(id: params[:id])
+    # @parking_spots = ParkingSpot.where.not(latitude: nil, longitude: nil)
     @parking_spot_coordinates = { lat: @parking_spot.latitude, lng: @parking_spot.longitude }
     @hash = Gmaps4rails.build_markers(@parking_spots) do |parking, marker|
       marker.lat parking.latitude
       marker.lng parking.longitude
     end
 
-    redirect_to profile_path unless @parking_spot
+    # redirect_to profile_path unless @parking_spot
   end
 
   def new
@@ -59,8 +60,11 @@ class ParkingSpotsController < ApplicationController
     @hash = Gmaps4rails.build_markers(@parking_spots) do |parking, marker|
       marker.lat parking.latitude
       marker.lng parking.longitude
+    end
   end
-end
+
+
+
 
   private
 

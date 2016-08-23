@@ -3,6 +3,7 @@ class Booking < ApplicationRecord
 #actives records links
   belongs_to :parking_spot
   belongs_to :user
+  has_one :review
   has_one :chat_room
   has_one :owner, through: :parking_spot, source: :user
 
@@ -12,7 +13,10 @@ class Booking < ApplicationRecord
   validates :end_at, presence: :true
   validate :booking_period_not_overlapped
 
-#chat room creation
+  enum status: [:pending, :rejected, :accepted]
+
+  has_one :owner, through: :parking_spot, source: :user
+
   after_create :create_associated_chatroom
 
 # :unavailable_dates
