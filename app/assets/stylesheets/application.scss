@@ -5,8 +5,10 @@
 // External libraries
 @import "bootstrap-sprockets";
 @import "bootstrap";
+@import "bootstrap-datepicker";
 @import "font-awesome-sprockets";
 @import "font-awesome";
+
 
 // Your CSS
 @import "layout/index";
@@ -14,3 +16,5 @@
 @import "pages/index";
 @import "vendor/index";
 @import "parking_spots";
+
+

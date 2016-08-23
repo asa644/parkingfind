@@ -5,6 +5,8 @@ gem 'rails', '5.0.0.1'
 gem 'puma'
 gem 'pg'
 
+
+
 #security
 gem 'figaro'
 
@@ -27,6 +29,7 @@ gem "letter_opener", group: :development
 
 source 'https://rails-assets.org' do
   gem "rails-assets-underscore"
+  gem 'rails-assets-bootstrap-datepicker'
 end
 
 #better design
