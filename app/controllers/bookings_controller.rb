@@ -19,8 +19,10 @@ class BookingsController < ApplicationController
     @booking.parking_spot_id = params[:parking_spot_id]
 
     if @booking.save
-      redirect_to parking_spot_bookings_path
+      owner = @booking.parking_spot.user
+      owner.notifications.create(content: "You have a new booking #{@booking.id}, for #{@booking.parking_spot.city}")
       flash[:notice] = "Thank you for booking, Your booking time start at #{@booking.start_at} and ends at #{@booking.end_at} Your total price is: #{@booking.total_price}"
+      redirect_to parking_spot_bookings_path
     else
       render :new
     end

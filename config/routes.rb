@@ -3,6 +3,8 @@ Rails.application.routes.draw do
   root to: 'pages#home'
   devise_for :users, controllers: { omniauth_callbacks: 'users/omniauth_callbacks' }
 
+  resources :notifications, only: [ :destroy, :index ]
+
   resources :parking_spots do
     resources :bookings
   end
