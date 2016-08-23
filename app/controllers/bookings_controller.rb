@@ -10,10 +10,10 @@ class BookingsController < ApplicationController
     @booking = Booking.new
   end
 
-
   def create
     @booking = current_user.bookings.build(booking_params)
     @booking.parking_spot_id = params[:parking_spot_id]
+    @booking.total_price = total_price
 
     if @booking.save
       redirect_to parking_spot_bookings_path
@@ -23,11 +23,10 @@ class BookingsController < ApplicationController
     end
   end
 
-
   def total_price
-    @booking.total_price = total_price
     t_price = (@booking.end_at - @booking.start_at) * find_parking_spot.price
   end
+
 
   private
 
