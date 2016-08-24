@@ -1,17 +1,86 @@
 <div id="landing">
+  <%= video_tag "home.mp4", autoplay: :autoplay, loop: :loop, mute: :mute, poster: "home.jpg", class: "video" %>
+</div>
   <div id='landing-content' class="container text-center">
-    <h1 class='lato'>Parking Management Utility Thing</h1>
-    <div class='row'>
-      <div class='col-xs-12 col-md-6 col-md-offset-3'>
-        <form action='/search' id='search-form' class='form-inline'>
-          <div class='form-group'>
-            <label for='search'><strong>Where do you need to park?&nbsp;</strong></label>
-            <input type='text' name='search' class='form-control'>
-          </div>
-          <input class="btn btn-success" type='submit' value='Search'>
-        </form>
+  <div class="container">
+    <div class="row">
+      <div class='col-xs-5 col-md-12 col-lg-12' id='intro_content'>
+        <h1 class='lato'>Find your perfect parking space</h1>
       </div>
     </div>
-    <a class="btn btn-primary" href="parking_spots" role="button" style="margin-top: 25px;">Check our parking slots</a>
+  </div>
+    <div id='search-area'>
+      <div class='row'>
+        <div class='col-xs-5 col-md-12 col-lg-12'>
+          <form action='/search' id='form_container' class='form-inline'>
+            <div class='form-group'>
+              <label for='search'><label>
+
+              <input id="search_box" type='text' name='search' class='form-control' placeholder= 'Where to park?'>
+
+              <input id="id_date" type='text' name='search' class='form-control datepicker' placeholder= 'From'>
+
+              <input id="id_date" type='text' name='search' class='form-control datepicker' placeholder= 'Until'>
+
+              <input class="btn btn-success" type='submit' value='Search' >
+            </div>
+          </form>
+          <div class='text-center'>
+          <a class="btn btn-primary" href="parking_spots" role="button" style="margin-top: 25px;">Check all parking slots</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<div class="wrapper-grey">
+  <div class="container features text-center">
+    <div class="row">
+    <h1> On-demand parking in Beirut </h1>
+      <div class='col-xs-12 col-md-4 col-lg-4'>
+        <h2>Secret spots</h2>
+        <p>Secret spots in the hardest parking areas </p>
+        <i class="fa fa-map-marker feature-home" aria-hidden="true"></i>
+      </div>
+      <div class='col-xs-12 col-md-4 col-lg-4'>
+        <h2>Flat rate</h2>
+        <p>Lower rates since we use underutilized parking spaces </p>
+        <i class="fa fa-usd feature-home" aria-hidden="true"></i>
+      </div>
+      <div class='col-xs-12 col-md-4 col-lg-4'>
+        <h2>Tap and park</h2>
+        <p>Get your spot the fastest way via App or text message</p>
+      <i class="fa fa-rocket feature-home" aria-hidden="true"></i>
+      </div>
+    </div>
   </div>
 </div>
+
+<div class="container">
+  <div class="row">
+    <div class='col-xs-12 col-md-4 col-lg-4'>
+    <h2> Have a spot? List it and earn when it's empty </h2>
+    <ul>
+      <li>
+      Set it available / not available with an SMS Decide your daily or monthly rate
+      </li>
+      <li> Get notified when a driver books it </li>
+      <li> Keep control of your bookings schedule </li>
+      <li> Find the money directly in your bank </li>
+    </ul>
+    </div>
+  </div>
+</div>
+        <% content_for(:after_js) do %>
+          <%= javascript_tag do %>
+            $(document).ready(function(){
+              $('.datepicker').datepicker({
+              todayHighlight: true,
+              startDate: 'today',
+              format: "dd/mm/yyyy"
+              });
+            });
+          <% end %>
+ <% end %>
