@@ -3,47 +3,33 @@
  * (margin/padding adjustments)
  * ------------------------------------- */
 
-// #landing {
-//       display: flex;
-//       align-items: center;
-//       // background: #eb01a5;
-//       // background-image: url("home.jpg");
-//       // background-image: image-url("home.jpg");
-//       background-size: cover;
-//       height: 100vh;
-//       background-repeat: no-repeat;
-//       &:before {
-//         content: '';
-//         position: absolute;
-//         top: 0;
-//         right: 0;
-//         bottom: 0;
-//         left: 0;
-//         background-image: linear-gradient(to bottom right,#ffffcc,#ffffcc);
-//         opacity: .6;
-//       }
-// }
+#landing {
+  display: flex;
+  align-items: center;
+  background-size: cover;
+  height: 100vh;
+  background-repeat: no-repeat;
+}
 
 
 
 #landing-content {
-    color: $white;
-    position: relative;
-    bottom: 50px;
-    padding-top: 300px;
+  color: $white;
+  position: relative;
+  bottom: 50px;
+  padding-top: 300px;
 }
 
 .video {
- position: fixed;
- top: 50%; left: 50%;
- z-index: -100;
- min-width: 100%;
- min-height: 100%;
- width: auto;
- height: auto;
- transform: translate(-50%, -50%);
+   position: fixed;
+   top: 50%; left: 50%;
+   z-index: -100;
+   min-width: 100%;
+   min-height: 100%;
+   width: auto;
+   height: auto;
+   transform: translate(-50%, -50%);
 }
-
 
 #intro-content {
     width: 930px;
@@ -95,4 +81,8 @@ hr {
 .wrapper-white {
   background: $white;
   color:rgb(57,119,247);
+}
+
+.have_a_spot {
+  padding:50px;
 }
