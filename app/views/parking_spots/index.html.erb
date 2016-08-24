@@ -1,67 +1,61 @@
 <br>
-<div class="container" style="padding-top:84px">
-    <div class="col-md-6" style="height: 100%;overflow: hidden;overflow-y: scroll;">
+<div class="container" style="padding-top:30px">
+  <div class="col-md-6" style="height: 100%;overflow: hidden;overflow-y: scroll;">
     <div class="scroll">
-     <% if @parking_spots.blank? %>
-      <h3>Nous avons pas de parking</h3>
-      <h4>A cette endroit</h4>
-     <% else %>
+      <% if @parking_spots.blank? %>
+        <h3>Nous avons pas de parking</h3>
+        <h4>A cette endroit</h4>
+        <% else %>
+          <% @parking_spots.each do |parking_spot| %>
+            <div class="row">
+              <div class="col-md-4">
+                <div id='parking-spot-listing'>
+                  <% if parking_spot.user.facebook_picture_url == nil %>
+                    <%= cl_image_tag parking_spot.user.avatar, height: 80, width: 80, crop: :fill %>
+                  <% else %>
+                    <%= cl_image_tag parking_spot.user.facebook_picture_url, height: 80, width: 80, crop: :fill %>
+                  <% end %>
+                </div>
+              </div>
 
+              <div class="col-md-4">
+                <h6><strong>Address:</strong> <%= parking_spot.street_address %></h6>
+                <h6><strong>City:</strong> <%= parking_spot.city %></h6>
+                <h6><strong>Country:</strong> <%= parking_spot.country %></h6>
+                <%= link_to 'Book now!',  new_parking_spot_booking_path(parking_spot) %>
+              </div>
 
-
-
-      <% @parking_spots.each do |parking_spot| %>
-          <div class="row">
-            <div class="col-md-4">
-
-              <% if parking_spot.user.facebook_picture_url == nil %>
-                <%= cl_image_tag parking_spot.user.avatar, height: 80, width: 80, crop: :fill, style: "border-radius: 50%;position:relative;left:33px;top: 12px;" %>
-              <% else %>
-                <%= cl_image_tag parking_spot.user.facebook_picture_url, height: 80, width: 80, crop: :fill, style: "border-radius: 50%" %>
-              <% end %>
+              <div class="col-md-4">
+                <%= cl_image_tag parking_spot.photo, height: 90, width: 90, crop: :fill, style: "position:relative;left:33px;top: 12px;" %>
+              </div>
             </div>
-
-            <div class="col-md-4">
-              <h6><strong>Address:</strong> <%= parking_spot.street_address %></h6>
-              <h6><strong>City:</strong> <%= parking_spot.city %></h6>
-              <h6><strong>Country:</strong> <%= parking_spot.country %></h6>
-              <%= link_to 'Book now!',  new_parking_spot_booking_path(parking_spot) %>
-            </div>
-
-            <div class="col-md-4">
-              <%= cl_image_tag parking_spot.photo, height: 90, width: 90, crop: :fill, style: "position:relative;left:33px;top: 12px;" %>
-            </div>
-          </div>
-<hr>
-
-          <br>
-
-      <% end %>
-      <% end %>
-      </div>
-    </div>
-
-    <div class="col-md-6" id="smappux">
-      <div id="map" class="map_structure" style="width: 100%;height: 500px;position: fixed !important;"></div>
-      <% content_for(:after_js) do %>
-        <%= javascript_tag do %>
-          $(document).on('ready', function() {
-            var handler = Gmaps.build('Google');
-            handler.buildMap({ internal: { id: 'map' } }, function() {
-              markers = handler.addMarkers(<%= raw @hash.to_json %>);
-              handler.bounds.extendWith(markers);
-              handler.fitMapToBounds();
-                if (markers.length == 0) {
-                  handler.getMap().setZoom(2);
-                }
-                else if (markers.length == 1) {
-                  handler.getMap().setZoom(14);
-                }
-              });
-            });
+            <hr>
+          <% end %>
         <% end %>
-      <% end %>
     </div>
+  </div>
+
+  <div class="col-md-6" id="smappux">
+    <div id="map" class="map_structure" style="width: 100%;height: 500px;position: fixed !important;"></div>
+  </div>
 </div>
 
-<br><br>
+<% content_for(:after_js) do %>
+  <%= javascript_tag do %>
+    $(document).on('ready', function() {
+      var handler = Gmaps.build('Google');
+      handler.buildMap({ internal: { id: 'map' } }, function() {
+        markers = handler.addMarkers(<%= raw @hash.to_json %>);
+        handler.bounds.extendWith(markers);
+        handler.fitMapToBounds();
+          if (markers.length == 0) {
+            handler.getMap().setZoom(2);
+          }
+          else if (markers.length == 1) {
+            handler.getMap().setZoom(14);
+          }
+        });
+      });
+  <% end %>
+<% end %>
+

@@ -15,13 +15,15 @@
 .navbar-wagon li { color: #000 }
 
 /* Optional class to fix the navbar on top */
-.navbar-wagon-fixed {
+.navbar-wagon-fixed{
   position: fixed;
   left: 0px;
   top: 0px;
   z-index: 1;
   width: 100%;
 }
+
+
 
 /* Navbar logo */
 .navbar-wagon-brand img {
