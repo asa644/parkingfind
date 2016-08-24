@@ -17,9 +17,11 @@
 
 .navbar-wagon {
   position: fixed;
+  left: 0px;
+  top: 0px;
   z-index: 1;
+  width: 100%;
 }
-
 
 /* Navbar logo */
 .navbar-wagon-brand img {
