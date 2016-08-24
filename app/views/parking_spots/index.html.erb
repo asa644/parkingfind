@@ -43,7 +43,8 @@
 
     <div class="col-md-6" id="smappux">
       <div id="map" class="map_structure" style="width: 100%;height: 500px;position: fixed !important;"></div>
-      <% content_for(:after_js) do %>
+
+    <% content_for(:after_js) do %>
         <%= javascript_tag do %>
           $(document).on('ready', function() {
             var handler = Gmaps.build('Google');
@@ -63,5 +64,14 @@
       <% end %>
     </div>
 </div>
+
+
+
+
+
+
+
+
+
 
 <br><br>
