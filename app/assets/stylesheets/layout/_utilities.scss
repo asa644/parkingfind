@@ -4,14 +4,17 @@
  * Feel free to change them and create your own
  * ------------------------------------- */
 
-// Paddings
-.padded {
+/*// Positioning
+*/.fixed { position: fixed; }
+
+/*// Paddings
+*/.padded {
   padding-top: 5em;
   padding-bottom: 5em;
 }
 
-// Backgrounds
-.bg-black {
+/*// Backgrounds
+*/.bg-black {
   background: #4a4a4a;
 }
 .bg-grey {
@@ -52,6 +55,7 @@ div.scroll {
     border: 10px solid #463d3d;
     height: 530px;
     overflow: scroll;
+    background: white;
 }
 
 
@@ -128,3 +132,27 @@ body {
 
 
 
+i.fa.fa-bell {
+    color: maroon;
+}
+
+.btn-info {
+    color: white;
+    background-color: #455d46;
+    border-color: #7b7b7b;
+}
+
+div#enline {
+    display: -webkit-inline-box;
+}
+
+a{
+  color: white;
+}
+div#enline a {
+    padding-right: 15px;
+    padding-left: 15px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    background: #06887c;
+}

@@ -1,8 +1,14 @@
+<style type="text/css">
+  .navbar-wagon {
+    background: #497394;
+}
+</style>
+
 <div class="text-center">
   <h2>Search results for <%= params[:search].capitalize %>:</h2>
 </div>
 <br>
-<div class="container" style="padding-top:30px">
+<div class="container" style="padding-top:30px;background: #e0e0e0;padding-bottom: 35px;">
     <div class="col-md-6" style="height: 100%;overflow: hidden;overflow-y: scroll;">
     <div class="scroll">
      <% if @parking_spots.blank? %>
@@ -12,14 +18,21 @@
 
       <% @parking_spots.each do |parking_spot| %>
         <% bab = parking_spot.user_id %>
+
           <div class="row">
             <div class="col-md-4">
-              <% if User.find(bab).facebook_picture_url == nil %>
+
+              <% if User.find(bab).facebook_picture_url == nil && User.find(bab).avatar == true  %>
                 <%= cl_image_tag User.find(bab).avatar, height: 80, width: 80, crop: :fill, style: "border-radius: 50%;position:relative;left:33px;top: 12px;" %>
-              <% else %>
+              <% elsif User.find(bab).facebook_picture_url != nil  %>
                 <%= cl_image_tag User.find(bab).facebook_picture_url, height: 80, width: 80, crop: :fill, style: "border-radius: 50%" %>
+              <% else %>
+                <%= image_tag "http://placehold.it/30x30", height: 80, width: 80, crop: :fill, style: "border-radius: 50%;position:relative;left:33px;top: 12px;" %>
               <% end %>
+
             </div>
+
+
 
             <div class="col-md-4">
               <h6><strong>Address:</strong> <%= parking_spot.street_address %></h6>
@@ -31,9 +44,8 @@
               <%= cl_image_tag parking_spot.photo, height: 90, width: 90, crop: :fill, style: "position:relative;left:33px;top: 12px;" %>
             </div>
           </div>
-<hr>
+          <hr>
 
-          <br>
 
       <% end %>
       <% end %>
@@ -41,10 +53,10 @@
     </div>
 
     <div class="col-md-6" id="smappux">
-      <div id="map" class="map_structure" style="width: 100%;height: 500px;position: fixed !important;"></div>
+      <div id="map" class="map_structure" style="width: 100%;height: 530px;position: fixed !important;"></div>
       <% content_for(:after_js) do %>
         <%= javascript_tag do %>
-          $(document).on('ready', function() {
+
             var handler = Gmaps.build('Google');
             handler.buildMap({ internal: { id: 'map' } }, function() {
               markers = handler.addMarkers(<%= raw @hash.to_json %>);
@@ -57,7 +69,7 @@
                   handler.getMap().setZoom(14);
                 }
               });
-            });
+
         <% end %>
       <% end %>
     </div>

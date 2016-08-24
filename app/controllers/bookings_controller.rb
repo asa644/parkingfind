@@ -21,7 +21,7 @@ class BookingsController < ApplicationController
 
     if @booking.save
       owner = @booking.parking_spot.user
-      ownerr = owner.notifications.build(content: "You have a new booking #{@booking.id}, for #{@booking.parking_spot.city}")
+      ownerr = owner.notifications.build(content: "You have a new booking #{@booking.id}, for #{@booking.parking_spot.city} link, #{ view_context.link_to("notif", parking_spot_path(@booking.parking_spot.id)) }")
       if ownerr.save
         respond_to do |format|
         flash[:notice] = "Notifications"
