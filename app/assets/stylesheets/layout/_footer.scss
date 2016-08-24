@@ -5,14 +5,14 @@ form {
 }
 
 #footer {
-  background: #333333;
-  color: #CCCCCC;
-  padding: 10px 0;
-  position: relative;
+    background: #d8d8d8;
+    color: #CCCCCC;
+    padding: 10px 0;
+    position: relative;
+    border-top: 2px solid #a09999;
 }
-
 #footer a {
-  color: #CCCCCC;
+  color:#464545;
   text-decoration: none;
 }
 
@@ -32,4 +32,7 @@ form {
   margin: 0px;
 }
 
+li {
+    list-style: none;
+}
 

@@ -6,7 +6,8 @@
         <%= link_to notification_path(notification),  class: "close", method: :delete, remote: true do  %>
           <span>&times;</span>
         <% end %>
-        <%= notification.content %>
+
+        <%= notification.content.html_safe %>
     </div>
   <% end %>
 <% end %>
