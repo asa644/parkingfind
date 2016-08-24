@@ -24,8 +24,16 @@
 
 
 .index_parking_adress {
-    font-size: 23px;
-    width: 100%;
-    font-weight: bold;
-    color: green;
+  font-size: 23px;
+  width: 100%;
+  font-weight: bold;
+  color: green;
+}
+
+#parking-spot-listing {
+  margin: 2rem;
+  text-align: center;
+  img {
+    border-radius: 50%;
   }
+}
