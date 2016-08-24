@@ -6,7 +6,7 @@ class ReviewsController < ApplicationController
 
   def create
     @booking = Booking.find(params[:booking_id])
-    @review = @booking.build_review(review_params)
+    @review = @booking.reviews.build(review_params)
 
     if @review.save
       flash[:notice] = "Thank you"
