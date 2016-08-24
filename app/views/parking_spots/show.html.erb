@@ -19,6 +19,11 @@
           <% @parking_spot.bookings.accepted.each do |booking| %>
 
             <p>Booking id: <%= booking.id %></p>
+            <p>
+            <%= link_to booking_chat_rooms_path(booking), style: "color:red" do %>
+              Chat
+            <% end %>
+          </p>
 
           <% end %>
       </div>
@@ -35,14 +40,21 @@
               Confirmed
             <% end %>
           </p>
+
           <p style="color:transparent">transparent</p>
+
           <p>
             <%= link_to rejected_booking_path(booking), remote: true, class: "booking-cancel-#{booking.id}" do %>
               Cancelled
             <% end %>
+          </p>
+          <p style="color:transparent">transparent</p>
           <p>
+            <%= link_to booking_chat_rooms_path(booking), class: "booking-cancel-#{booking.id}" do %>
+              Chat
+            <% end %>
+          </p>
         </div>
-
         <% end %>
       </div>
 
