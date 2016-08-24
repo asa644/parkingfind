@@ -87,3 +87,18 @@ i.fa.fa-bell {
     background-color: #455d46;
     border-color: #7b7b7b;
 }
+
+div#enline {
+    display: -webkit-inline-box;
+}
+
+a{
+  color: white;
+}
+div#enline a {
+    padding-right: 15px;
+    padding-left: 15px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    background: #06887c;
+}
