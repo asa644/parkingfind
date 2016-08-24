@@ -84,7 +84,7 @@
 
 <% content_for(:after_js) do %>
   <%= javascript_tag do %>
-    $(document).on('ready', function() {
+
       var handler = Gmaps.build('Google');
       handler.buildMap({ internal: { id: 'map' } }, function() {
         markers = handler.addMarkers(
@@ -101,7 +101,7 @@
           handler.getMap().setZoom(18);
         }
       });
-    });
+
   <% end %>
 <% end %>
 
