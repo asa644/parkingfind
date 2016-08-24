@@ -18,10 +18,10 @@
   background: #4a4a4a;
 }
 .bg-grey {
-  background: #aeaeae;
+  background: $white;
 }
 .bg-blue {
-  background: #00a3e1;
+  background: $blue;
 }
 .bg-dark-blue {
   background: #3b5998;
@@ -39,7 +39,6 @@ form#edit_parking_spot_1 {
     }
 }
 
-
 #avatar{
   width: 50px;
   border-radius: 50%;
@@ -50,25 +49,20 @@ div#smappux {
     right: 0px;
 }
 
-
 div.scroll {
     border: 10px solid #463d3d;
     height: 530px;
     overflow: scroll;
-    background: white;
+    background: $white;
 }
-
 
 div#oldman {
     padding-top: 40px;
 }
 
-
 div.alert-success {
     background: rebeccapurple !important;
 }
-
-
 
 .lato {
   font-family: 'Lato', sans-serif;
@@ -79,14 +73,16 @@ body {
 }
 
 
-i.fa.fa-bell {
-    color: maroon;
+.features {
+  padding:50px;
 }
 
-.btn-info {
-    color: white;
-    background-color: #455d46;
-    border-color: #7b7b7b;
+.feature-home{
+    font-size: 129px;
+}
+
+i.fa.fa-bell {
+    color: maroon;
 }
 
 div#enline {
@@ -96,6 +92,7 @@ div#enline {
 a{
   color: white;
 }
+
 div#enline a {
     padding-right: 15px;
     padding-left: 15px;
