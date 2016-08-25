@@ -8,5 +8,13 @@ class ApplicationController < ActionController::Base
     devise_parameter_sanitizer.permit(:account_update, keys: [:first_name, :last_name,:avatar, :avatar_cache,:avatar_url])
   end
 
+  def after_sign_in_path_for(resource)
+    profile_path
+  end
+
+  def after_sign_out_path_for(resource)
+    root_path
+  end
+
 end
 
