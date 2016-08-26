@@ -23,6 +23,7 @@ gem 'uglifier'
 gem "geocoder"
 gem "coffee-rails"
 gem "gmaps4rails"
+gem 'whenever', :require => false
 
 gem "letter_opener", group: :development
 
