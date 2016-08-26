@@ -7,9 +7,21 @@
       <div class="message-text">
         <span class="message-pre-text">
         </span>
-        <span class="emojitext selectable-text">
-          <%= message.body %>
-        </span>
+
+        <% if true %>
+
+          <span class="emojitext selectable-text">
+            <%= message.body %>
+          </span>
+
+        <%# elsif current_user.id == message.chat_room.booking.user_id %>
+
+          <!-- <span class="emojitext selectable-text" id="clientusr">
+            <%#= message.body %>
+          </span> -->
+
+        <% end %>
+
       </div>
       <div class="message-meta text-clickable">
         <span class="hidden-token">
