@@ -1,4 +1,5 @@
-<div class="container text-center">
+<div class="container text-center mt6">
+<h1>Your bookings</h1>
 <% @user.bookings.each do |booking| %>
   <hr>
   <button type="button" class="btn btn-primary disabled"><%= link_to 'Show', parking_spot_booking_path(booking.parking_spot_id, booking.id)  %></button>
