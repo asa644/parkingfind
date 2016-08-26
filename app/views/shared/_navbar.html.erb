@@ -74,7 +74,8 @@
     <% else %>
 
       <!-- Login text link -->
-      <%= link_to t(".sign_in", default: "Login"), new_user_session_path, class: "navbar-wagon-item navbar-wagon-link" %>
+      <!-- Button for modal login -->
+      <%= button_tag t(".sign_in", default: "Login") , class: "navbar-wagon-item navbar-wagon-link", data: { toggle: 'modal',  target: '#modal-login' } %>
 
     <% end %>
   </div>

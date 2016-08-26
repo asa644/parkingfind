@@ -1,21 +1,23 @@
-<div class="card">
-  <div class="card-block">
-    <div class="row">
-      <div class="col-md-1">
-        <% if message.user.avatar_url %>
-            <%= cl_image_tag message.user.avatar, class: "avatar dropdown-toggle", id: "navbar-wagon-menu", "data-toggle" => "dropdown" %>
-          <% elsif message.user.facebook_picture_url %>
-            <%= image_tag message.user.facebook_picture_url, class: "avatar dropdown-toggle", id: "navbar-wagon-menu", "data-toggle" => "dropdown"%>
-          <% else %>
-            <%= image_tag "http://placehold.it/30x30", class: "avatar dropdown-toggle", id: "navbar-wagon-menu", "data-toggle" => "dropdown" %>
-          <% end %>
-      </div>
-      <div class="col-md-11">
-        <p class="card-text">
-          <span class="text-muted"><%= message.user.name %> at <%= message.timestamp %> says</span><br>
+<div class="msg">
+  <span></span>
+  <div class="message message-chat message-out tail message-chat">
+    <span class="tail-container"></span>
+    <span class="tail-container highlight"></span>
+    <div class="bubble bubble-text">
+      <div class="message-text">
+        <span class="message-pre-text">
+        </span>
+        <span class="emojitext selectable-text">
           <%= message.body %>
-        </p>
+        </span>
+      </div>
+      <div class="message-meta text-clickable">
+        <span class="hidden-token">
+          <span class="message-datetime">heure</span>
+        </span>
+        <span class="icon icon-msg-dblcheck-ack"></span>
       </div>
     </div>
+    <span></span>
   </div>
 </div>
