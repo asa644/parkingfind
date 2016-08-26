@@ -19,6 +19,10 @@ gem 'sass-rails'
 gem 'jquery-rails'
 gem 'uglifier'
 
+#listing search and bookings and everything
+gem 'will_paginate', '~> 3.1.0'
+
+
 #geocoding
 gem "geocoder"
 gem "coffee-rails"

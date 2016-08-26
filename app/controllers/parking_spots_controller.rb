@@ -7,6 +7,7 @@ class ParkingSpotsController < ApplicationController
     @parking_spots = ParkingSpot.all
 
     @parking_spots = ParkingSpot.where.not(latitude: nil, longitude: nil)
+    @parking_spots = ParkingSpot.paginate(:page => params[:page], :per_page => 4)
 
     @hash = Gmaps4rails.build_markers(@parking_spots) do |flat, marker|
       marker.lat flat.latitude
@@ -57,14 +58,13 @@ class ParkingSpotsController < ApplicationController
   def search
     #perform your search
     @parking_spots = ParkingSpot.all.where("city ILIKE ? OR country ILIKE ?", "%#{params[:search]}%", "%#{params[:search]}%")
+    @parking_spots = ParkingSpot.paginate(:page => params[:page], :per_page => 4)
+
     @hash = Gmaps4rails.build_markers(@parking_spots) do |parking, marker|
       marker.lat parking.latitude
       marker.lng parking.longitude
     end
   end
-
-
-
 
   private
 
