@@ -1,4 +1,4 @@
-<div class="container text-center">
+<div class="container text-center" style="padding-top:100px">
   <h3><%= @parking_spot.street_address %></h3>
   <% ba = @parking_spot.user_id %>
   <div class="content col-md-6" style="padding-left: 150px">
@@ -20,7 +20,7 @@
 
             <p>Booking id: <%= booking.id %></p>
             <p>
-            <%= link_to booking_chat_rooms_path(booking), style: "color:red" do %>
+            <%= link_to booking_chat_rooms_path(booking), style: "color:red", target: '_blank' do %>
               Chat
             <% end %>
           </p>
@@ -50,7 +50,7 @@
           </p>
           <p style="color:transparent">transparent</p>
           <p>
-            <%= link_to booking_chat_rooms_path(booking), class: "booking-cancel-#{booking.id}" do %>
+            <%= link_to booking_chat_rooms_path(booking), class: "booking-cancel-#{booking.id}", target: '_blank' do %>
               Chat
             <% end %>
           </p>
@@ -91,6 +91,10 @@
     <div id="map" style="width: 100%; height: 600px;"></div>
   </div>
 </div>
+
+<%= javascript_include_tag "https://maps.google.com/maps/api/js?key=AIzaSyBAbVBfyj-wKN5_BQGC7LsP8hjV2GuH_WE" %>
+<%= javascript_include_tag "https://cdn.rawgit.com/printercu/google-maps-utility-library-v3-read-only/master/markerclusterer/src/markerclusterer_compiled.js" %>
+<%= javascript_include_tag "https://cdn.rawgit.com/printercu/google-maps-utility-library-v3-read-only/master/infobox/src/infobox_packed.js" %>
 
 
 <% content_for(:after_js) do %>
