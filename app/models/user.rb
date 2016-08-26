@@ -19,6 +19,7 @@ class User < ApplicationRecord
 
   has_many :notifications
 
+
   def name
     email.split('@')[0]
   end
