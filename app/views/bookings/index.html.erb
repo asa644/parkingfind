@@ -1,18 +1,54 @@
 <div class="container text-center mt6">
-<h1>Your bookings</h1>
-<% @user.bookings.each do |booking| %>
-  <hr>
-  <button type="button" class="btn btn-primary"><%= link_to 'Show', parking_spot_booking_path(booking.parking_spot_id, booking.id)  %></button>
-  <p><strong>Address: </strong><%= booking.parking_spot.street_address %></p>
-  <p><strong>Starts on the: </strong><%=booking.start_at %></p>
-  <p> <strong>Ends on the:</strong> <%=booking.end_at%></p>
-  <p> <strong>Your booking total price is: </strong><%=booking.total_price%></p>
-  <div class="text-dange"'>
 
-   <button type="button" class="btn btn-primary"><%= link_to "Chat", booking_chat_rooms_path(booking)%></button>
-  <button type="button" class="btn btn-primary"><%= link_to 'Leave a review', new_booking_review_path(booking)%></button>
+<h1> User Dashboard. Check your Bookings ! </h1>
+<br>
+  <div class="row">
+        <div class="col-xs-12 col-lg-4">
+          Cash Spent: <%= current_user.bookings.sum(:total_price) %>
+        </div>
+        <div class="col-xs-12 col-lg-4">
+          Number of transaction: <%= current_user.bookings.count %>
+        </div>
+        <div class="col-xs-12 col-lg-4">
+         Number of transaction: <%= current_user.bookings.count %>
+        </div>
+
+        <div class="col-xs-12, col-lg-6">
+          <h2>Your current bookings</h2>
+          <% @user.bookings.each do |booking| %>
+          <% if booking.start_at <= Date.today || booking.start_at > Date.today  && booking.end_at > Date.today%>
+            <hr>
+              <p><strong>Address: </strong><%= booking.parking_spot.street_address %></p>
+              <p><strong>Starts on the: </strong><%=booking.start_at %></p>
+              <p> <strong>Ends on the:</strong> <%=booking.end_at%></p>
+              <p> <strong>Your booking total price is: </strong><%=booking.total_price%></p>
+
+            <div class="text-danger"'>
+              <%= link_to "Chat", booking_chat_rooms_path(booking), class: "btn btn-primary" %>
+              <%= link_to "Show",parking_spot_booking_path(booking.parking_spot_id, booking.id),  class: "btn btn-primary" %>
+            </div>
+            <% end %>
+          <% end %>
+          <hr>
+        </div>
+
+        <div class="col-xs-12, col-lg-6">
+        <h2> Your previous booking </h2>
+        <hr>
+          <% current_user.bookings.each do |booking| %>
+          <% if booking.start_at < Date.today && booking.end_at < Date.today%>
+            <p>  <%= booking.user.first_name %> </p>
+            <p>  <%= booking.parking_spot.street_address %> </p>
+            <p>  <%= booking.start_at %> </p>
+            <p>  <%= booking.end_at %> </p>
+           <%= link_to "Leave a review", new_booking_review_path(booking), class: "btn btn-primary" %>
+            <hr>
+          <% end %>
+         <% end %>
+        </div>
+
+
+    </div>
   </div>
-  <% end %>
-  <hr>
 </div>
 
