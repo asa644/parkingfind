@@ -14,7 +14,6 @@ class User < ApplicationRecord
   has_many :parking_spots
   has_many :reviews
 
-  has_many :chat_rooms, dependent: :destroy
   has_many :messages, dependent: :destroy
 
   has_many :notifications
