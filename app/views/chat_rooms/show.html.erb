@@ -1,3 +1,25 @@
+
+<% content_for(:after_js) do %>
+  <%= javascript_tag do %>
+
+var $s = $('.pane-chat-body');
+var optionTop = $s.find(".msg:last-child").offset().top;
+var selectTop = $s.offset().top;
+$s.scrollTop($s.scrollTop() + (optionTop - selectTop));
+
+$('[type="submit"]').click(function(){
+var $a = $('.pane-chat-body');
+  $a.animate({scrollTop: $a.prop("scrollHeight")}, 500);
+});
+
+
+  <% end %>
+<% end %>
+
+
+
+
+
 <style type="text/css">
 
 
@@ -423,16 +445,5 @@ html, body, #app {
 
 
 
-<% content_for(:after_js) do %>
-  <%= javascript_tag do %>
 
-    var $s = $('.input-container');
-
-    var optionTop = $s.find('#scrollll').offset().top;
-    var selectTop = $s.offset().top;
-
-    $s.scrollTop($s.scrollTop() + (optionTop - selectTop));
-
-  <% end %>
-<% end %>
 

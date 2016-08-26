@@ -23,7 +23,9 @@ jQuery(document).on 'turbolinks:load', ->
         @perform 'send_message', message: message, chat_room_id: chat_room_id
 
 
+
     $('#new_message').submit (e) ->
+
       $this = $(this)
       textarea = $this.find('#message_body')
       if $.trim(textarea.val()).length > 1
@@ -31,3 +33,4 @@ jQuery(document).on 'turbolinks:load', ->
         textarea.val('')
       e.preventDefault()
       return false
+
