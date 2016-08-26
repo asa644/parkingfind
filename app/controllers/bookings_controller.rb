@@ -5,6 +5,7 @@ class BookingsController < ApplicationController
 
   def index
     @user = current_user
+    @bookings = Booking.paginate(:page => params[:page], :per_page => 8)
   end
 
   def new
