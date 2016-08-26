@@ -258,6 +258,7 @@ GEM
     websocket-extensions (0.1.2)
     whenever (0.9.7)
       chronic (>= 0.6.3)
+    will_paginate (3.1.0)
 
 PLATFORMS
   ruby
@@ -296,6 +297,7 @@ DEPENDENCIES
   turbolinks (>= 5.0.0.beta2)
   uglifier
   whenever
+  will_paginate (~> 3.1.0)
 
 RUBY VERSION
    ruby 2.3.1p112
