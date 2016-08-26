@@ -22,6 +22,7 @@
             $(document).ready(function(){
               $('.datepicker').datepicker({
               todayHighlight: true,
+              <!-- Disable the date if already booked !-->
               datesDisabled: <%= raw @parking_spot.unavailable_dates %>,
               startDate: 'today',
               format: "dd/mm/yyyy"
