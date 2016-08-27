@@ -1,23 +1,30 @@
-<div class="msg">
-  <span></span>
-  <div class="message message-chat message-out tail message-chat">
-    <span class="tail-container"></span>
-    <span class="tail-container highlight"></span>
-    <div class="bubble bubble-text">
-      <div class="message-text">
-        <span class="message-pre-text">
-        </span>
-        <span class="emojitext selectable-text">
-          <%= message.body %>
-        </span>
-      </div>
-      <div class="message-meta text-clickable">
-        <span class="hidden-token">
-          <span class="message-datetime">heure</span>
-        </span>
-        <span class="icon icon-msg-dblcheck-ack"></span>
-      </div>
-    </div>
+
+  <div class="msg ithernet" id="h-<%= message.user_id == message.chat_room.booking.parking_spot.user_id ? "hh" : "mm" %>">
     <span></span>
+    <div class="<%= message.user_id == message.chat_room.booking.parking_spot.user_id ? "message message-chat message-out tail message-chat" : "message message-chat message-in message-chat" %>">
+      <span class="tail-container"></span>
+      <span class="tail-container highlight"></span>
+      <div class="bubble bubble-text">
+        <div class="message-text">
+          <span class="message-pre-text">
+          </span>
+            <span class="emojitext selectable-text">
+
+              <%= message.body %>
+
+            </span>
+        </div>
+        <div class="message-meta text-clickable">
+          <span class="hidden-token">
+            <span class="message-datetime">
+               <%= message.created_at.strftime("%H:%M") %>
+            </span>
+          </span>
+          <span class="icon icon-msg-dblcheck-ack"></span>
+        </div>
+      </div>
+      <span></span>
+    </div>
   </div>
-</div>
+
+
