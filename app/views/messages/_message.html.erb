@@ -17,7 +17,7 @@
         <div class="message-meta text-clickable">
           <span class="hidden-token">
             <span class="message-datetime">
-               <%= message.created_at.strftime("%H:%M") %>
+               <%= (message.created_at + 3.hours).strftime("%H:%M") %>
             </span>
           </span>
           <span class="icon icon-msg-dblcheck-ack"></span>
