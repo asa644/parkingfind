@@ -18,6 +18,7 @@ Rails.application.routes.draw do
       resources :reviews, only: [:new, :create]
   end
 
+  get '/management' => 'users#management'
   get '/profile' => 'users#show', as: :profile
   get '/search' => 'parking_spots#search'
   mount ActionCable.server => '/cable'

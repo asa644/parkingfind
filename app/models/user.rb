@@ -45,7 +45,10 @@ class User < ApplicationRecord
 
   private
 
+#sending welcome mail
   def send_welcome_email
     UserMailer.welcome(self).deliver_now
   end
+
+
 end

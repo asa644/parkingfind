@@ -1,0 +1,16 @@
+<br>
+<br>
+<br>
+<br>
+<br>
+
+<div class="container">
+  <% @parking_spots.each do |parking_spot| %>
+  <p> <%= parking_spot.street_address %> </p>
+  <p> <%= parking_spot.price %> </p>
+  <p> <%= parking_spot.bookings.count %> </p>
+  <p> <%= parking_spot.bookings.sum(:total_price) %> </p>
+  <p> <%= parking_spot.number_of_days_of_rent %> </p>
+
+  <% end %>
+</div>
