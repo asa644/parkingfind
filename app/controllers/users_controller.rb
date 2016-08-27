@@ -9,7 +9,6 @@ class UsersController < ApplicationController
     @user = current_user
     @parking_spots = @user.parking_spots
     @segment = ParkingSpot.paginate(:page => params[:page], :per_page => 4)
-
   end
 
 

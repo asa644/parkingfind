@@ -2,11 +2,18 @@
   <div class="row text-center">
     <div class="col-xs-4">
     <h2> Total of bookings days </h2>
-      <%= @user.bookings.sum(:number_of_days) %>
+      <% array_of_days = @user.parking_spots.map do |p| %>
+      <% p.bookings.sum(:number_of_days) %>
+      <% end %>
+      <%= array_of_days.inject(:+) %>
     </div>
     <div class="col-xs-4">
       <h2> Cash earned </h2>
-      <%= @user.bookings.sum(:total_price) %>
+      <% array_of_price = @user.parking_spots.map do |p| %>
+        <% p.bookings.sum(:total_price) %>
+      <% end %>
+      <p> <%= array_of_price.inject(:+) %> </p>
+
     </div>
     <div class="col-xs-4">
       <h2> Number of parking spots </h2>
@@ -14,7 +21,11 @@
     </div>
       <div class="col-xs-4">
         <h2> Number of transactions </h2>
-        <%= @user.bookings.count %>
+        <% array_of_transaction = @user.parking_spots.map do |p| %>
+         <% p.bookings.count %>
+        <% end %>
+        <p> <%= array_of_transaction.inject(:+) %> </p>
+
     </div>
   </div>
 
