@@ -24,7 +24,7 @@
               <p> <strong>Your booking total price is: </strong><%=booking.total_price%></p>
 
             <div class="text-danger"'>
-              <%= link_to "Chat", booking_chat_rooms_path(booking), class: "btn btn-primary" %>
+              <%= link_to "Chat", booking_chat_rooms_path(booking), class: "btn btn-primary", target: '_blank' %>
               <%= link_to "Show",parking_spot_booking_path(booking.parking_spot_id, booking.id),  class: "btn btn-primary" %>
             </div>
             <% end %>
