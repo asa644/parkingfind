@@ -19,6 +19,7 @@ class BookingsController < ApplicationController
     @booking = current_user.bookings.build(booking_params)
     @booking.parking_spot_id = params[:parking_spot_id]
     @booking.total_price = total_price
+    @booking.number_of_days = number_of_days
 
     if @booking.save
       owner = @booking.parking_spot.user
@@ -37,8 +38,12 @@ class BookingsController < ApplicationController
     end
   end
 
+  def number_of_days
+    @total_days = (@booking.end_at - @booking.start_at)
+  end
+
   def total_price
-    t_price = (@booking.end_at - @booking.start_at) * find_parking_spot.price
+    t_price = number_of_days * find_parking_spot.price
   end
 
   def rejected

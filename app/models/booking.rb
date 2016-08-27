@@ -17,6 +17,7 @@ class Booking < ApplicationRecord
 
 enum status: [:pending, :rejected, :accepted]
 
+
   private
 
 # Creates chatroom for each booking
