@@ -1,16 +1,37 @@
-<br>
-<br>
-<br>
-<br>
-<br>
+<div class="container owner_dashboard">
+  <div class="row text-center">
+    <div class="col-xs-4">
+    <h2> Total of bookings days </h2>
+      <%= @user.bookings.sum(:number_of_days) %>
+    </div>
+    <div class="col-xs-4">
+      <h2> Cash earned </h2>
+      <%= @user.bookings.sum(:total_price) %>
+    </div>
+    <div class="col-xs-4">
+      <h2> Number of parking spots </h2>
+      <%= @user.parking_spots.count %>
+    </div>
+      <div class="col-xs-4">
+        <h2> Number of transactions </h2>
+        <%= @user.bookings.count %>
+    </div>
+  </div>
 
-<div class="container">
-  <% @parking_spots.each do |parking_spot| %>
-  <p> <%= parking_spot.street_address %> </p>
-  <p> <%= parking_spot.price %> </p>
-  <p> <%= parking_spot.bookings.count %> </p>
-  <p> <%= parking_spot.bookings.sum(:total_price) %> </p>
-  <p> <%= parking_spot.number_of_days_of_rent %> </p>
-
-  <% end %>
+  <div class="row">
+    <div class="col-xs-12">
+        <% @parking_spots.each do |parking_spot| %>
+        <hr>
+        <p> <strong> Adress: </strong> : <%= parking_spot.street_address %> </p>
+        <p> <strong> Price: </strong> <%= parking_spot.price %> </p>
+        <p> <strong> Total Number of booking: </strong><%= parking_spot.bookings.count %> </p>
+        <p> <strong> Total Cash earned </strong><%= parking_spot.bookings.sum(:total_price) %> </p>
+        <p> <strong> Total days booked </strong> <%= parking_spot.bookings.sum(:number_of_days) %> </p>
+        <p> <strong> ID: </strong> <%= parking_spot.id %> </p>
+      <% end %>
+    </div>
+  </div>
+    <div class="digg_pagination">
+      <%= will_paginate @segment %>
+    </div>
 </div>
