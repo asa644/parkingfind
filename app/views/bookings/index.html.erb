@@ -2,22 +2,12 @@
 
   <h1> User Dashboard. Check your Bookings ! </h1>
   <br>
-    <div class="row">
-      <div class="col-xs-12 col-lg-4">
-        Cash Spent: <%= current_user.bookings.sum(:total_price) %>
-      </div>
-      <div class="col-xs-12 col-lg-4">
-        Number of transaction: <%= current_user.bookings.count %>
-      </div>
-      <div class="col-xs-12 col-lg-4">
-        Number of transaction: <%= current_user.bookings.count %>
-      </div>
-    </div>
+     <%= render 'cashspent' %>
     <div class="row">
       <div class="col-xs-12, col-md-6, col-lg-6">
         <h2>Your current bookings</h2>
           <% @user.bookings.each do |booking| %>
-            <% if booking.start_at <= Date.today || booking.start_at > Date.today  && booking.end_at > Date.today%>
+            <% if booking.start_at <= Date.today || booking.start_at > Date.today  && booking.end_at > Date.today %>
               <hr>
               <p><strong>Address: </strong><%= booking.parking_spot.street_address %></p>
               <p><strong>Starts on the: </strong><%=booking.start_at %></p>
@@ -30,7 +20,7 @@
           <% end %>
         <hr>
       </div>
-      <div class="col-xs-12, col-md-6, col-lg-6">
+      <div class="col-xs-12 col-md-6 col-lg-6">
         <h2> Your previous booking </h2>
         <hr>
         <% current_user.bookings.each do |booking| %>
