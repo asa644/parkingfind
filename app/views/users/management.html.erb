@@ -27,11 +27,30 @@
 
     </div>
   </div>
-
   <div class="row">
-    <div class="col-xs-12 management-spot">
+    <div class="col-xs-12, col-lg-6 management-spot">
+      <h2> Parking spaces currently rented </h2>
+        <% current_user.parking_spots.each do |p| %>
+          <% p.bookings.each do |b| %>
+            <% if b.start_at >= Date.today || b.start_at < Date.today && b.end_at < Date.today %>
+            <hr>
+             <p> <%= b.parking_spot.street_address %> </p>
+             <p> <%= b.total_price %> </p>
+             <p> <%= b.start_at %> </p>
+             <p> <%= b.end_at %> </p>
+
+            <% end %>
+          <% end %>
+        <% end %>
+
+
+
+
+    </div>
+    <div class="col-xs-12, col-lg-6 management-spot">
+      <h2> Statistics on your parkings </h2>
       <% if @parking_spots.empty? %>
-        <h2> You don't have any parkaing spots yet ! </h2>
+        <h2> You don't have any parking spots yet ! </h2>
       <% else %>
         <% @parking_spots.each do |parking_spot| %>
           <hr>
