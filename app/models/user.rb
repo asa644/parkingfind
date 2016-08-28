@@ -10,13 +10,13 @@ class User < ApplicationRecord
          :omniauthable, omniauth_providers: [:facebook]
 
 
-  has_many :bookings
-  has_many :parking_spots
-  has_many :reviews
+  has_many :bookings, dependent: :destroy
+  has_many :parking_spots, dependent: :destroy
+  has_many :reviews, dependent: :destroy
 
   has_many :messages, dependent: :destroy
 
-  has_many :notifications
+  has_many :notifications, dependent: :destroy
 
   def name
     email.split('@')[0]

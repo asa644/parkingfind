@@ -493,7 +493,7 @@ html, body, #app {
             <div class="input-container">
               <%= form_for @message, url: '#' do |f| %>
                 <%= hidden_field_tag 'chat_room_id', @chat_room.id %>
-                <%= f.text_area :body, dir: "auto", spellcheck: "true", contenteditable:"true", class: "input" %>
+                <%= f.text_field :body, dir: "auto", spellcheck: "true", contenteditable:"true", class: "input" %>
             </div>
             <div>
                 <%= f.submit "Post", style: "position: relative;left: 21px;bottom: 10px;background: white !important;padding: 10px;border: none;" %>
