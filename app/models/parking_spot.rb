@@ -18,8 +18,6 @@ class ParkingSpot < ApplicationRecord
     impossible_dates
   end
 
-  def number_of_days_of_rent
-    nbr = self.bookings.map {|booking| booking.end_at - booking.start_at}
-  end
+
 
 end
