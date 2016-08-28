@@ -1,25 +1,25 @@
 <div class="container owner_dashboard">
   <div class="row text-center">
-    <div class="col-xs-6">
-      <h3> Total of bookings days </h3>
+    <div class="col-xs-12 col-md-6 col-lg-3">
+      <h4> Total of bookings days </h4>
         <% array_of_days = @user.parking_spots.map do |p| %>
         <% p.bookings.sum(:number_of_days) %>
         <% end %>
       <p> <%= array_of_days.inject(:+) %> </p>
     </div>
-    <div class="col-xs-6">
-      <h3> Cash earned </h3>
+    <div class="col-xs-12 col-md-6 col-lg-3">
+      <h4> Cash earned </h4>
       <% array_of_price = @user.parking_spots.map do |p| %>
         <% p.bookings.sum(:total_price) %>
       <% end %>
       <p> <%= array_of_price.inject(:+) %> </p>
     </div>
-    <div class="col-xs-6">
-      <h3> Number of parking spots </h3>
+    <div class="col-xs-12 col-md-6 col-lg-3">
+      <h4> Number of parking spots </h4>
       <p> <%= @user.parking_spots.count %> </p>
     </div>
-      <div class="col-xs-6">
-        <h3> Number of transactions </h3>
+      <div class="col-xs-12 col-md-6 col-lg-3">
+        <h4> Number of transactions </h4>
         <% array_of_transaction = @user.parking_spots.map do |p| %>
          <% p.bookings.count %>
         <% end %>
@@ -27,44 +27,56 @@
 
     </div>
   </div>
-  <div class="row">
+  <div class="row text-center">
     <div class="col-xs-12, col-lg-6 management-spot">
       <h2> Parking spaces currently rented </h2>
         <% current_user.parking_spots.each do |p| %>
           <% p.bookings.each do |b| %>
             <% if b.start_at >= Date.today || b.start_at < Date.today && b.end_at < Date.today %>
             <hr>
-             <p> <%= b.parking_spot.street_address %> </p>
-             <p> <%= b.total_price %> </p>
-             <p> <%= b.start_at %> </p>
-             <p> <%= b.end_at %> </p>
-
+          <div class="management-info-button">
+            <div class="management-info">
+              <p> <%= b.status %> </p>
+              <p> <%= b.parking_spot.street_address %> </p>
+              <p> <%= b.total_price %> </p>
+              <p> <%= b.start_at %> </p>
+              <p> <%= b.end_at %> </p>
+            </div>
+            <div class="management-button">
+              <p> <%= link_to "Chat", booking_chat_rooms_path(b), class: "btn btn-danger" %></p>
+            </div>
+          </div>
             <% end %>
           <% end %>
         <% end %>
-
-
-
-
     </div>
     <div class="col-xs-12, col-lg-6 management-spot">
       <h2> Statistics on your parkings </h2>
-      <% if @parking_spots.empty? %>
-        <h2> You don't have any parking spots yet ! </h2>
-      <% else %>
-        <% @parking_spots.each do |parking_spot| %>
-          <hr>
-          <p> <strong> Adress: </strong> : <%= parking_spot.street_address %> </p>
-          <p> <strong> Price: </strong> <%= parking_spot.price %> </p>
-          <p> <strong> Total Number of booking: </strong><%= parking_spot.bookings.count %> </p>
-          <p> <strong> Total Cash earned </strong><%= parking_spot.bookings.sum(:total_price) %> </p>
-          <p> <strong> Total days booked </strong> <%= parking_spot.bookings.sum(:number_of_days) %> </p>
-          <p> <strong> ID: </strong> <%= parking_spot.id %> </p>
-          <p> <%= link_to "Edit", edit_parking_spot_path(parking_spot), class: "btn btn-danger" %></p>
-          <p> <%= link_to 'Details', parking_spot_path(parking_spot), class:"btn btn-success" %> </p>
-          <p> <%= link_to "Delete Parking", parking_spot_path(parking_spot), { class: "btn btn-danger", method: :delete }  %></p>
-        <% end %>
-      <% end %>
+        <% if @parking_spots.empty? %>
+          <h2> You don't have any parking spots yet ! </h2>
+        <% else %>
+                  <% @parking_spots.each do |parking_spot| %>
+                    <hr>
+                    <div class="management-info-button">
+                    <div class="management-info">
+                      <p> <strong> Adress: </strong> : <%= parking_spot.street_address %> </p>
+                      <p> <strong> Price: </strong> <%= parking_spot.price %> </p>
+                      <p> <strong> Total Number of booking: </strong><%= parking_spot.bookings.count %> </p>
+                      <p> <strong> Total Cash earned </strong><%= parking_spot.bookings.sum(:total_price) %> </p>
+                      <p> <strong> Total days booked </strong> <%= parking_spot.bookings.sum(:number_of_days) %> </p>
+                      <p> <strong> ID: </strong> <%= parking_spot.id %> </p>
+                    </div>
+                    <div class="management-button">
+                      <p> <%= link_to "Edit", edit_parking_spot_path(parking_spot), class: "btn btn-danger" %></p>
+                      <p> <%= link_to 'Details', parking_spot_path(parking_spot), class:"btn btn-success" %> </p>
+                      <p> <%= link_to "Delete Parking", parking_spot_path(parking_spot), { class: "btn btn-danger", method: :delete }  %></p>
+                    </div>
+                    </div>
+                <% end %>
+              </div>
+            </div>
+          </div>
+          <% end %>
     </div>
   </div>
     <div class="digg_pagination">
