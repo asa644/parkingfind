@@ -1,32 +1,5 @@
 <div class="container owner_dashboard">
-  <div class="row text-center">
-    <div class="col-xs-12 col-md-6 col-lg-3">
-      <h4> Total of bookings days </h4>
-        <% array_of_days = @user.parking_spots.map do |p| %>
-        <% p.bookings.sum(:number_of_days) %>
-        <% end %>
-      <p> <%= array_of_days.inject(:+) %> </p>
-    </div>
-    <div class="col-xs-12 col-md-6 col-lg-3">
-      <h4> Cash earned </h4>
-      <% array_of_price = @user.parking_spots.map do |p| %>
-        <% p.bookings.sum(:total_price) %>
-      <% end %>
-      <p> <%= array_of_price.inject(:+) %> </p>
-    </div>
-    <div class="col-xs-12 col-md-6 col-lg-3">
-      <h4> Number of parking spots </h4>
-      <p> <%= @user.parking_spots.count %> </p>
-    </div>
-      <div class="col-xs-12 col-md-6 col-lg-3">
-        <h4> Number of transactions </h4>
-        <% array_of_transaction = @user.parking_spots.map do |p| %>
-         <% p.bookings.count %>
-        <% end %>
-        <p> <%= array_of_transaction.inject(:+) %> </p>
-
-    </div>
-  </div>
+   <%= render 'cashdone' %>
   <div class="row text-center">
     <div class="col-xs-12, col-lg-6 management-spot">
       <h2> Parking spaces currently rented </h2>

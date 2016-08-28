@@ -1,0 +1,11 @@
+    <div class="row">
+      <div class="col-xs-12 col-md-6 col-lg-4">
+        Cash Spent: <%= current_user.bookings.sum(:total_price) %>
+      </div>
+      <div class="col-xs-12 col-md-6 col-lg-4">
+        Number of transaction: <%= current_user.bookings.count %>
+      </div>
+      <div class="col-xs-12 col-md-6 col-lg-4">
+        Number of transaction: <%= current_user.bookings.count %>
+      </div>
+    </div>

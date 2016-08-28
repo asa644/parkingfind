@@ -1,6 +1,21 @@
 
 <div class='text-center profile-background-color'>
-  <div class="dashboardw">
+  <div class="dashboard">
+    <div class="container">
+      <div class="row">
+        <div class="col-xs-12">
+          <div class="dashboard-buttons">
+            <%= link_to "Book a place!", parking_spots_path, :class => "btn btn-info"  %>
+            <%= link_to 'View my bookings', bookings_path, :class => "btn btn-info" %>
+            <%= link_to 'Manage my parkings', management_path, :class => "btn btn-info" %>
+            <%= link_to "Create a Parking spot", new_parking_spot_path, :class => "btn btn-info" %>
+          </div>
+        </div>
+      </div>
+      <%= render 'cashdone' %>
+      <%= render 'bookings/cashspent' %>
+    </div>
+  <br>
     <div class="row">
       <div class="col-xs-12 col-lg-12">
         <div class="dashboard-userpicture">
@@ -16,19 +31,5 @@
         </div>
       </div>
     </div>
-    <div class="row">
-      <div class="col-xs-12">
-        <div class="dashboard-buttons">
-          <%= link_to "Book a place!", parking_spots_path, :class => "btn btn-info"  %>
-          <%= link_to 'View my bookings', bookings_path, :class => "btn btn-info" %>
-          <%= link_to 'Manage my parkings', management_path, :class => "btn btn-info" %>
-          <%= link_to "Create a Parking spot", new_parking_spot_path, :class => "btn btn-info" %>
-        </div>
-      </div>
-    </div>
   </div>
 </div>
-
-
-<br>
-
