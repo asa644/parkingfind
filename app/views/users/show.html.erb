@@ -12,12 +12,10 @@
           </div>
         </div>
       </div>
-      <%= render 'cashdone' %>
-      <%= render 'bookings/cashspent' %>
     </div>
   <br>
-    <div class="row">
-      <div class="col-xs-12 col-lg-12">
+    <div class="row dashboard-content">
+      <div class="col-xs-12 col-lg-4">
         <div class="dashboard-userpicture">
           <% if current_user.avatar_url %>
             <%= cl_image_tag current_user.avatar, class: "avatar-verylarge" %>
@@ -30,6 +28,53 @@
           <h4>Welcome to your Dashboard</h4>
         </div>
       </div>
-    </div>
+      <div class="col-lg-8">
+        <div class="row">
+            <div class="col-xs-0 col-md-6 col-lg-2">
+              <h4> Total of bookings days </h4>
+                <% array_of_days = @user.parking_spots.map do |p| %>
+                <% p.bookings.sum(:number_of_days) %>
+                <% end %>
+              <p> <%= array_of_days.inject(:+) %> </p>
+            </div>
+            <div class="col-xs-0 col-md-6 col-lg-2">
+              <h4> Cash earned </h4>
+              <% array_of_price = @user.parking_spots.map do |p| %>
+                <% p.bookings.sum(:total_price) %>
+              <% end %>
+              <p> <%= array_of_price.inject(:+) %> </p>
+            </div>
+            <div class="col-xs-0 col-md-6 col-lg-2">
+              <h4> Number of parking spots </h4>
+              <p> <%= @user.parking_spots.count %> </p>
+            </div>
+            <div class="col-xs-0 col-md-6 col-lg-2">
+              <h4> Number of transactions </h4>
+              <% array_of_transaction = @user.parking_spots.map do |p| %>
+                <% p.bookings.count %>
+                <% end %>
+              <p> <%= array_of_transaction.inject(:+) %> </p>
+            </div>
+          </div>
+
+      <div class="col-lg-8">
+        <div class="row">
+          <div class="col-xs-12 col-md-6 col-lg-3">
+          <h4> Cash Spent </h4>
+             <p> <%= current_user.bookings.sum(:total_price) %> </p>
+          </div>
+          <div class="col-xs-12 col-md-6 col-lg-3">
+          <h4>  Number of transaction </h4>
+           <p>   <%= current_user.bookings.count %> </p>
+          </div>
+          <div class="col-xs-12 col-md-6 col-lg-3">
+          <h4>  Number of transaction </h4>
+          <p> <%= current_user.bookings.count %> </p>
+          </div>
+        </div>
+      </div>
+      <br>
   </div>
+</div>
+</div>
 </div>
