@@ -45,11 +45,22 @@
 
 /* Navbar standard link */
 .navbar-wagon-link {
-  color: #616668;
-  font-size: 14px;
+
+    background: 0;
+    box-shadow: none;
+    -webkit-transition: background-color .2s,color .2s;
+    transition: background-color .2s,color .2s;
+    padding: 8px;
+    border: 1px solid #808080;
+    color: grey;
 }
+
+
+
 .navbar-wagon-link:hover {
-  color: #da552f;
+  color: white;
+  background-color: grey;
+  border: 1px solid #808080;
   text-decoration: none;
 }
 
