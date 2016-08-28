@@ -362,7 +362,7 @@ h1, h2, h3, h4, h5, h6 {font-weight:normal;margin:0 0 15px;}
 //= depend_on_asset "logo.png"
 #slider{
 
-  background-image:url('<%= asset_path("home.jpg") %> ');
+  background-image: url(asset-path('home.jpg'));
    background-size: cover;
     background-position: center center;
     padding-bottom: 255px;
