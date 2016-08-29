@@ -5,10 +5,8 @@ class ParkingSpot < ApplicationRecord
   has_many :reviews, through: :bookings
 
 
-
-
-  geocoded_by :street_address
-  after_validation :geocode, if: :street_address_changed?
+  # geocoded_by :street_address
+  # after_validation :geocode, if: :street_address_changed?
 
   def unavailable_dates
     impossible_dates = []

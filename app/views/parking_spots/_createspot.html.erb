@@ -1,0 +1,153 @@
+
+<!-- Modal -->
+<div id="myModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Create a parking spot</h4>
+      </div>
+
+      <div class="modal-body">
+        <%= simple_form_for(@parking_spot) do |f| %>
+          <div class="create_primary">
+            <h4> WHERE IS YOUR PARKING SPACE? </h4>
+            <hr>
+
+            <div class="form-group">
+            <div>
+            <p id="latlong"> test </p>
+              <%= f.input :latitude, as: :hidden %>
+              <%= f.input :longitude, as: :hidden %>
+            </div>
+              <div> <%= f.label :street_address %> </div>
+              <div> <%= f.text_field :street_address, class: "form-control" %> </div>
+            </div>
+            <br>
+
+            <div class="row">
+              <div class="col-xs-12 col-sm-6">
+                <div class="form-group">
+                  <div><%= f.label :city %></div>
+                  <div><%= f.text_field :city, class: "form-control" %></div>
+                </div>
+              </div>
+
+              <div class="col-xs-12 col-sm-6">
+                <div class="form-group">
+                  <div><%= f.label :country %></div>
+                  <div>
+                    <%= f.text_field :country, class: "form-control" %>
+                  </div>
+                </div>
+              </div>
+            </div><!-- end row for city and country -->
+          </div>
+
+        <div class="create_important">
+          <h4> ABOUT YOUR SPACE </h4>
+          <hr>
+          <div class="row">
+            <div class="col-xs-12 col-sm-6">
+              <div class="form-group">
+                <div> <%= f.label :price %> </div>
+                <div> <%= f.text_field :price, class:"form-control" %> </div>
+              </div>
+            </div>
+            <div class="col-xs-12 col-sm-6">
+              <div class="form-group">
+                <div> <%= f.label :number_of_spots %> </div>
+                <div> <%= f.text_field :number_of_spots, class: "form-control"  %> </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+          <div class="create_description">
+            <h4> ADD A DESCRIPTION </h4>
+            <div>
+              <div id="map" class="map_structure" style="width: 100%;height: 230px;position: fixed !important;">
+              </div>
+            </div>
+            <hr>
+            <div> <%= f.label :description %> </div>
+            <div> <%= f.text_field :description, class:"form-control" %> </div>
+          </div>
+
+          <div class="create_photo">
+            <h4> ADD A PICTURE </h4>
+            <hr>
+            <div> <%= f.input :photo %> </div>
+            <div> <%= f.input :photo_cache, as: :hidden %> </div>
+          </div>
+
+          <div class="form-actions ">
+            <%= f.button :submit, "Create",:class => "btn-block btn-primary" %>
+          </div>
+          <% end %>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+<script>
+
+
+$(document).on('turbolinks:load', function(){
+  map;
+  markers = [];
+  initMap();
+
+  function placeMarkerAndPanTo(latLng, map) {
+    if(markers.length >= 1) {
+      markers[0].setMap(null);
+      markers = [];
+    }
+
+    var marker = new google.maps.Marker({
+      position: latLng,
+      map: map
+    });
+    markers.push(marker);
+
+    map.panTo(latLng);
+    //update values of hidden input fields
+
+    $("#parking_spot_latitude").val(latLng.lat());
+    $("#parking_spot_longitude").val(latLng.lng());
+  }
+
+
+  function initMap() {
+    var myLatlng = {lat: -25.363, lng: 131.044};
+
+
+    map = new google.maps.Map(document.getElementById('map'), {
+      zoom: 4,
+      center: myLatlng
+    });
+
+    var marker = new google.maps.Marker({
+      position: myLatlng,
+      map: map,
+      title: 'Click to zoom'
+    });
+
+    markers.push(marker);
+
+    map.addListener('click', function(e) {
+      placeMarkerAndPanTo(e.latLng, map);
+      console.log("lat: " + e.latLng.lat() + ", lng: " + e.latLng.lng());
+    });
+  }
+});
+</script>

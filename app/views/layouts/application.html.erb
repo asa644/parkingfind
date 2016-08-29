@@ -16,6 +16,9 @@
 
     <%= stylesheet_link_tag    'application', media: 'all' %>
     <%= javascript_include_tag 'application' %>
+    <%= javascript_include_tag "https://maps.google.com/maps/api/js?key=AIzaSyBAbVBfyj-wKN5_BQGC7LsP8hjV2GuH_WE" %>
+    <%= javascript_include_tag "https://cdn.rawgit.com/printercu/google-maps-utility-library-v3-read-only/master/markerclusterer/src/markerclusterer_compiled.js" %>
+    <%= javascript_include_tag "https://cdn.rawgit.com/printercu/google-maps-utility-library-v3-read-only/master/infobox/src/infobox_packed.js" %>
   </head>
 
   <body class='<%= controller_name %> <%= action_name %>'>
@@ -32,7 +35,10 @@
       <%= render 'layouts/login' %>
     <% end %>
 
+
+
     <%= yield(:after_js) %>
+
   </body>
 </html>
 
