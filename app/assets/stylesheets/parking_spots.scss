@@ -5,37 +5,52 @@
 
 // CSS for index of parking spots
 
-.structure {
+
+// TO BE REMOVED ?
+// .structure {
+//   display:flex;
+//   justify-content:center;
+
+//   .subcontent {
+//     padding: 20px 20px 20px 20px;
+//     background-color: white;
+//     width: 500px;
+//     height: 297px;
+//     display: flex;
+//     flex-direction: column;
+//     .important_info{
+
+//     }
+//   }
+// }
+
+// #width_of_chat{
+//   width:550px;
+// }
+
+// .index_parking_adress {
+//   font-size: 23px;
+//   width: 100%;
+//   font-weight: bold;
+//   color: green;
+// }
+
+// #parking-spot-listing {
+//   margin: 2rem;
+//   text-align: center;
+//   img {
+//     border-radius: 50%;
+//   }
+// }
+//
+
+.create_sub {
   display:flex;
-  justify-content:center;
-
-  .subcontent {
-    padding: 20px 20px 20px 20px;
-    background-color: white;
-    width: 500px;
-    height: 297px;
-    display: flex;
-    flex-direction: column;
-    .important_info{
-
-    }
-  }
 }
 
-#width_of_chat{
-  width:550px;
-}
-.index_parking_adress {
-  font-size: 23px;
-  width: 100%;
-  font-weight: bold;
-  color: green;
+.how-create {
+    height: 268px;
+    background-color: $white;
 }
 
-#parking-spot-listing {
-  margin: 2rem;
-  text-align: center;
-  img {
-    border-radius: 50%;
-  }
-}
+
