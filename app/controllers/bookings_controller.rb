@@ -39,11 +39,11 @@ class BookingsController < ApplicationController
   end
 
   def number_of_days
-    @total_days = (@booking.end_at - @booking.start_at)
+    @total_days = (@booking.end_at.to_date - @booking.start_at.to_date) + 1
   end
 
   def total_price
-    t_price = number_of_days * find_parking_spot.price
+    number_of_days * find_parking_spot.price
   end
 
   def rejected
