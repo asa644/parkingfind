@@ -4,6 +4,10 @@
  * Feel free to change them and create your own
  * ------------------------------------- */
 
+/* flex utilities */
+.flex { display: flex; }
+.items-vertical-center { align-items: center; }
+
 /* Margins */
 .mt1 { margin-top: 1rem; }
 .mt2 { margin-top: 2rem; }
