@@ -97,10 +97,12 @@
                                 <div class="footer">
                                     <hr>
                                     <div class="stats">
+                                      <% if current_user.parking_spots.last.created_at != nil  %>
                                         <% a  = DateTime.now %>
                                         <% b = current_user.parking_spots.last.created_at %>
                                         <% c = a.to_date - b.to_date %>
                                         <i class="fa fa-clock-o"></i><%= pluralize(c.to_i, 'day') %> ago
+                                      <% end %>
                                     </div>
                                 </div>
                             </div>
@@ -136,10 +138,12 @@
                                 <div class="footer">
                                     <hr>
                                     <div class="stats">
+                                      <% if current_user.parking_spots.last.created_at != nil  %>
                                         <% e  = DateTime.now %>
                                         <% f = current_user.bookings.last.created_at %>
                                         <% cg= e.to_date - f.to_date %>
                                         <i class="fa fa-history"></i> Updated <%= pluralize(cg.to_i, 'day') %> ago
+                                      <% end %>
                                     </div>
                                 </div>
                             </div>
