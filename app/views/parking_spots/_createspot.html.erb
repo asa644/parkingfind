@@ -113,7 +113,7 @@
     var marker;
 
 // geolocation with HTML5 through browser
-    if (navigator.geolocation) {
+    <!-- if (navigator.geolocation) {
 
         navigator.geolocation.getCurrentPosition(function(p){
         console.log(p.coords.longitude);
@@ -123,13 +123,13 @@
           }
           initMap(mapOptions);
           });
-    } else {
+    } else { -->
       var mapOptions = {
         center: new google.maps.LatLng(-25.363, 131.044),
         zoom: 14
         }
       initMap(mapOptions);
-      }
+      <!-- } -->
 
 
       function initMap(mapOptions) {
