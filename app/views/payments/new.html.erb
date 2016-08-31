@@ -1,0 +1,20 @@
+<!-- app/views/payments/new.html.erb -->
+<h1>Purchase of teddy <%= @booking.id %></h1>
+
+<%= form_tag parking_spot_booking_payments_path(@booking) do %>
+  <article>
+    <label class="amount">
+      <span>Amount: <%= humanized_money_with_symbol(@booking.total_price) %></span>
+    </label>
+  </article>
+
+  <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+    data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
+    data-name="My parking"
+    data-description="Teddy <%= @booking.id %>"
+    data-amount="<%= @booking.total_price_cents %>"
+    data-currency="EUR">
+
+    </script>
+<% end %>
+

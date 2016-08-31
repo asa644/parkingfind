@@ -9,7 +9,7 @@
     <div class="col-xs-12 col-md-6 col-lg-3">
       <h4> Cash earned </h4>
       <% array_of_price = @user.parking_spots.map do |p| %>
-        <% p.bookings.sum(:total_price) %>
+        <% p.bookings.sum_price %>
       <% end %>
       <p> <%= array_of_price.inject(:+) %> </p>
     </div>

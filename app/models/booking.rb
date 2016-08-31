@@ -7,6 +7,9 @@ class Booking < ApplicationRecord
   has_one :chat_room
   has_one :owner, through: :parking_spot, source: :user
 
+#allow stripe
+  monetize :total_price_cents
+
 #validations
   validates :start_at, presence: :true
   validates :end_at, presence: :true
@@ -16,6 +19,19 @@ class Booking < ApplicationRecord
   after_create :create_associated_chatroom
 
 enum status: [:pending, :rejected, :accepted]
+
+
+  def n_of_days
+    total_days = (self.end_at.to_date - self.start_at.to_date) + 1
+  end
+
+  def t_price
+    n_of_days * self.parking_spot.price_cents
+  end
+
+  def self.sum_price
+      sum(:total_price_cents)
+  end
 
 
   private

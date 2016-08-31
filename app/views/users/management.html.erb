@@ -16,45 +16,33 @@
                   <p> <%= b.end_at %> </p>
                 </div>
 
-
             <div class="management-button">
-
               <% if b.status == "pending" %>
                 <p>
                   <%= link_to "Chat", booking_chat_rooms_path(b), class: "btn btn-danger", target: "_blank" %>
                 </p>
-
                 <p>
                   <%= link_to accepted_booking_path(b), remote: true, class: "booking-confirm-#{b.id} btn btn-success" do %>
                     Confirmed
                   <% end %>
                 </p>
-
                 <p>
                   <%= link_to rejected_booking_path(b), remote: true, class: "booking-cancel-#{b.id} btn btn-danger" do %>
                     Cancelled
                   <% end %>
                 </p>
-
               <% end %>
-
-
 
               <% if b.status == "accepted" %>
                 <p>
                   <%= link_to "Chat", booking_chat_rooms_path(b), class: "btn btn-danger", target: "_blank" %>
                 </p>
-
-
                 <p>
                   <%= link_to rejected_booking_path(b), remote: true, class: "booking-cancel-#{b.id} btn btn-danger" do %>
                     Cancelled
                   <% end %>
                 </p>
-
               <% end %>
-
-
 
               <% if b.status == "rejected" %>
                 <p>
@@ -62,18 +50,9 @@
                 </p>
               <% end %>
 
-
-
-
-
-
-
-
-
             <% end %>
             </div>
           </div>
-
           <% end %>
         <% end %>
     </div>
@@ -89,7 +68,7 @@
                       <p> <strong> Adress: </strong> : <%= parking_spot.street_address %> </p>
                       <p> <strong> Price: </strong> <%= parking_spot.price %> </p>
                       <p> <strong> Total Number of booking: </strong><%= parking_spot.bookings.count %> </p>
-                      <p> <strong> Total Cash earned </strong><%= parking_spot.bookings.sum(:total_price) %> </p>
+                      <p> <strong> Total Cash earned </strong><%= parking_spot.bookings.sum_price %> </p>
                       <p> <strong> Total days booked </strong> <%= parking_spot.bookings.sum(:number_of_days) %> </p>
                       <p> <strong> ID: </strong> <%= parking_spot.id %> </p>
                     </div>
