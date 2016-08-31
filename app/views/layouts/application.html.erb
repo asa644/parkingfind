@@ -15,7 +15,7 @@
   </head>
 
   <body class='<%= controller_name %> <%= action_name %>'>
-    <% if controller_name =! chat_rooms %>
+    <% if controller_name != chat_rooms %>
       <%= render 'shared/flashes' %>
       <%= render 'shared/navbar' %>
     <% end %>
