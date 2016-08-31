@@ -3,7 +3,7 @@ class ParkingSpot < ApplicationRecord
   belongs_to :user
   has_many :bookings, dependent: :destroy
   has_many :reviews, through: :bookings
-
+  validates :latitude, :longitude, presence: true
 
   # geocoded_by :street_address
   # after_validation :geocode, if: :street_address_changed?
