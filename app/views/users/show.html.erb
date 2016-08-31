@@ -60,7 +60,7 @@
                                   <p class="text-center"><%= @user.parking_spots.count %></p>
                                 </div>
                               </div>
-
+                            <% if !@user.parking_spots.empty? %>
                               <div class="col-md-6" style="padding-bottom: 45px;">
                                 <div style="border:1px solid #f3e3e3;padding-left: 7px;padding-right: 7px;">
                                   <h4 class="title text-center" style="color: #5f5b63;font-family: lato;">Books Count</h4>
@@ -73,8 +73,7 @@
 
                                 </div>
                               </div>
-
-
+                            <% end %>
                                 <div class="col-md-6" style="padding-bottom: 45px;">
                                   <div style="border:1px solid #f3e3e3;padding-left: 7px;padding-right: 7px;">
                                     <h4 class="title text-center" style="color: #5f5b63;font-family: lato;">Cash Earned</h4>
@@ -84,7 +83,7 @@
                                     <p class="text-center">$<%= array_of_price.inject(:+).to_i %></p>
                                   </div>
                                 </div>
-
+                              <% if !@user.parking_spots.empty? %>
                                 <div class="col-md-6" style="padding-bottom: 45px;">
                                   <div style="border:1px solid #f3e3e3;padding-left: 7px;padding-right: 7px;">
                                     <h4 class="title text-center" style="color: #5f5b63;font-family: lato;">Transactions Count</h4>
@@ -94,6 +93,7 @@
                                     <p class="text-center"><%= array_of_transaction.inject(:+) %></p>
                                   </div>
                                 </div>
+                              <% end %>
                                 <div class="footer">
                                     <hr>
                                     <div class="stats">
