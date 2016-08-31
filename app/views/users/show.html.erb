@@ -5,7 +5,7 @@
       <div class="sidebar-wrapper">
             <div class="logo">
                 <a  class="simple-text">
-                    Dashboard
+                  Dashboard
                 </a>
             </div>
 
@@ -20,16 +20,22 @@
                         <p>Book A Place</p>
                     <% end %>
                 </li>
-                <li>
-                  <%= link_to bookings_path do %>
-                    <p>View My Bookings</p>
-                  <% end %>
-                </li>
-                <li>
-                  <%= link_to management_path do %>
-                    <p>Manage My Parkings</p>
-                  <% end %>
-                </li>
+
+                <% if !@user.bookings.empty? %>
+                  <li>
+                    <%= link_to bookings_path do %>
+                      <p>View My Bookings</p>
+                    <% end %>
+                  </li>
+                <% end %>
+
+                <% if !@user.parking_spots.empty? %>
+                  <li>
+                    <%= link_to management_path do %>
+                      <p>Manage My Parkings</p>
+                    <% end %>
+                  </li>
+                <% end %>
                 <li>
                   <%= link_to new_parking_spot_path do %>
                     <p>Create A Parking Spot</p>
