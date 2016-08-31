@@ -21,6 +21,19 @@
                         <div class="block-right">
                             <div class="contact-area">
                                 <ul>
+
+                                    <% if user_signed_in? %>
+                                      <li>
+                                        <%= link_to notifications_path do %>
+                                          <div class="badge-container">
+                                            <i class="fa fa-bell"></i>
+                                            <div class="badge badge-blue"><%= current_user.notifications.count %></div>
+                                          </div>
+                                        <% end %>
+                                      </li>
+                                      <% end %>
+
+
                                       <li>
                                        <% if user_signed_in? %>
                                           <div class="navbar-wagon-item">
@@ -30,7 +43,7 @@
                                               <% elsif current_user.facebook_picture_url %>
                                                 <%= image_tag current_user.facebook_picture_url, class: "avatar dropdown-toggle", id: "navbar-wagon-menu", "data-toggle" => "dropdown"%>
                                               <% else %>
-                                                <%= image_tag "http://placehold.it/30x30", class: "avatar dropdown-toggle", id: "navbar-wagon-menu", "data-toggle" => "dropdown" %>
+                                                <%= image_tag "https://x.myspacecdn.com/new/common/images/user.png", class: "avatar dropdown-toggle", id: "navbar-wagon-menu", "data-toggle" => "dropdown" %>
                                               <% end %>
 
                                               <ul class="dropdown-menu dropdown-menu-right navbar-wagon-dropdown-menu">
@@ -58,17 +71,6 @@
                                             <%= button_tag t(".sign_in", default: "Login") , class: "navbar-wagon-item navbar-wagon-link", data: { toggle: 'modal',  target: '#modal-login' } %>
                                           <% end %>
                                         </li>
-
-                                      <% if user_signed_in? %>
-                                      <li>
-                                        <%= link_to notifications_path do %>
-                                          <div class="badge-container">
-                                            <i class="fa fa-bell"></i>
-                                            <div class="badge badge-blue"><%= current_user.notifications.count %></div>
-                                          </div>
-                                        <% end %>
-                                      </li>
-                                      <% end %>
                                 </ul>
                             </div>
                         </div>
