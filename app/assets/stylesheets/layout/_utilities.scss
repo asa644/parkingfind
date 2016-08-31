@@ -2265,14 +2265,14 @@ body > .navbar-collapse[data-color="purple"]:after {
 }
 
 .dropdown-menu {
-  visibility: hidden;
+  //visibility: hidden;
   margin: 0;
   padding: 0;
   border-radius: 10px;
   display: block;
-  z-index: 9000;
+  //z-index: 9000;
   position: absolute;
-  opacity: 0;
+  //opacity: 0;
   filter: alpha(opacity=0);
   -webkit-box-shadow: 1px 2px 3px rgba(0, 0, 0, 0.125);
   box-shadow: 1px 2px 3px rgba(0, 0, 0, 0.125);
