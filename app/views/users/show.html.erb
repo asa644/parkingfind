@@ -61,14 +61,14 @@
                             <div class="content">
 
                               <div class="col-md-6" style="padding-bottom: 45px;">
-                                <div style="border:1px solid #f3e3e3;padding-left: 7px;padding-right: 7px;">
+                                <div class='dashboard-element'>
                                   <h4 class="title text-center" style="color: #5f5b63;font-family: lato;">Count</h4>
                                   <p class="text-center"><%= @user.parking_spots.count %></p>
                                 </div>
                               </div>
                             <% if !@user.parking_spots.empty? %>
                               <div class="col-md-6" style="padding-bottom: 45px;">
-                                <div style="border:1px solid #f3e3e3;padding-left: 7px;padding-right: 7px;">
+                                <div class='dashboard-element'>
                                   <h4 class="title text-center" style="color: #5f5b63;font-family: lato;">Books Count</h4>
                                   <% array_of_days = @user.parking_spots.map do |p| %>
                                     <% p.bookings.sum(:number_of_days) %>
@@ -81,7 +81,7 @@
                               </div>
                             <% end %>
                                 <div class="col-md-6" style="padding-bottom: 45px;">
-                                  <div style="border:1px solid #f3e3e3;padding-left: 7px;padding-right: 7px;">
+                                  <div class='dashboard-element'>
                                     <h4 class="title text-center" style="color: #5f5b63;font-family: lato;">Cash Earned</h4>
                                     <% array_of_price = @user.parking_spots.map do |p| %>
                                       <% p.bookings.sum(:total_price) %>
@@ -91,7 +91,7 @@
                                 </div>
                               <% if !@user.parking_spots.empty? %>
                                 <div class="col-md-6" style="padding-bottom: 45px;">
-                                  <div style="border:1px solid #f3e3e3;padding-left: 7px;padding-right: 7px;">
+                                  <div class='dashboard-element'>
                                     <h4 class="title text-center" style="color: #5f5b63;font-family: lato;">Transactions Count</h4>
                                     <% array_of_transaction = @user.parking_spots.map do |p| %>
                                       <% p.bookings.count %>
@@ -127,14 +127,14 @@
                             <h2 style="text-align:center;font-weight: 500;font-family: Lato;padding-bottom: 13px;">Booking</h2>
                             <div class="content">
                                 <div class="col-md-6" style="padding-bottom: 45px;">
-                                  <div style="border:1px solid #f3e3e3;padding-left: 7px;padding-right: 7px;">
+                                  <div class='dashboard-element'>
                                     <h4 class="title text-center" style="color: #5f5b63;font-family: lato;">Cash Earned</h4>
                                     <p class="text-center">$<%= current_user.bookings.sum(:total_price).to_i %></p>
                                   </div>
                                 </div>
 
                                 <div class="col-md-6" style="padding-bottom: 45px;">
-                                  <div style="border:1px solid #f3e3e3;padding-left: 7px;padding-right: 7px;">
+                                  <div class='dashboard-element'>
                                     <h4 class="title text-center" style="color: #5f5b63;font-family: lato;">Transactions Count</h4>
                                     <p class="text-center"><%= current_user.bookings.count %></p>
                                   </div>
