@@ -23,15 +23,17 @@
                                 <ul>
 
                                     <% if user_signed_in? %>
-                                      <li>
-                                        <%= link_to notifications_path do %>
-                                          <div class="badge-container">
-                                            <i class="fa fa-bell"></i>
-                                            <div class="badge badge-blue"><%= current_user.notifications.count %></div>
-                                          </div>
-                                        <% end %>
-                                      </li>
+                                      <% if current_user.notifications.count != 0 %>
+                                        <li>
+                                          <%= link_to notifications_path do %>
+                                            <div class="badge-container">
+                                              <i class="fa fa-bell"></i>
+                                              <div class="badge badge-blue"><%= current_user.notifications.count %></div>
+                                            </div>
+                                          <% end %>
+                                        </li>
                                       <% end %>
+                                    <% end %>
 
 
                                       <li>
