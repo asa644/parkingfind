@@ -16,8 +16,10 @@
   </head>
 
   <body class='<%= controller_name %> <%= action_name %>'>
-    <%= render 'shared/flashes' %>
-    <%= render 'shared/navbar' %>
+    <% if controller_name != "chat_rooms" %>
+      <%= render 'shared/flashes' %>
+      <%= render 'shared/navbar' %>
+    <% end %>
 
 
     <%= yield %>
