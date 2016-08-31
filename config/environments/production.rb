@@ -73,10 +73,6 @@ Rails.application.configure do
   config.log_formatter = ::Logger::Formatter.new
 
 
-  # Make the chat work on Heroku
-  config.action_cable.allowed_request_origins = ['https://parkingfind.herokuapp.com/',
-                                           'https://parkingfind.herokuapp.com/']
-  config.action_cable.url = "https://parkingfind.herokuapp.com/"
   # Use a different logger for distributed setups.
   # require 'syslog/logger'
   # config.logger = ActiveSupport::TaggedLogging.new(Syslog::Logger.new 'app-name')
