@@ -4,9 +4,30 @@
  * Feel free to change them and create your own
  * ------------------------------------- */
 
+.center { text-align: center; }
 /* flex utilities */
 .flex { display: flex; }
 .items-vertical-center { align-items: center; }
+
+/* Paddings */
+
+.pt2 { padding-top: 2rem; }
+.pb2 { padding-bottom: 2rem; }
+
+.py2{
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+}
+
+.py4{
+  padding-top: 4rem;
+  padding-bottom: 4rem;
+}
+.px2{
+  padding-left: 2rem;
+  padding-right: 2rem;
+}
+
 
 /* Margins */
 .mt0 { margin-top: 0; }
