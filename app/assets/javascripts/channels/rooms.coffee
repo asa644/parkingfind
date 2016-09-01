@@ -1,4 +1,5 @@
-jQuery(document).on 'ready', ->
+$ ->
+  console.log('load');
   messages = $('#messages')
   if $('#messages').length > 0
     messages_to_bottom = -> messages.scrollTop(messages.prop("scrollHeight"))
