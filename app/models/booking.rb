@@ -18,21 +18,26 @@ class Booking < ApplicationRecord
 #chat room creation
   after_create :create_associated_chatroom
 
-enum status: [:pending, :rejected, :accepted]
+enum status: [:pending, :rejected, :accepted, :paid]
 
 
   def n_of_days
-    total_days = (self.end_at.to_date - self.start_at.to_date) + 1
+    if (self.end_at || self.start_at) == nil
+    else
+      total_days = (self.end_at.to_date - self.start_at.to_date) + 1
+    end
   end
 
   def t_price
-    n_of_days * self.parking_spot.price_cents
+    if (self.end_at || self.start_at) == nil
+    else
+      n_of_days * self.parking_spot.price_cents
+    end
   end
 
   def self.sum_price
       sum(:total_price_cents)
   end
-
 
   private
 
@@ -40,7 +45,6 @@ enum status: [:pending, :rejected, :accepted]
   def create_associated_chatroom
     ChatRoom.create(booking_id: self.id)
   end
-
 
 # check that it's not overlapping with another booking.
   def booking_period_not_overlapped

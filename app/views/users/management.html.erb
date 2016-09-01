@@ -5,7 +5,7 @@
       <h2> Parking spaces currently rented </h2>
         <% current_user.parking_spots.each do |p| %>
           <% p.bookings.each do |b| %>
-            <% if b.start_at >= Date.today || b.start_at < Date.today && b.end_at < Date.today %>
+            <% if b.start_at >= Date.today || b.start_at < Date.today && b.end_at < Date.today && status == 'paid' %>
               <hr>
               <div class="management-info-button">
                 <div class="management-info">
