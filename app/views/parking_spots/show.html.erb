@@ -1,121 +1,123 @@
-<div class="container text-center" style="padding-top:100px">
-  <h3><%= @parking_spot.street_address %></h3>
-  <% ba = @parking_spot.user_id %>
-  <div class="content col-md-6" style="padding-left: 150px">
-    <p style="text-align: left"><strong>Address:</strong> <%= @parking_spot.street_address %></p>
-    <p style="text-align: left"><strong>Description:</strong> <%= @parking_spot.description %></p>
-    <p style="text-align: left"><strong>City:</strong> <%= @parking_spot.city %></p>
-    <p style="text-align: left"><strong>Country:</strong> <%= @parking_spot.country %></p>
-    <p style="text-align: left"><strong>Price:</strong> <%= @parking_spot.price %></p>
-    <p style="text-align: left"><strong>Number of spots:</strong> <%= @parking_spot.number_of_spots %></p>
-    <button><%= link_to "Back", profile_path %></button>
-    <button><%= link_to "Edit", edit_parking_spot_path(@parking_spot) %></button>
-    <button><%= link_to "Delete", parking_spot_path(@parking_spot), method: :delete %></button>
-
-
-
-      <div class="confirm">
-        <h2>Booking Comfirm</h2>
-          <% @parking_spot.bookings.accepted.each do |booking| %>
-
-            <p>Booking id: <%= booking.id %></p>
-            <p>
-            <%= link_to booking_chat_rooms_path(booking), style: "color:red", target: '_blank' do %>
-              Chat
-            <% end %>
-          </p>
-
-          <% end %>
-      </div>
-
-    <% if current_user.id == @parking_spot.user_id %>
-
-      <div id="pending">
-        <h2>Pending</h2>
-        <br>
-        <% @parking_spot.bookings.pending.each do |booking| %>
-        <div class="booking-<%= booking.id %>" id="enline">
-          <p>
-            <%= link_to accepted_booking_path(booking), remote: true, class: "booking-confirm-#{booking.id}" do %>
-              Confirmed
-            <% end %>
-          </p>
-
-          <p style="color:transparent">transparent</p>
-
-          <p>
-            <%= link_to rejected_booking_path(booking), remote: true, class: "booking-cancel-#{booking.id}" do %>
-              Cancelled
-            <% end %>
-          </p>
-          <p style="color:transparent">transparent</p>
-          <p>
-            <%= link_to booking_chat_rooms_path(booking), class: "booking-cancel-#{booking.id}", target: '_blank' do %>
-              Chat
-            <% end %>
-          </p>
+<div class="container-fluid text-center">
+      <div class="row bg-grey">
+        <div class="col-lg-12 bg-grey">
+          <div id="map" style="width: 100%; height: 300px;"></div>
         </div>
-        <% end %>
       </div>
+    </div>
+    <div class="container-fluid">
+      <div class="row bg-grey">
+        <div class="col-lg-6 booking-form-info py2 px2">
+          <h2 id="bookingtitle">
+            <strong><%= @parking_spot.street_address.upcase %></strong>
+          </h2>
+          <table class="table table-hover">
+            <tbody>
+              <tr>
+                <td>
+                  <strong>Address:</strong>
+                </td>
+                <td>
+                  <%= @parking_spot.street_address.titleize %>
+                </td>
+              </tr>
+              </tr>
+              <tr>
+                <td>
+                  <strong>Description:</strong>
+                </td>
+                <td>
+                  <%= @parking_spot.description %>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <strong>City:</strong>
+                </td>
+                <td>
+                  <%= @parking_spot.city.capitalize %>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <strong>Country:</strong>
+                </td>
+                <td>
+                  <%= @parking_spot.country.capitalize %>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <strong>Number of spots:</strong>
+                </td>
+                <td>
+                  <%= @parking_spot.number_of_spots %>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="col-lg-3 bg-navy booking-form-book py2" style="height:100%">
+          <h2><strong>Total Price: </strong>$<span id='total-price'><%= @parking_spot.price %></span></h2>
+          <p><strong>Price: </strong><%= @parking_spot.price %> /day</p>
 
-      <div class="cancel">
-        <h3>Booking Cancel</h3>
-        <% @parking_spot.bookings.rejected.each do |booking| %>
-          <p>
-            <%= link_to accepted_booking_path(booking), remote: true, class: "booking-confirm-#{booking.id}", style: "color:red" do %>
-              Confirmed
-            <% end %>
-          <p>
-        <% end %>
       </div>
-    <% end %>
-
-    <h2>Reviews</h2>
-    <% @parking_spot.reviews.each do |review| %>
-      <p><%= review.description %></p>
-      <p>
-        <% review.rating.times do %>
-          <i class="fa fa-star" aria-hidden="true"></i>
-        <% end %>
-      </p>
-    <% end %>
-    <%= cl_image_tag @parking_spot.photo, height: 300, width: 400, crop: :fill %>
+      <div class="col-lg-3 bg-grey booking-form-info py2 px2">
+        <p class="my1">
+          <strong>Got a spare driveway or garage in Lebanon?</strong>
+        </p>
+        <p>
+          You can list your parking space for free with Parkingfind. It only takes a few minutes to get up and running, and you could be making money in no time. Find out more here.
+        </p>
+        <%= link_to "Rent your space", new_parking_spot_path, class: "btn btn-info btn-block my1" %>
+      </div>
+    </div>
   </div>
-
-
-  <div class="col-md-6">
-    <div id="map" style="width: 100%; height: 600px;"></div>
-  </div>
-</div>
 
 <%= javascript_include_tag "https://maps.google.com/maps/api/js?key=AIzaSyBAbVBfyj-wKN5_BQGC7LsP8hjV2GuH_WE" %>
 <%= javascript_include_tag "https://cdn.rawgit.com/printercu/google-maps-utility-library-v3-read-only/master/markerclusterer/src/markerclusterer_compiled.js" %>
 <%= javascript_include_tag "https://cdn.rawgit.com/printercu/google-maps-utility-library-v3-read-only/master/infobox/src/infobox_packed.js" %>
 
+        <% content_for(:after_js) do %>
+          <%= javascript_tag do %>
+            $(document).ready(function(){
+              $('.datepicker').datepicker({
+              todayHighlight: true,
+              datesDisabled: <%= raw @parking_spot.unavailable_dates %>,
+              startDate: 'today',
+              format: "dd/mm/yyyy"
+              });
+                var base_price = <%= @parking_spot.price %>;
+                var parking_spot_price = <%= @parking_spot.price %>
+                $('.datepicker').on('change', function(){
+                  var start_at = Date.parse( $('#dp_start_at').val() )
+                  var end_at = Date.parse( $('#dp_end_at').val() )
+                  var elapsed_time_days = (end_at - start_at) / 86400000;
+                  var total_price = base_price + (elapsed_time_days * parking_spot_price)
+                  $('#total-price').html(total_price);
+                });
+            });
 
-<% content_for(:after_js) do %>
-  <%= javascript_tag do %>
-
-      var handler = Gmaps.build('Google');
-      handler.buildMap({ internal: { id: 'map' } }, function() {
-        markers = handler.addMarkers(
-          [{
-            "lat": <%= @parking_spot.latitude %>,
-            "lng": <%= @parking_spot.longitude %>
-          }]
-        );
-        handler.bounds.extendWith(markers);
-        handler.fitMapToBounds();
-        if (markers.length == 0) {
-          handler.getMap().setZoom(2);
-        } else if (markers.length == 1) {
-          handler.getMap().setZoom(18);
-        }
-      });
-
+            var handler = Gmaps.build('Google');
+            handler.buildMap({ internal: { id: 'map' } }, function() {
+              markers = handler.addMarkers(
+                [{
+                  "lat": <%= @parking_spot.latitude %>,
+                  "lng": <%= @parking_spot.longitude %>
+                }]
+              );
+              handler.bounds.extendWith(markers);
+              handler.fitMapToBounds();
+              if (markers.length == 0) {
+                handler.getMap().setZoom(2);
+              } else if (markers.length == 1) {
+                handler.getMap().setZoom(13);
+              }
+            });
+      <% end %>
   <% end %>
-<% end %>
+</div>
 
-<br><br>
+
 
 
