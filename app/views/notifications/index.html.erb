@@ -1,16 +1,21 @@
 <% if current_user != nil %>
-  <% current_user.notifications.each do |notification| %>
-  <br><br><br><br>
+  <% if current_user.notifications.empty? %>
+    <div class="text-center">
+      <h2 style="font-family: lato;">Sorry,</h2>
+      <h2 style="font-family: lato;">You don't have any notifications</h2>
+      <%= image_tag "sorry", width: "150" %>
+    </div>
 
-      <div class="alert alert-success alert-dismissible" role="alert" id="noti-<%= notification.id %>">
-        <!-- <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button> -->
+  <% else %>
+    <% current_user.notifications.each do |notification| %>
+      <div class="alert alert-success alert-dismissible" role="alert" id="noti-<%= notification.id %>" style="padding-left: 10px;padding-right: 32px">
         <%= link_to notification_path(notification),  class: "close", method: :delete, remote: true do  %>
           <span>&times;</span>
         <% end %>
-
         <%= notification.content.html_safe %>
-    </div>
+      </div>
+    <% end %>
   <% end %>
 <% end %>
 
-<br><br>
+
