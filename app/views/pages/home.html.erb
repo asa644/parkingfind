@@ -21,60 +21,32 @@
                 </div><!-- .row close -->
             </div><!-- .container close -->
         </section><!-- #slider close -->
-        <section id="service">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="block-top">
-                            <div class="service-header">
-                                <h1>On-demand parking in Beirut</h1>
-                            </div>
-                        </div>
-                    </div><!-- .col-md-12 close -->
-                </div><!-- row close -->
-        <div class="row">
-          <div class="col-md-12">
-            <div class="block-bottom">
-              <div class="service-tab">
-                  <!-- Nav tabs -->
-                  <ul class="badhon-tab" role="tablist">
-                    <li class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">
-                    <i class="fa fa-map-marker"></i>Secret spots
-                    </a></li>
-                    <li><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">
-                    <i class="fa fa-usd"></i>Flat rate
-                    </a></li>
-                    <li><a href="#messages" aria-controls="messages" role="tab" data-toggle="tab">
-                    <i class="fa fa-rocket"></i>Tap and park
-                    </a></li>
-                  </ul>
-                  <!-- Tab panes -->
-                  <div class="tab-content edit-tab-content">
-                    <div class="tab-pane active edit-tab" id="home">
-                      <div class="teb-icon-edit">
-                        <i class="fa fa-map-marker"></i>
-                      </div>
-                      <h1>Secret spots</h1>
-                      <p>Secret spots in the hardest parking areas.</p>
-                    </div>
-                    <div class="tab-pane edit-tab" id="profile">
-                      <div class="teb-icon-edit">
-                        <i class="fa fa-usd"></i>
-                      </div>
-                      <h1>Flat rate</h1>
-                      <p>Lower rates since we use underutilized parking spaces.</p>
-                    </div>
-                    <div class="tab-pane edit-tab" id="messages">
-                      <div class="teb-icon-edit">
-                        <i class="fa fa-rocket"></i>
-                      </div>
-                      <h1>Tap and park</h1>
-                      <p>Get your spot the fastest way via App or text message.</p>
-                    </div>
-                  </div>
-              </div>
-            </div>
-          </div><!-- .col-md-12 close -->
-        </div><!-- row close -->
-            </div><!-- .container close -->
-        </section><!-- #service close -->
+ <div class="container-fluid text-center how-create bg-dark-blue">
+  <h2><strong>On-demand parking in Beirut!</strong></h2>
+  <div class="row ">
+    <div class="mt3">
+      <div class="col-lg-4">
+        <%= image_tag 'map.svg', class:"home-picture-big-create" %>
+        <h2> <strong> Tap and park </strong></h2>
+        <p> Find a driveyway, car park or any other empty space where you car can fit ! </p>
+      </div>
+      <div class="col-lg-4">
+        <%= image_tag 'calendar.svg', class:"home-picture-big-create" %>
+        <h2> <strong> Lower rate </strong></h2>
+        <p> Lower rates since we use underutilized parking spaces</p>
+      </div>
+      <div class="col-lg-4">
+        <%= image_tag 'dollar.svg', class:"home-picture-big-create" %>
+        <h2><strong> Find a parking place easily !</strong></h2>
+        <p> Get your spot the fastest way via App or text message</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="text-center my4">
+  <h2><strong>Have a spot? List it and earn when it's empty</strong></h2>
+  <%= link_to "Start earning now", new_parking_spot_path, class:"rent-button btn btn-primary" %>
+</div>
+
+<%= render "parking_spots/whyrent" %>
