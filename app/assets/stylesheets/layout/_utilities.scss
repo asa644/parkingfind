@@ -9,6 +9,7 @@
 .items-vertical-center { align-items: center; }
 
 /* Margins */
+.mt0 { margin-top: 0; }
 .mt1 { margin-top: 1rem; }
 .mt2 { margin-top: 2rem; }
 .mt3 { margin-top: 3rem; }
@@ -16,6 +17,30 @@
 .mt5 { margin-top: 5rem; }
 .mt6 { margin-top: 6rem; }
 
+.my0 {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.my1 {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+
+.my2 {
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+}
+
+.my3 {
+  margin-top: 3rem;
+  margin-bottom: 3rem;
+}
+
+.my4 {
+  margin-top: 4rem;
+  margin-bottom: 4rem;
+}
 
 /*// Positioning
 */.fixed { position: fixed; }
