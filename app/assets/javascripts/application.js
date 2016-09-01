@@ -4,7 +4,6 @@
 //= require underscore
 //= require gmaps/google
 //= require cable
-//= require turbolinks
 //= require bootstrap-datepicker
 //= require_tree .
 

@@ -27,9 +27,13 @@
               <h2 style="position:relative;left:33px;top:20px">
                 <%= parking_spot.price.to_i %>€
               </h2>
-              <button style="position:relative;left:14px;top:20px;padding: 7px;background: white;border: none;">
-                <%= link_to 'Book now!',  new_parking_spot_booking_path(parking_spot), style: 'color: black;' %>
-              </button>
+              <%= link_to new_parking_spot_booking_path(parking_spot), style: 'color: black;' do %>
+                <button style="position:relative;left:14px;top:20px;padding: 7px;background: white;border: none;">
+                  Make a request
+                </button>
+              <% end %>
+
+
               </div>
             </div>
           <% end %>
