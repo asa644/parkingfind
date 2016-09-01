@@ -1,25 +1,35 @@
-<div class="container-fluid" style="padding-bottom: 30px;">
-  <div class="text-center">
-    <h2>Search results for <%= params[:search].capitalize %>:</h2>
+<div class='text-left' style="background: #005866;">
+    <form action='/search' id='form_container' class='form-inline' style="padding: 10px;">
+    <div class='form-group'>
+      <label for='search'><label>
+      <input id="search_box" type='text' name='search' class='form-control' placeholder= 'Where to park?'>
+      <input class="btn btn-success" type='submit' value='Search' id="input-formm">
+    </div>
+  </form>
   </div>
+<div class="container-fluid" style="background-color:##f9f1f1">
   <div class="row">
-    <div class="col-xs-12 col-lg-4" style="height: 100%;overflow: hidden;overflow-y: scroll;">
-      <div class="scroll container">
+    <div class="col-xs-12 col-lg-4" style="height: 100%;overflow: hidden;overflow-y: scroll;padding-left: 0px;padding-right:0pc">
+      <div class="scroll container" style="background: #eae7e7;">
         <% if @parking_spots.blank? %>
           <h3>No parking spots available</h3>
         <% else %>
           <% @parking_spots.each do |parking_spot| %>
-            <% bab = parking_spot.user_id %>
-            <div class="row">
-              <div class="col-xs-6 col-lg-2">
+            <div class="row" style="border: 1px solid;">
+              <div class="col-xs-6 col-lg-2" style="margin-left: 13px;">
                 <h6><strong>Address:</strong> <%= parking_spot.street_address %></h6>
                 <h6><strong>City:</strong> <%= parking_spot.city %></h6>
                 <h6><strong>Country:</strong> <%= parking_spot.country %></h6>
-                <%= link_to 'Book now!',  new_parking_spot_booking_path(parking_spot), style: "color:green" %>
               </div>
 
-              <div class="col-xs-6 col-lg-2">
-                <%= cl_image_tag parking_spot.photo, height: 90, width: 90, crop: :fill, style: "position:relative;left:33px;top: 12px;" %>
+              <div class="col-xs-6 col-lg-2" style="margin-right: 13px;" id="resppp">
+
+              <h2 style="position:relative;left:33px;top:20px">
+                <%= parking_spot.price.to_i %>€
+              </h2>
+              <button style="position:relative;left:14px;top:20px;padding: 7px;background: white;border: none;">
+                <%= link_to 'Book now!',  new_parking_spot_booking_path(parking_spot), style: 'color: black;' %>
+              </button>
               </div>
             </div>
           <% end %>
@@ -30,38 +40,41 @@
       </div>
     </div>
 
-    <div class="col-xs-12 col-lg-8" id="smappux" style="background:#f7f8f7;">
+    <div class="col-xs-12 col-lg-8" id="smappux" style="padding-left: 0px;padding-right: 0px;">
       <div id="map" class="map_structure" style="width: 100%;height: 530px;position: fixed !important;"></div>
     </div>
   </div>
 </div>
 
-
-
-
-
 <%= javascript_include_tag "https://maps.google.com/maps/api/js?key=AIzaSyBAbVBfyj-wKN5_BQGC7LsP8hjV2GuH_WE" %>
 <%= javascript_include_tag "https://cdn.rawgit.com/printercu/google-maps-utility-library-v3-read-only/master/markerclusterer/src/markerclusterer_compiled.js" %>
 <%= javascript_include_tag "https://cdn.rawgit.com/printercu/google-maps-utility-library-v3-read-only/master/infobox/src/infobox_packed.js" %>
 
-      <% content_for(:after_js) do %>
-        <%= javascript_tag do %>
+<% content_for(:after_js) do %>
+  <%= javascript_tag do %>
+      var handler = Gmaps.build('Google');
+      handler.buildMap({ internal: { id: 'map' } }, function() {
+        if ("lat" != null) {
 
-            var handler = Gmaps.build('Google');
-            handler.buildMap({ internal: { id: 'map' } }, function() {
-              markers = handler.addMarkers(<%= raw @hash.to_json %>);
-              handler.bounds.extendWith(markers);
-              handler.fitMapToBounds();
-                if (markers.length == 0) {
-                  handler.getMap().setZoom(2);
-                }
-                else if (markers.length == 1) {
-                  handler.getMap().setZoom(14);
-                }
-              });
+        markers = handler.addMarkers(<%= raw @hash.to_json %>);
+        handler.bounds.extendWith(markers);
+        handler.fitMapToBounds();
+         }
+          if (markers.length == 0) {
+            handler.getMap().setZoom(2);
+          }
+          else if (markers.length == 1) {
+            handler.getMap().setZoom(14);
+          }
+      });
+  <% end %>
+<% end %>
 
-        <% end %>
-      <% end %>
+
+
+
+
+
 
 
 
