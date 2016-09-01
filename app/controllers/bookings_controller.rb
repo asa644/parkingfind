@@ -13,37 +13,34 @@ class BookingsController < ApplicationController
   end
 
   def show
+    #to be removed ?
+      @booking = Booking.where(state: 'paid').find(params[:id])
   end
 
   def create
     @booking = current_user.bookings.build(booking_params)
     @booking.parking_spot_id = params[:parking_spot_id]
-    @booking.total_price = total_price
-    @booking.number_of_days = number_of_days
+    @booking.total_price_cents = @booking.t_price
+    @booking.number_of_days = @booking.n_of_days
 
     if @booking.save
+
       owner = @booking.parking_spot.user
       ownerr = owner.notifications.build(content: "You have a new booking #{@booking.id}, for #{@booking.parking_spot.city} link, #{ view_context.link_to "notif", parking_spot_path(@booking.parking_spot.id), style: "color:red" }")
+
       if ownerr.save
         respond_to do |format|
         flash[:notice] = "Notifications"
         format.html
         format.js
+        end
       end
-    end
+
       flash[:notice] = "Thank you for booking, Your booking time start at #{@booking.start_at} and ends at #{@booking.end_at} Your total price is: #{@booking.total_price}"
-      redirect_to parking_spot_bookings_path
+      redirect_to new_parking_spot_booking_payment_path(@parking_spot, @booking)
     else
       render :new
     end
-  end
-
-  def number_of_days
-    @total_days = (@booking.end_at.to_date - @booking.start_at.to_date) + 1
-  end
-
-  def total_price
-    number_of_days * find_parking_spot.price
   end
 
   def rejected
