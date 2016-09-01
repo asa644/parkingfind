@@ -43,6 +43,10 @@
   margin-bottom: 0;
 }
 
+abbr {
+    display: none !important;
+}
+
 .my1 {
   margin-top: 1rem;
   margin-bottom: 1rem;
@@ -84,43 +88,47 @@ $green: green;
 .bg-dark-blue { background: $dark-blue; }
 .bg-navy { background-color: $navy; }
 
-// form#edit_parking_spot_1 {
-//     text-align: left;
-//     position: relative;
-//     left: 400px !important;
-// }
-
-// @media screen and (max-width: 480px) {
-//     form#edit_parking_spot_1 {
-//     position: relative;
-//     left: 50px !important;
-//     }
-//     #resppp{
-//     position: relative;
-//     left: 191px;
-//     bottom: 95px;
-//     }
-//     #input-formm{
-//     position: relative;
-//     left: 230px;
-//     bottom: 40px;
-//     }
-
-//     #form_container{
-//       top: 25px;
-//     position: relative;
-//     }
-//     #header{
-//       height: 97px;
-//     }
-//     .block-right {
-//     position: relative;
-//     bottom: 83px;
-//     left: 116px;
-// }
 
 
-// }
+form#edit_parking_spot_1 {
+    text-align: left;
+    position: relative;
+    left: 400px !important;
+}
+
+@media screen and (max-width: 480px) {
+    form#edit_parking_spot_1 {
+    position: relative;
+    left: 50px !important;
+    }
+    #resppp{
+    position: relative;
+    left: 191px;
+    bottom: 95px;
+    }
+    #input-formm{
+    position: relative;
+    left: 230px;
+    bottom: 40px;
+    }
+
+    #form_container{
+      top: 25px;
+    position: relative;
+    }
+    #header{
+      height: 97px;
+    }
+    .block-right {
+    position: relative;
+    bottom: 83px;
+    left: 235px;
+
+    }
+    width: 150px;
+}
+
+
 
 #avatar{
   width: 50px;

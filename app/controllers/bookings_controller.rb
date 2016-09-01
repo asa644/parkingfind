@@ -26,7 +26,7 @@ class BookingsController < ApplicationController
     if @booking.save
 
       owner = @booking.parking_spot.user
-      ownerr = owner.notifications.build(content: "You have a new booking #{@booking.id}, for #{@booking.parking_spot.city} link, #{ view_context.link_to "notif", parking_spot_path(@booking.parking_spot.id), style: "color:red" }")
+      ownerr = owner.notifications.build(content: "You have a new booking for #{ view_context.link_to @booking.parking_spot.city, parking_spot_path(@booking.parking_spot.id), style: "color: #4CAF50" }, #{view_context.link_to "manage", management_path, style: "color:#4CAF50" } it" )
 
       if ownerr.save
         respond_to do |format|

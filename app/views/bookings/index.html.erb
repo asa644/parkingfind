@@ -4,7 +4,7 @@
       <div class="col-xs-12, col-md-8, col-lg-8" style="border: 1px solid grey;">
         <h2>Your current bookings</h2>
           <hr>
-          <% @user.bookings.each do |booking| %>
+          <% @bookings.each do |booking| %>
             <% if booking.start_at <= Date.today || booking.start_at > Date.today  && booking.end_at > Date.today %>
               <div class="col-md-4">
                 <p><strong>Address: </strong><%= booking.parking_spot.street_address %></p>
