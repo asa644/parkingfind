@@ -1,4 +1,4 @@
-<div class="container-fluid" style="padding-bottom: 30px;background-color:##f9f1f1">
+<div class="container-fluid" style="background-color:##f9f1f1">
   <div class='text-center' style="margin-top: 15px;">
     <form action='/search' id='form_container' class='form-inline'>
     <div class='form-group'>
@@ -20,11 +20,13 @@
                 <h6><strong>Address:</strong> <%= parking_spot.street_address %></h6>
                 <h6><strong>City:</strong> <%= parking_spot.city %></h6>
                 <h6><strong>Country:</strong> <%= parking_spot.country %></h6>
-                <%= link_to 'Book now!',  new_parking_spot_booking_path(parking_spot), class: 'green' %>
+                <button><%= link_to 'Book now!',  new_parking_spot_booking_path(parking_spot), class: 'green' %></button>
               </div>
 
               <div class="col-xs-6 col-lg-2">
-                <%= cl_image_tag parking_spot.photo, height: 90, width: 90, crop: :fill, style: "position:relative;left:33px;top: 12px;" %>
+              <h2 style="position:relative;left:33px;top: 45px;">
+                <%= parking_spot.price.to_i %>€
+              </h2>
               </div>
             </div>
           <% end %>
@@ -35,7 +37,7 @@
       </div>
     </div>
 
-    <div class="col-xs-12 col-lg-8" id="smappux" style="background:#f7f8f7;">
+    <div class="col-xs-12 col-lg-8" id="smappux" style="padding-left: 0px;padding-right: 0px;">
       <div id="map" class="map_structure" style="width: 100%;height: 530px;position: fixed !important;"></div>
     </div>
   </div>
