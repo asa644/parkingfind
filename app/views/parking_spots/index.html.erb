@@ -3,7 +3,7 @@
     <div class='form-group'>
       <label for='search'><label>
       <input id="search_box" type='text' name='search' class='form-control' placeholder= 'Where to park?'>
-      <input class="btn btn-success" type='submit' value='Search' >
+      <input class="btn btn-success" type='submit' value='Search' id="input-formm">
     </div>
   </form>
   </div>
@@ -15,7 +15,7 @@
           <h3>No parking spots available</h3>
         <% else %>
           <% @parking_spots.each do |parking_spot| %>
-            <div class="row" style="border: 1px solid;margin-top: 1px;">
+            <div class="row" style="border: 1px solid;">
               <div class="col-xs-6 col-lg-2" style="margin-left: 13px;">
                 <h6><strong>Address:</strong> <%= parking_spot.street_address %></h6>
                 <h6><strong>City:</strong> <%= parking_spot.city %></h6>
@@ -27,8 +27,8 @@
               <h2 style="position:relative;left:33px;top:20px">
                 <%= parking_spot.price.to_i %>€
               </h2>
-              <button style="position:relative;left:14px;top:20px">
-                <%= link_to 'Book now!',  new_parking_spot_booking_path(parking_spot), class: 'green' %>
+              <button style="position:relative;left:14px;top:20px;padding: 7px;background: white;border: none;">
+                <%= link_to 'Book now!',  new_parking_spot_booking_path(parking_spot), style: 'color: black;' %>
               </button>
               </div>
             </div>
