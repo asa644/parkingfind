@@ -5,6 +5,55 @@
 
 // CSS for index of parking spots
 
+<<<<<<< HEAD
+=======
+#btn-create-spot {
+  background-color: white;
+  &:hover {
+    background-color: transparent;
+  }
+}
+
+
+// TO BE REMOVED ?
+// .structure {
+//   display:flex;
+//   justify-content:center;
+
+//   .subcontent {
+//     padding: 20px 20px 20px 20px;
+//     background-color: white;
+//     width: 500px;
+//     height: 297px;
+//     display: flex;
+//     flex-direction: column;
+//     .important_info{
+
+//     }
+//   }
+// }
+
+// #width_of_chat{
+//   width:550px;
+// }
+
+// .index_parking_adress {
+//   font-size: 23px;
+//   width: 100%;
+//   font-weight: bold;
+//   color: green;
+// }
+
+// #parking-spot-listing {
+//   margin: 2rem;
+//   text-align: center;
+//   img {
+//     border-radius: 50%;
+//   }
+// }
+//
+
+>>>>>>> cc0bcf1e54cebf8fef6ccc29512d6b5e22594425
 .create_sub {
   display:flex;
 }
@@ -14,9 +63,22 @@
     color:$white;
     padding:60px;
 }
+<<<<<<< HEAD
 
 .home-picture-big-create {
   height:100px;
+=======
+#image_park {
+  background-image: url("parking3.jpg");
+  height: 256px;
+  background-size: cover;
+  padding-top: -10px;
+  margin-bottom: 1px;
+  margin-top: 1px;
+  margin-left: -15px;
+  margin-right: -15px;
+  background-position-y: -524px;
+>>>>>>> cc0bcf1e54cebf8fef6ccc29512d6b5e22594425
 }
 
 .div-create-banner {

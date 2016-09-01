@@ -25,7 +25,7 @@
         <h2> Your previous booking </h2>
         <hr>
         <% current_user.bookings.each do |booking| %>
-          <% if booking.start_at < Date.today && booking.end_at < Date.today%>
+          <% if booking.start_at < Date.today && booking.end_at < Date.today %>
             <p>  <%= booking.user.first_name %> </p>
             <p>  <%= booking.parking_spot.street_address %> </p>
             <p>  <%= booking.start_at %> </p>

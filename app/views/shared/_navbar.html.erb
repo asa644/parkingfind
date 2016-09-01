@@ -4,7 +4,7 @@
                     <div class="col-md-6">
                         <div class="block-left">
                           <nav class="navbar navbar-default" role="navigation">
-                            <div class="container-fluid">
+                            <div class="container-fluid" style="background: #f5f3f3">
                             <div class="navbar-header">
                               <div class="nav-logo">
                                 <%= link_to root_path, style: "color:black !important" do %>
@@ -23,15 +23,17 @@
                                 <ul>
 
                                     <% if user_signed_in? %>
-                                      <li>
-                                        <%= link_to notifications_path do %>
-                                          <div class="badge-container">
-                                            <i class="fa fa-bell"></i>
-                                            <div class="badge badge-blue"><%= current_user.notifications.count %></div>
-                                          </div>
-                                        <% end %>
-                                      </li>
+                                      <% if current_user.notifications.count != 0 %>
+                                        <li>
+                                          <%= link_to notifications_path do %>
+                                            <div class="badge-container">
+                                              <i class="fa fa-bell"></i>
+                                              <div class="badge badge-blue"><%= current_user.notifications.count %></div>
+                                            </div>
+                                          <% end %>
+                                        </li>
                                       <% end %>
+                                    <% end %>
 
 
                                       <li>
@@ -69,6 +71,7 @@
                                             <%= button_tag t(".sign-up", default: "Sign Up") , class: "navbar-wagon-item navbar-wagon-link", data: { toggle: 'modal',  target: '#modal-sign-up' } %>
 
                                             <%= button_tag t(".sign_in", default: "Login") , class: "navbar-wagon-item navbar-wagon-link", data: { toggle: 'modal',  target: '#modal-login' } %>
+
                                           <% end %>
                                         </li>
                                 </ul>

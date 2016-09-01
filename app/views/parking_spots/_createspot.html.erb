@@ -103,7 +103,7 @@
 
 <%= javascript_include_tag "https://maps.google.com/maps/api/js?key=AIzaSyBAbVBfyj-wKN5_BQGC7LsP8hjV2GuH_WE" %>
 <%= javascript_include_tag "https://cdn.rawgit.com/printercu/google-maps-utility-library-v3-read-only/master/markerclusterer/src/markerclusterer_compiled.js" %>
-<%= javascript_include_tag "https://cdn.rawgit.com/printercu/google-maps-utility-library-v3-read-only/master/infobox/src/infobox_packed.js" %>
+
 
 
 <% content_for(:after_js) do %>
@@ -113,7 +113,7 @@
     var marker;
 
 // geolocation with HTML5 through browser
-    if (navigator.geolocation) {
+     if (navigator.geolocation) {
 
         navigator.geolocation.getCurrentPosition(function(p){
         console.log(p.coords.longitude);
@@ -129,7 +129,7 @@
         zoom: 14
         }
       initMap(mapOptions);
-      }
+       }
 
 
       function initMap(mapOptions) {

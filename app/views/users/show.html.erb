@@ -1,80 +1,175 @@
+<div class="wrapper" style="min-height: 77vh !important;height: 77vh !important;">
+    <div class="sidebar">
 
-<div class='text-center profile-background-color'>
-  <div class="dashboard">
-    <div class="container">
-      <div class="row">
-        <div class="col-xs-12">
-          <div class="dashboard-buttons">
-            <%= link_to "Book a place!", parking_spots_path, :class => "btn btn-info"  %>
-            <%= link_to 'View my bookings', bookings_path, :class => "btn btn-info" %>
-            <%= link_to 'Manage my parkings', management_path, :class => "btn btn-info" %>
-            <%= link_to "Create a Parking spot", new_parking_spot_path, :class => "btn btn-info" %>
-          </div>
-        </div>
-      </div>
-    </div>
-  <br>
-    <div class="row dashboard-content">
-      <div class="col-xs-12 col-lg-4">
-        <div class="dashboard-userpicture">
-          <% if current_user.avatar_url %>
-            <%= cl_image_tag current_user.avatar, class: "avatar-verylarge" %>
-          <% elsif current_user.facebook_picture_url %>
-            <%= image_tag current_user.facebook_picture_url, class: "avatar-large" %>
-          <% else %>
-            <%= image_tag "http://placehold.it/30x30", class: "avatar-verylarge" %>
-          <% end %>
-          <h3>Hello <%= @user.email %></h3>
-          <h4>Welcome to your Dashboard</h4>
-        </div>
-      </div>
-      <div class="col-lg-8">
-        <div class="row">
-            <div class="col-xs-0 col-md-6 col-lg-2">
-              <h4> Total of bookings days </h4>
-                <% array_of_days = @user.parking_spots.map do |p| %>
-                <% p.bookings.sum(:number_of_days) %>
-                <% end %>
-              <p> <%= array_of_days.inject(:+) %> </p>
-            </div>
-            <div class="col-xs-0 col-md-6 col-lg-2">
-              <h4> Cash earned </h4>
-              <% array_of_price = @user.parking_spots.map do |p| %>
-                <% p.bookings.sum(:total_price) %>
-              <% end %>
-              <p> <%= array_of_price.inject(:+) %> </p>
-            </div>
-            <div class="col-xs-0 col-md-6 col-lg-2">
-              <h4> Number of parking spots </h4>
-              <p> <%= @user.parking_spots.count %> </p>
-            </div>
-            <div class="col-xs-0 col-md-6 col-lg-2">
-              <h4> Number of transactions </h4>
-              <% array_of_transaction = @user.parking_spots.map do |p| %>
-                <% p.bookings.count %>
-                <% end %>
-              <p> <%= array_of_transaction.inject(:+) %> </p>
-            </div>
-          </div>
 
-      <div class="col-lg-8">
-        <div class="row">
-          <div class="col-xs-12 col-md-6 col-lg-3">
-          <h4> Cash Spent </h4>
-             <p> <%= current_user.bookings.sum(:total_price) %> </p>
-          </div>
-          <div class="col-xs-12 col-md-6 col-lg-3">
-          <h4>  Number of transaction </h4>
-           <p>   <%= current_user.bookings.count %> </p>
-          </div>
-          <div class="col-xs-12 col-md-6 col-lg-3">
-          <h4>  Number of transaction </h4>
-          <p> <%= current_user.bookings.count %> </p>
-          </div>
-        </div>
+      <div class="sidebar-wrapper">
+            <div class="logo">
+                <a  class="simple-text">
+                  Dashboard
+                </a>
+            </div>
+
+            <ul class="nav">
+                <li class="active">
+                    <a href="#">
+                        <p>Analytics</p>
+                    </a>
+                </li>
+                <li>
+                    <%= link_to parking_spots_path do %>
+                        <p>Book A Place</p>
+                    <% end %>
+                </li>
+
+                <% if !@user.bookings.empty? %>
+                  <li>
+                    <%= link_to bookings_path do %>
+                      <p>View My Bookings</p>
+                    <% end %>
+                  </li>
+                <% end %>
+
+                <% if !@user.parking_spots.empty? %>
+                  <li>
+                    <%= link_to management_path do %>
+                      <p>Manage My Parkings</p>
+                    <% end %>
+                  </li>
+                <% end %>
+                <li>
+                  <%= link_to new_parking_spot_path do %>
+                    <p>Create A Parking Spot</p>
+                  <% end %>
+                </li>
+            </ul>
       </div>
-      <br>
   </div>
+
+
+  <% if user_signed_in? %>
+    <div class="main-panel">
+          <div class="content">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-6" style="height:600px">
+                        <div class="card">
+                            <div class="header">
+                                <h4 class="title"></h4>
+                                <p class="category"></p>
+                            </div>
+                            <h2 style="text-align:center;font-weight: 500;font-family: Lato;padding-bottom: 13px;">Parking Spot</h2>
+                            <div class="content">
+
+                              <div class="col-md-6" style="padding-bottom: 45px;">
+                                <div class='dashboard-element'>
+                                  <h4 class="title text-center" style="color: #5f5b63;font-family: lato;">Count</h4>
+                                  <p class="text-center"><%= @user.parking_spots.count %></p>
+                                </div>
+                              </div>
+                            <% if !@user.parking_spots.empty? %>
+                              <div class="col-md-6" style="padding-bottom: 45px;">
+                                <div class='dashboard-element'>
+                                  <h4 class="title text-center" style="color: #5f5b63;font-family: lato;">Books Count</h4>
+                                  <% array_of_days = @user.parking_spots.map do |p| %>
+                                    <% p.bookings.sum(:number_of_days) %>
+                                  <% end %>
+                                    <p class="text-center">
+                                      <%= array_of_days.inject(:+) %>
+                                    </p>
+
+                                </div>
+                              </div>
+                            <% end %>
+                                <div class="col-md-6" style="padding-bottom: 45px;">
+                                  <div class='dashboard-element'>
+                                    <h4 class="title text-center" style="color: #5f5b63;font-family: lato;">Cash Earned</h4>
+                                    <% array_of_price = @user.parking_spots.map do |p| %>
+                                      <% p.bookings.sum(:total_price) %>
+                                    <% end %>
+                                    <p class="text-center">$<%= array_of_price.inject(:+).to_i %></p>
+                                  </div>
+                                </div>
+                              <% if !@user.parking_spots.empty? %>
+                                <div class="col-md-6" style="padding-bottom: 45px;">
+                                  <div class='dashboard-element'>
+                                    <h4 class="title text-center" style="color: #5f5b63;font-family: lato;">Transactions Count</h4>
+                                    <% array_of_transaction = @user.parking_spots.map do |p| %>
+                                      <% p.bookings.count %>
+                                    <% end %>
+                                    <p class="text-center"><%= array_of_transaction.inject(:+) %></p>
+                                  </div>
+                                </div>
+                              <% end %>
+                                <div class="footer">
+                                    <hr>
+                                    <div class="stats">
+                                      <% if current_user.parking_spots.empty?  %>
+                                        <% a  = DateTime.now %>
+                                        <% if current_user.parking_spots.last != nil %>
+                                          <% b = current_user.parking_spots.last.created_at %>
+                                          <% c = a.to_date - b.to_date %>
+                                          <i class="fa fa-clock-o"></i><%= pluralize(c.to_i, 'day') %> ago
+                                        <% end %>
+                                      <% end %>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="card">
+
+                            <div class="header">
+                              <h4 class="title"></h4>
+                              <p class="category"></p>
+                            </div>
+                            <h2 style="text-align:center;font-weight: 500;font-family: Lato;padding-bottom: 13px;">Booking</h2>
+                            <div class="content">
+                                <div class="col-md-6" style="padding-bottom: 45px;">
+                                  <div class='dashboard-element'>
+                                    <h4 class="title text-center" style="color: #5f5b63;font-family: lato;">Cash Earned</h4>
+                                    <p class="text-center">$<%= current_user.bookings.sum(:total_price).to_i %></p>
+                                  </div>
+                                </div>
+
+                                <div class="col-md-6" style="padding-bottom: 45px;">
+                                  <div class='dashboard-element'>
+                                    <h4 class="title text-center" style="color: #5f5b63;font-family: lato;">Transactions Count</h4>
+                                    <p class="text-center"><%= current_user.bookings.count %></p>
+                                  </div>
+                                </div>
+
+
+
+
+                                <div class="footer">
+                                    <hr>
+                                    <div class="stats">
+                                      <% if current_user.parking_spots.empty?  %>
+                                        <% if current_user.parking_spots.last != nil %>
+                                          <% e  = DateTime.now %>
+                                          <% f = current_user.bookings.last.created_at %>
+                                          <% cg= e.to_date - f.to_date %>
+                                          <i class="fa fa-history"></i> Updated <%= pluralize(cg.to_i, 'day') %> ago
+                                        <% end %>
+                                      <% end %>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <% end %>
 </div>
-</div>
-</div>
+
+
+
+
+
+
+
+
