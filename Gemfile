@@ -22,6 +22,9 @@ gem 'uglifier'
 #listing search and bookings and everything
 gem 'will_paginate', '~> 3.1.0'
 
+#stripe"
+gem "money-rails"
+gem 'stripe'
 
 #geocoding
 gem "geocoder"
