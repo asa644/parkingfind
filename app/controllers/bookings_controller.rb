@@ -13,8 +13,7 @@ class BookingsController < ApplicationController
   end
 
   def show
-    #to be removed ?
-      @booking = Booking.where(state: 'paid').find(params[:id])
+      #@booking = Booking.where(status: 'paid').find(params[:id])
   end
 
   def create

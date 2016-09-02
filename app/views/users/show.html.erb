@@ -54,7 +54,7 @@
                             <div class="content row">
                               <div class="col-md-6" style="padding-bottom: 45px;">
                                 <div class='dashboard-element'>
-                                  <h4 class="title text-center" style="color: #5f5b63;font-family: lato;">Count</h4>
+                                  <h4 class="title text-center" style="color: #5f5b63;font-family: lato;">Spaces owned</h4>
                                   <p class="text-center"><%= @user.parking_spots.count %></p>
                                 </div>
                               </div>
@@ -75,20 +75,13 @@
                                   <div class='dashboard-element'>
                                     <h4 class="title text-center" style="color: #5f5b63;font-family: lato;">Cash Earned</h4>
                                     <% array_of_price = @user.parking_spots.map do |p| %>
-                                      <% p.bookings.sum_price %>
+                                      <% p.bookings.sum_price / 100 %>
                                     <% end %>
                                     <p class="text-center">$<%= array_of_price.inject(:+).to_i %></p>
                                   </div>
                                 </div>
                               <% if !@user.parking_spots.empty? %>
                                 <div class="col-md-6" style="padding-bottom: 45px;">
-                                  <div class='dashboard-element'>
-                                    <h4 class="title text-center" style="color: #5f5b63;font-family: lato;">Transactions Count</h4>
-                                    <% array_of_transaction = @user.parking_spots.map do |p| %>
-                                      <% p.bookings.count %>
-                                    <% end %>
-                                    <p class="text-center"><%= array_of_transaction.inject(:+) %></p>
-                                  </div>
                                 </div>
                               <% end %>
                                 <div class="footer">
@@ -117,8 +110,8 @@
                             <div class="content row">
                                 <div class="col-md-6" style="padding-bottom: 45px;">
                                   <div class='dashboard-element'>
-                                    <h4 class="title text-center" style="color: #5f5b63;font-family: lato;">Cash Earned</h4>
-                                    <p class="text-center">$<%= current_user.bookings.sum_price.to_i %></p>
+                                    <h4 class="title text-center" style="color: #5f5b63;font-family: lato;">Cash Spent</h4>
+                                    <p class="text-center">$<%= current_user.bookings.sum_price / 100 %></p>
                                   </div>
                                 </div>
                                 <div class="col-md-6" style="padding-bottom: 45px;">
@@ -126,6 +119,9 @@
                                     <h4 class="title text-center" style="color: #5f5b63;font-family: lato;">Transactions Count</h4>
                                     <p class="text-center"><%= current_user.bookings.count %></p>
                                   </div>
+                                </div>
+                                <div class="col-md-6" style="padding-bottom: 45px;">
+
                                 </div>
                                 <div class="footer">
                                     <hr>
