@@ -9,24 +9,24 @@
             <hr>
             <div class="management-info-button">
               <div class="management-info">
-                <p> <%= b.parking_spot.street_address %> </p>
-                <p> <%= b.total_price %> </p>
-                <p> <%= b.start_at %> </p>
-                <p> <%= b.end_at %> </p>
+                <p><strong> Address: </strong><%= b.parking_spot.street_address %> </p>
+                <p><strong> Total Price: </strong> <%= humanized_money_with_symbol b.total_price %></p>
+                <p><strong>Start: </strong> <%= b.start_at %> </p>
+                <p><strong>End: </strong><%= b.end_at %> </p>
               </div>
 
             <div class="management-button">
               <% if b.status == "paid" || b.status == "accepted" %>
                 <p>
-                  <%= link_to "Chat", booking_chat_rooms_path(b), class: "btn btn-info", target: "_blank" %>
+                  <%= link_to "Chat", booking_chat_rooms_path(b), class: "btn btn-info", target: "_blank", style: "width: 200px;" %>
                 </p>
                 <p>
-                  <%= link_to accepted_booking_path(b), remote: true, class: "booking-confirm-#{b.id} btn btn-success" do %>
+                  <%= link_to accepted_booking_path(b), remote: true, class: "booking-confirm-#{b.id} btn btn-success", style: "width: 200px;" do %>
                     Confirmed
                   <% end %>
                 </p>
                 <p>
-                  <%= link_to rejected_booking_path(b), remote: true, class: "booking-cancel-#{b.id} btn btn-danger" do %>
+                  <%= link_to rejected_booking_path(b), remote: true, class: "booking-cancel-#{b.id} btn btn-danger", style: "width: 200px;" do %>
                     Cancelled
                   <% end %>
                 </p>
@@ -43,7 +43,7 @@
           <% end %>
         <% end %>
     </div>
-    <div class="col-xs-12, col-lg-6 management-spot">
+    <div class="management-spot">
       <h2> Statistics on your parkings </h2>
         <% if current_user.parking_spots.empty? %>
           <h2> You don't have any parking spots yet ! </h2>
@@ -52,7 +52,7 @@
                     <hr>
                     <div class="management-info-button">
                     <div class="management-info">
-                      <p> <strong> Adress: </strong> : <%= parking_spot.street_address %> </p>
+                      <p> <strong> Address: </strong> : <%= parking_spot.street_address %> </p>
                       <p> <strong> Price: </strong> <%= humanized_money_with_symbol parking_spot.price %> </p>
                       <p> <strong> Total Number of booking: </strong><%= parking_spot.bookings.count %> </p>
                       <p> <strong> Total Cash earned </strong><%= humanized_money_with_symbol parking_spot.bookings.sum_price / 100 %> </p>
@@ -77,6 +77,8 @@
           <% end %>
     </div>
   </div>
+
+
     <div class="digg_pagination">
       <%= will_paginate @segment %>
     </div>
