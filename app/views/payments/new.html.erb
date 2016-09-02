@@ -1,20 +1,74 @@
-<!-- app/views/payments/new.html.erb -->
-<h1>Purchase of teddy <%= @booking.id %></h1>
+<div class="container-fluid">
+  <div class="row bg-grey">
+    <div class="col-lg-6 booking-form-info py2 px2">
+      <h2 id="bookingtitle">
+        <strong><%= @parking_spot.street_address.upcase %></strong>
+      </h2>
+      <table class="table table-hover">
+        <tbody>
+          <tr>
+            <td>
+              <strong>Address:</strong>
+            </td>
+            <td>
+              <%= @parking_spot.street_address.titleize %>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <strong>Description:</strong>
+            </td>
+            <td>
+              <%= @parking_spot.description %>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <strong>City:</strong>
+            </td>
+            <td>
+              <%= @parking_spot.city.capitalize %>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <strong>Country:</strong>
+            </td>
+            <td>
+              <%= @parking_spot.country.capitalize %>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <strong>Number of spots:</strong>
+            </td>
+            <td>
+              <%= @parking_spot.number_of_spots %>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="col-lg-3 booking-form-book py2 text-center" style="margin-top:96px; background-color:#b9b2b2">
+      <p><strong>Price: </strong><%= @parking_spot.price %> /day</p>
+      <h1>Book a space</h1>
+        <%= form_tag parking_spot_booking_payments_path(@booking) do %>
+          <article>
+            <label class="amount">
+              <span>Amount: <%= humanized_money_with_symbol(@booking.total_price) %></span>
+            </label>
+          </article>
 
-<%= form_tag parking_spot_booking_payments_path(@booking) do %>
-  <article>
-    <label class="amount">
-      <span>Amount: <%= humanized_money_with_symbol(@booking.total_price) %></span>
-    </label>
-  </article>
-
-  <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
-    data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
-    data-name="My parking"
-    data-description="Teddy <%= @booking.id %>"
-    data-amount="<%= @booking.total_price_cents %>"
-    data-currency="EUR">
-
-    </script>
-<% end %>
-
+          <div class="test">
+            <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+              data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
+              data-name="My parking"
+              data-description=" <%= @booking.id%>"
+              data-amount="<%= @booking.total_price_cents %>"
+              data-currency="USD">
+            </script>
+          </div>
+        <% end %>
+    </div>
+  </div>
+</div>
