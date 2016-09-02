@@ -1,6 +1,6 @@
 class PaymentsController < ApplicationController
   before_action :set_booking, except: :accepted
-  before_action :find_parking_spot , except: [:index, :show, :rejected, :accepted]
+
 
 
   def new
@@ -51,9 +51,7 @@ class PaymentsController < ApplicationController
 
 
 private
-  def find_parking_spot
-    @parking_spot = ParkingSpot.find(params[:parking_spot_id])
-  end
+
 
   def set_booking
     @booking = Booking.where(status: 'pending').find(params[:booking_id])
