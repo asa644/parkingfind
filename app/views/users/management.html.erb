@@ -9,7 +9,6 @@
             <hr>
             <div class="management-info-button">
               <div class="management-info">
-                <p> <%= b.status %> </p>
                 <p> <%= b.parking_spot.street_address %> </p>
                 <p> <%= b.total_price %> </p>
                 <p> <%= b.start_at %> </p>
@@ -19,7 +18,7 @@
             <div class="management-button">
               <% if b.status == "paid" || b.status == "accepted" %>
                 <p>
-                  <%= link_to "Chat", booking_chat_rooms_path(b), class: "btn btn-danger", target: "_blank" %>
+                  <%= link_to "Chat", booking_chat_rooms_path(b), class: "btn btn-info", target: "_blank" %>
                 </p>
                 <p>
                   <%= link_to accepted_booking_path(b), remote: true, class: "booking-confirm-#{b.id} btn btn-success" do %>
@@ -54,7 +53,7 @@
                     <div class="management-info-button">
                     <div class="management-info">
                       <p> <strong> Adress: </strong> : <%= parking_spot.street_address %> </p>
-                      <p> <strong> Price: </strong> <%= parking_spot.price %> </p>
+                      <p> <strong> Price: </strong> <%= humanized_money_with_symbol parking_spot.price %> </p>
                       <p> <strong> Total Number of booking: </strong><%= parking_spot.bookings.count %> </p>
                       <p> <strong> Total Cash earned </strong><%= parking_spot.bookings.sum_price %> </p>
                       <p> <strong> Total days booked </strong> <%= parking_spot.bookings.sum(:number_of_days) %> </p>
