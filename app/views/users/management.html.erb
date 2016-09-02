@@ -1,25 +1,24 @@
 <div class="container owner_dashboard">
-   <%= render 'cashdone' %>
+  <%= render 'cashdone' %>
   <div class="row text-center">
     <div class="col-xs-12, col-lg-6 management-spot">
       <h2> Parking spaces currently rented </h2>
-        <% current_user.parking_spots.each do |p| %>
-          <% p.bookings.each do |b| %>
-            <% if b.start_at >= Date.today || b.start_at < Date.today && b.end_at < Date.today %>
-              <hr>
-              <div class="management-info-button">
-                <div class="management-info">
-                  <p> <%= b.status %> </p>
-                  <p> <%= b.parking_spot.street_address %> </p>
-                  <p> <%= b.total_price %> </p>
-                  <p> <%= b.start_at %> </p>
-                  <p> <%= b.end_at %> </p>
-                </div>
+      <% current_user.parking_spots.each do |p| %>
+        <% p.bookings.each do |b| %>
+          <% if (b.end_at >= Date.today && b.status == "paid") %>
+            <hr>
+            <div class="management-info-button">
+              <div class="management-info">
+                <p> <%= b.parking_spot.street_address %> </p>
+                <p> <%= b.total_price %> </p>
+                <p> <%= b.start_at %> </p>
+                <p> <%= b.end_at %> </p>
+              </div>
 
             <div class="management-button">
-              <% if b.status == "pending" %>
+              <% if b.status == "paid" || b.status == "accepted" %>
                 <p>
-                  <%= link_to "Chat", booking_chat_rooms_path(b), class: "btn btn-danger", target: "_blank" %>
+                  <%= link_to "Chat", booking_chat_rooms_path(b), class: "btn btn-info", target: "_blank" %>
                 </p>
                 <p>
                   <%= link_to accepted_booking_path(b), remote: true, class: "booking-confirm-#{b.id} btn btn-success" do %>
@@ -33,23 +32,11 @@
                 </p>
               <% end %>
 
-              <% if b.status == "accepted" %>
-                <p>
-                  <%= link_to "Chat", booking_chat_rooms_path(b), class: "btn btn-danger", target: "_blank" %>
-                </p>
-                <p>
-                  <%= link_to rejected_booking_path(b), remote: true, class: "booking-cancel-#{b.id} btn btn-danger" do %>
-                    Cancelled
-                  <% end %>
-                </p>
-              <% end %>
-
               <% if b.status == "rejected" %>
                 <p>
                   <%= link_to "Chat", booking_chat_rooms_path(b), class: "btn btn-danger", target: "_blank" %>
                 </p>
               <% end %>
-
             <% end %>
             </div>
           </div>
@@ -58,27 +45,27 @@
     </div>
     <div class="col-xs-12, col-lg-6 management-spot">
       <h2> Statistics on your parkings </h2>
-        <% if @parking_spots.empty? %>
+        <% if current_user.parking_spots.empty? %>
           <h2> You don't have any parking spots yet ! </h2>
         <% else %>
-                  <% @parking_spots.each do |parking_spot| %>
+                  <% current_user.parking_spots.each do |parking_spot| %>
                     <hr>
                     <div class="management-info-button">
                     <div class="management-info">
                       <p> <strong> Adress: </strong> : <%= parking_spot.street_address %> </p>
-                      <p> <strong> Price: </strong> <%= parking_spot.price %> </p>
+                      <p> <strong> Price: </strong> <%= humanized_money_with_symbol parking_spot.price %> </p>
                       <p> <strong> Total Number of booking: </strong><%= parking_spot.bookings.count %> </p>
-                      <p> <strong> Total Cash earned </strong><%= parking_spot.bookings.sum_price %> </p>
+                      <p> <strong> Total Cash earned </strong><%= humanized_money_with_symbol parking_spot.bookings.sum_price / 100 %> </p>
                       <p> <strong> Total days booked </strong> <%= parking_spot.bookings.sum(:number_of_days) %> </p>
                       <p> <strong> ID: </strong> <%= parking_spot.id %> </p>
                     </div>
                     <div class="management-button">
                       <% if parking_spot.bookings.empty? %>
-                        <p> <%= link_to "Edit", edit_parking_spot_path(parking_spot), class: "btn btn-danger" %></p>
+                        <p> <%= link_to "Edit", edit_parking_spot_path(parking_spot), class: "btn btn-info" %></p>
                         <p> <%= link_to 'Details', parking_spot_path(parking_spot), class:"btn btn-success" %> </p>
                         <p> <%= link_to "Delete Parking", parking_spot_path(parking_spot), { class: "btn btn-danger", method: :delete }  %></p>
                       <% else %>
-                        <p> <%= link_to "Edit", edit_parking_spot_path(parking_spot), class: "btn btn-danger" %></p>
+                        <p> <%= link_to "Edit", edit_parking_spot_path(parking_spot), class: "btn btn-info" %></p>
                         <p> <%= link_to 'Details', parking_spot_path(parking_spot), class:"btn btn-success" %> </p>
                       <% end %>
                     </div>

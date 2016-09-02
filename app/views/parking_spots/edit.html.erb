@@ -1,44 +1,144 @@
-<div class="container text-center">
-  <div>
-  <h3>Edit your parking spot:</h3> </div>
+<div class="container-fluid text-center">
+<h1> Edit your parking space </h1>
+  <div class="raw">
+    <div class="col-lg-6">
+      <%= simple_form_for(@parking_spot) do |f| %>
+      <div class="">
+        <h4> WHERE IS YOUR PARKING SPACE? </h4>
+        <hr>
+        <div class="form-group">
+          <div>
+            <%= f.input :latitude, as: :hidden %>
+            <%= f.input :longitude, as: :hidden %>
+          </div>
+          <div>
+            <%= f.label :street_address %>
+          </div>
+          <div>
+            <%= f.text_field :street_address, class: "form-control" %>
+          </div>
+        </div>
 
-  <div class="internal_structure">
-  <div class="top_form text-center">
-    <%= simple_form_for(@parking_spot) do |f| %>
-    <table class="table">
-      <tr>
-        <td>  <%= f.label :street_address %> </td>
-        <td> <%= f.text_field :street_address %> </td>
-      </tr>
-      <tr>
-        <td><%= f.label :city %></td>
-        <td><%= f.text_field :city %></td>
-      </tr>
-      <tr>
-        <td><%= f.label :country %></td>
-        <td><%= f.text_field :country %></td>
-      </tr>
-      <tr>
-        <td><%= f.label :price %></td>
-        <td><%= f.text_field :price %></td>
-      </tr>
-      <tr>
-        <td><%= f.label :number_of_spots %></td>
-        <td><%= f.text_field :number_of_spots %></td>
-      </tr>
-      <tr>
-        <td><%= f.label :description %></td>
-        <td><%= f.text_field :description %></td>
-      </tr>
-      <tr>
-        <td><%= f.input :photo %></td>
-        <td><%= f.input :photo_cache, as: :hidden %></td>
-      </tr>
-      </table>
-      <%= f.submit %>
+        <div class="row">
+          <div class="col-xs-12 col-sm-6">
+            <div class="form-group">
+              <div><%= f.label :city %></div>
+              <div><%= f.text_field :city, class: "form-control" %></div>
+            </div>
+          </div>
 
-    <% end %>
+          <div class="col-xs-12 col-sm-6">
+            <div class="form-group">
+              <div><%= f.label :country %></div>
+              <div>
+                <%= f.text_field :country, class: "form-control" %>
+              </div>
+            </div>
+          </div>
+        </div><!-- end row for city and country -->
+      </div>
+
+      <div class="">
+        <h4> ABOUT YOUR SPACE </h4>
+        <hr>
+        <div class="row">
+          <div class="col-xs-12 col-sm-6">
+            <div class="form-group">
+              <div> <%= f.label :price %> </div>
+              <div> <%= f.text_field :price, class:"form-control" %> </div>
+            </div>
+          </div>
+          <div class="col-xs-12 col-sm-6">
+            <div class="form-group">
+              <div> <%= f.label :number_of_spots %> </div>
+              <div> <%= f.text_field :number_of_spots, class: "form-control"  %> </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="">
+        <h4> ADD A DESCRIPTION </h4>
+        <hr>
+        <div> <%= f.label :description %> </div>
+        <div> <%= f.text_field :description, class:"form-control" %> </div>
+      </div>
+
+      <div class="">
+        <h4> ADD A PICTURE </h4>
+        <hr>
+        <div> <%= f.input :photo %> </div>
+        <div> <%= f.input :photo_cache, as: :hidden %> </div>
+      </div>
+
+      <div class="form-actions ">
+        <%= f.button :submit, "Create",:class => "btn-block btn-primary" %>
+      </div>
+      <% end %>
+    </div>
+    <div class="col-lg-6">
+      <h4> SET THE LOCATION OF YOUR SPACE </h4>
+      <hr>
+      <div id="map_set_location" class="map_structure" style="width: 100%;height: 500px;position: fixed !important;">
+      </div>
+    </div>
   </div>
 </div>
-</div>
+<br>
 
+
+
+<%= javascript_include_tag "https://maps.google.com/maps/api/js?key=AIzaSyBAbVBfyj-wKN5_BQGC7LsP8hjV2GuH_WE" %>
+<%= javascript_include_tag "https://cdn.rawgit.com/printercu/google-maps-utility-library-v3-read-only/master/markerclusterer/src/markerclusterer_compiled.js" %>
+
+
+
+<% content_for(:after_js) do %>
+  <%= javascript_tag do %>
+
+    var map;
+    var marker;
+
+// geolocation with HTML5 through browser
+     if (navigator.geolocation) {
+
+        navigator.geolocation.getCurrentPosition(function(p){
+        console.log(p.coords.longitude);
+          var mapOptions = {
+          center: new google.maps.LatLng({lng: p.coords.longitude,lat: p.coords.latitude}),
+          zoom: 14
+          }
+          initMap(mapOptions);
+          });
+    } else {
+      var mapOptions = {
+        center: new google.maps.LatLng(-25.363, 131.044),
+        zoom: 14
+        }
+      initMap(mapOptions);
+       }
+
+
+      function initMap(mapOptions) {
+
+        var handler = Gmaps.build('Google');
+
+        handler.buildMap({ provider: mapOptions, internal: { id: 'map_set_location' } }, function() {
+          map = handler.getMap();
+          map.addListener('click', function(e) {
+            addMarker(e.latLng);
+          });
+        });
+      }
+
+      function addMarker(latLng){
+        if (marker) marker.setMap(null);
+        marker = new google.maps.Marker({
+          position: latLng,
+          map: map
+        });
+        $('#parking_spot_latitude').val(latLng.lat());
+        $('#parking_spot_longitude').val(latLng.lng());
+      }
+  <% end %>
+<% end %>
