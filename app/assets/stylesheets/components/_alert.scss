@@ -13,3 +13,28 @@
 .alert-warning {
   background: $red;
 }
+
+.alert-dismissable .close, .alert-dismissible .close {
+    position: relative !important;
+    bottom: 3px !important;
+    right: 0px !important;
+  }
+
+.alert button.close {
+    position: absolute;
+    right: 0 !important;
+    top: 0px !important;
+    margin-top: 0px !important;
+    z-index: 1033;
+    background-color: #FFFFFF;
+    display: block;
+    border-radius: 50%;
+
+    line-height: 0px !important;
+    width: 0px !important;
+    height: 0px !important;
+    outline: 0 !important;
+    text-align: center;
+    padding: 0px !important;
+    font-weight: 300;
+}

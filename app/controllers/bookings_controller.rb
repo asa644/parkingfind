@@ -1,6 +1,6 @@
 class BookingsController < ApplicationController
   before_action :authenticate_user!
-  before_action :find_parking_spot , except: [:index, :show, :rejected, :accepted]
+  before_action :find_parking_spot , except: [:index, :rejected, :accepted]
   before_action :find_booking , only: [:rejected, :accepted, :show]
 
   def index
@@ -13,8 +13,7 @@ class BookingsController < ApplicationController
   end
 
   def show
-    #to be removed ?
-      @booking = Booking.where(state: 'paid').find(params[:id])
+    @booking = Booking.find_by_id_and_parking_spot_id(params[:id], @parking_spot.id)
   end
 
   def create

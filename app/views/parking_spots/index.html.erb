@@ -25,7 +25,7 @@
               <div class="col-xs-6 col-lg-2" style="margin-right: 13px;" id="resppp">
 
               <h2 style="position:relative;left:33px;top:20px">
-                <%= parking_spot.price.to_i %>€
+                $<%= parking_spot.price.to_i %>
               </h2>
               <%= link_to new_parking_spot_booking_path(parking_spot), style: 'color: black;' do %>
                 <button style="position:relative;left:14px;top:20px;padding: 7px;background: white;border: none;">
