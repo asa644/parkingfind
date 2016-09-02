@@ -62,11 +62,11 @@
                     </div>
                     <div class="management-button">
                       <% if parking_spot.bookings.empty? %>
-                        <p> <%= link_to "Edit", edit_parking_spot_path(parking_spot), class: "btn btn-danger" %></p>
+                        <p> <%= link_to "Edit", edit_parking_spot_path(parking_spot), class: "btn btn-info" %></p>
                         <p> <%= link_to 'Details', parking_spot_path(parking_spot), class:"btn btn-success" %> </p>
                         <p> <%= link_to "Delete Parking", parking_spot_path(parking_spot), { class: "btn btn-danger", method: :delete }  %></p>
                       <% else %>
-                        <p> <%= link_to "Edit", edit_parking_spot_path(parking_spot), class: "btn btn-danger" %></p>
+                        <p> <%= link_to "Edit", edit_parking_spot_path(parking_spot), class: "btn btn-info" %></p>
                         <p> <%= link_to 'Details', parking_spot_path(parking_spot), class:"btn btn-success" %> </p>
                       <% end %>
                     </div>
