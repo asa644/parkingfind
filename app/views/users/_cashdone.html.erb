@@ -11,7 +11,7 @@
       <% array_of_price = @user.parking_spots.map do |p| %>
         <% p.bookings.sum_price %>
       <% end %>
-      <p> <%= array_of_price.inject(:+) %> </p>
+      <p> <%= humanized_money_with_symbol array_of_price.inject(:+) / 100 %> </p>
     </div>
     <div class="col-xs-12 col-md-6 col-lg-3">
       <h4> Number of parking spots </h4>

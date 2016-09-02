@@ -58,9 +58,8 @@
           </table>
         </div>
         <div class="col-lg-3 bg-navy booking-form-book py2" style="height:100%">
-          <h2><strong>Total Price: </strong>$<span id='total-price'><%= @parking_spot.price %></span></h2>
-          <p><strong>Price: </strong><%= @parking_spot.price %> /day</p>
-
+          <h2><strong>Price: </strong>$<span id='total-price'><%= @parking_spot.price %></span>/day</h2>
+          <%= link_to 'Dashboard', profile_path, class: 'btn btn-success btn-block' %>
       </div>
       <div class="col-lg-3 bg-grey booking-form-info py2 px2">
         <p class="my1">
@@ -81,23 +80,6 @@
         <% content_for(:after_js) do %>
           <%= javascript_tag do %>
             $(document).ready(function(){
-              $('.datepicker').datepicker({
-              todayHighlight: true,
-              datesDisabled: <%= raw @parking_spot.unavailable_dates %>,
-              startDate: 'today',
-              format: "dd/mm/yyyy"
-              });
-                var base_price = <%= @parking_spot.price %>;
-                var parking_spot_price = <%= @parking_spot.price %>
-                $('.datepicker').on('change', function(){
-                  var start_at = Date.parse( $('#dp_start_at').val() )
-                  var end_at = Date.parse( $('#dp_end_at').val() )
-                  var elapsed_time_days = (end_at - start_at) / 86400000;
-                  var total_price = base_price + (elapsed_time_days * parking_spot_price)
-                  $('#total-price').html(total_price);
-                });
-            });
-
             var handler = Gmaps.build('Google');
             handler.buildMap({ internal: { id: 'map' } }, function() {
               markers = handler.addMarkers(
@@ -113,6 +95,7 @@
               } else if (markers.length == 1) {
                 handler.getMap().setZoom(13);
               }
+            });
             });
       <% end %>
   <% end %>

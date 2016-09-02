@@ -7,16 +7,14 @@ class PaymentsController < ApplicationController
 
 
   def create
-
     @total_price_cents = @booking.total_price_cents
-
-    # get the credit card details submitted by the form or app
-   # token = params[:stripeToken]
 
     customer = Stripe::Customer.create(
       source: params[:stripeToken],
       email:  params[:stripeEmail],
     )
+
+    @booking.update(status: 'paid')
 
     @user = current_user
     @user.customer_id = customer.id
@@ -33,8 +31,6 @@ class PaymentsController < ApplicationController
   def accepted
     @booking = Booking.where(status: 'pending').find(params[:id])
 
-
-
     if current_user.id == @booking.parking_spot.user.id && @booking.accepted!
 
     charge = Stripe::Charge.create(
@@ -44,9 +40,7 @@ class PaymentsController < ApplicationController
       currency:     'eur'
     )
 
-
-
-    @booking.update(payment: charge.to_json, status: 'accepted')
+    @booking.update(payment: charge.to_json, status: 'accepted') #might change to "paid"
       respond_to do |format|
         format.html { redirect_to parking_spot_path(@booking.parking_spot), flash[:notice] = "Booking Accepted" }
         format.js  # <-- will render `app/views/bookings/accepted.js.erb`
