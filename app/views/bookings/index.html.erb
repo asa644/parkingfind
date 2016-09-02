@@ -8,9 +8,9 @@
             <% if booking.start_at <= Date.today || booking.start_at > Date.today  && booking.end_at > Date.today %>
               <div class="col-md-4">
                 <p><strong>Address: </strong><%= booking.parking_spot.street_address %></p>
-                <p><strong>Starts on the: </strong><%=booking.start_at %></p>
-                <p> <strong>Ends on the:</strong> <%=booking.end_at%></p>
-                <p> <strong>Your booking total price is: </strong><%=booking.total_price%></p>
+                <p><strong>Starts on the: </strong><%= booking.start_at %></p>
+                <p> <strong>Ends on the:</strong> <%= booking.end_at %></p>
+                <p> <strong>Your booking total price is: </strong><%= booking.total_price %></p>
                 <div class="text-danger">
                 <%= link_to "Show",parking_spot_booking_path(booking.parking_spot_id, booking.id),  class: "btn btn-primary" %>
                 <%= link_to "Chat",booking_chat_rooms_path(booking.id),  class: "btn btn-primary", target: "_blank" %>
