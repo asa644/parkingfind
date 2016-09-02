@@ -13,7 +13,11 @@ class BookingsController < ApplicationController
   end
 
   def show
-    @booking = Booking.find_by_id_and_parking_spot_id(params[:id], @parking_spot.id)
+
+      #@booking = Booking.where(status: 'paid').find(params[:id])
+
+    # @booking = Booking.find_by_id_and_parking_spot_id(params[:id], @parking_spot.id)
+
   end
 
   def create
