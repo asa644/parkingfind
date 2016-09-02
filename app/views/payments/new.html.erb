@@ -1,56 +1,6 @@
 <div class="container-fluid">
   <div class="row bg-grey">
-    <div class="col-lg-6 booking-form-info py2 px2">
-      <h2 id="bookingtitle">
-        <strong><%= @parking_spot.street_address.upcase %></strong>
-      </h2>
-      <table class="table table-hover">
-        <tbody>
-          <tr>
-            <td>
-              <strong>Address:</strong>
-            </td>
-            <td>
-              <%= @parking_spot.street_address.titleize %>
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <strong>Description:</strong>
-            </td>
-            <td>
-              <%= @parking_spot.description %>
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <strong>City:</strong>
-            </td>
-            <td>
-              <%= @parking_spot.city.capitalize %>
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <strong>Country:</strong>
-            </td>
-            <td>
-              <%= @parking_spot.country.capitalize %>
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <strong>Number of spots:</strong>
-            </td>
-            <td>
-              <%= @parking_spot.number_of_spots %>
-            </td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
     <div class="col-lg-3 booking-form-book py2 text-center" style="margin-top:96px; background-color:#b9b2b2">
-      <p><strong>Price: </strong><%= @parking_spot.price %> /day</p>
       <h1>Book a space</h1>
         <%= form_tag parking_spot_booking_payments_path(@booking) do %>
           <article>
