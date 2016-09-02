@@ -13,3 +13,9 @@
 .alert-warning {
   background: $red;
 }
+
+.alert-dismissable .close, .alert-dismissible .close {
+    position: relative !important;
+    bottom: 3px !important;
+    right: 0px !important;
+  }
