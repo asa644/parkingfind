@@ -58,8 +58,7 @@
           </table>
         </div>
         <div class="col-lg-3 bg-navy booking-form-book py2" style="height:100%">
-          <h2><strong>Total Price: </strong>$<span id='total-price'><%= @parking_spot.price %></span></h2>
-          <p><strong>Price: </strong><%= @parking_spot.price %> /day</p>
+          <h2><strong>Price: </strong>$<span id='total-price'><%= @parking_spot.price %></span>/day</h2>
           <%= link_to 'Dashboard', profile_path, class: 'btn btn-success btn-block' %>
       </div>
       <div class="col-lg-3 bg-grey booking-form-info py2 px2">
@@ -96,6 +95,7 @@
               } else if (markers.length == 1) {
                 handler.getMap().setZoom(13);
               }
+            });
             });
       <% end %>
   <% end %>
