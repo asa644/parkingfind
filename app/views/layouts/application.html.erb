@@ -17,6 +17,7 @@
   <body class='<%= controller_name %> <%= action_name %>'>
     <% if controller_name != "chat_rooms" %>
       <%= render 'shared/flashes' %>
+      <%= render 'shared/notifications' %>
       <%= render 'shared/navbar' %>
     <% end %>
 

@@ -1,14 +1,15 @@
-<p> here is the details of your booking. </p>
-<p> you will be debited once the confirmation is approved by the owner </p>
+<div class='container'>
+  <h1>Booking Details</h1>
+  <hr>
 
-<div class="container text-center booking-show">
-        <p><strong>Id: </strong><%= @booking.id %></p>
-        <p><strong>Starts on the: </strong><%= @booking.start_at %></p>
-        <p><strong>Ends on the: </strong><%= @booking.end_at %></p>
-        <p><strong>Your booking total price is: </strong><%= @booking.total_price %></p>
-        <p><strong>Status: </strong><%= @booking.status %></p>
-        <%= link_to 'Back', parking_spot_bookings_path(@booking) , style: "color:green" %>
+  <div class="container pb2">
+    <p><strong>Id: </strong><%= @booking.id %></p>
+    <p><strong>Starts on the: </strong><%= @booking.start_at %></p>
+    <p><strong>Ends on the: </strong><%= @booking.end_at %></p>
+    <p class='mb0'><strong>Your booking total price is: </strong><%= @booking.total_price %></p>
+    <p class='mt0'><small>*You will be debited once the confirmation is approved by the owner</small></p>
+    <p><strong>Status: </strong><%= @booking.status %></p>
+    <%= link_to 'Back', parking_spot_bookings_path(@booking) , style: "color:green" %>
+  </div>
+
 </div>
-
-<% link_to "Back to your profile", profile_path , class: "btn btn-success" %>
-

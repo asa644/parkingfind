@@ -11,7 +11,8 @@
   <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
     data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
     data-name="My parking"
-    data-description="Teddy <%= @booking.id %>"
+    data-description="Parking spot id: <%= @booking.id %>"
+    data-email="<%= current_user.email %>"
     data-amount="<%= @booking.total_price_cents %>"
     data-currency="EUR">
 
