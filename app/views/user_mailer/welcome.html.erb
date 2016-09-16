@@ -1,6 +1,54 @@
-<div class="container text-center">
-  <h1><%= @user.name %></h1>
+<!-- <div class="container text-center">
+  <h1><%#= @user.name %></h1>
   <p>
-    <%= @user.email %>
+    <%#= @user.email %>
   </p>
-</div>
+</div> -->
+<style type="text/css">
+  /**
+* @tab Page
+* @section heading 1
+* @tip Set the styling for all first-level headings in your emails.
+* @style heading 1
+*/
+h1{
+    /*@editable*/ color:#202020 !important;
+    display:block;
+    /*@editable*/ font-family:Arial;
+    /*@editable*/ font-size:34px;
+    /*@editable*/ font-weight:bold;
+    /*@editable*/ line-height:100%;
+    /*@editable*/ text-align:left;
+}
+</style>
+<!-- // Begin Module: Left Image with Right Content \\ -->
+<table border="0" cellpadding="0" cellspacing="0" width="100%" mc:repeatable="image_with_content" mc:variant="content with left image">
+    <tr>
+        <td align="center" valign="top">
+            <img src="..." mc:edit="left_image" />
+        </td>
+        <td valign="top">
+            <div mc:edit="right_content">
+               <h4 class="h4">Heading 4</h4>
+               Lorem ipsum dolor sit amet.
+            </div>
+        </td>
+    </tr>
+</table>
+<!-- // End Module: Left Image with Right Content \\ -->
+
+<!-- // Begin Module: Right Image with Left Content \\ -->
+<table border="0" cellpadding="0" cellspacing="0" width="100%" mc:repeatable="image_with_content" mc:variant="content with right image">
+    <tr>
+        <td valign="top">
+            <div mc:edit="left_content">
+               <h4 class="h4">Heading 4</h4>
+               Lorem ipsum dolor sit amet.
+            </div>
+        </td>
+        <td align="center" valign="top">
+            <img src="http://www.ecobase21.net/Paysage/Liens/Paysagesnaturels5.jpg" mc:edit="right_image" width="200" />
+        </td>
+    </tr>
+</table>
+<!-- // End Module: Right Image with Left Content \\ -->
